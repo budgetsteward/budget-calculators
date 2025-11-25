@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smart Budget Percentages</title>
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --card-bg: #ffffff;
+      --accent: #2563eb;
+      --accent-light: #dbeafe;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --error: #b91c1c;
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    header {
+      background: #111827;
+      color: #f9fafb;
+      padding: 0.75rem 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .nav-links a {
+      color: #e5e7eb;
+      text-decoration: none;
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    main {
+      max-width: 960px;
+      margin: 1rem auto 2.5rem;
+      padding: 0 1rem;
+    }
+
+    .welcome-blurb {
+      margin-bottom: 0.75rem;
+      color: #374151;
+      font-size: 0.95rem;
+    }
+
+    .spotlight-label {
+      margin-bottom: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-weight: 600;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.25rem 1rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    @media (min-width: 640px) {
+      .card {
+        padding: 1.75rem 1.5rem;
+      }
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 0.4rem;
+      font-size: 1.4rem;
+    }
+
+    .subtitle {
+      margin: 0 0 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .income-form {
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .income-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .income-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .income-input-wrapper {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      background: var(--bg);
+      padding: 0.25rem 0.75rem;
+      border: 1px solid var(--border);
+      flex: 1 1 160px;
+    }
+
+    .income-input-wrapper span {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-right: 0.25rem;
+    }
+
+    #income {
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 100%;
+      font-size: 0.95rem;
+      padding: 0.1rem 0;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      border-radius: 999px;
+      padding: 0.45rem 0.9rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #f9fafb;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-secondary {
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .btn-secondary:hover {
+      background: #e5e7eb;
+    }
+
+    .error {
+      color: var(--error);
+      font-size: 0.85rem;
+    }
+
+    .results-table-container {
+      overflow-x: auto;
+      margin-top: 0.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      min-width: 480px;
+    }
+
+    thead {
+      background: var(--accent-light);
+    }
+
+    th,
+    td {
+      padding: 0.5rem 0.4rem;
+      text-align: right;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    th:first-child,
+    td:first-child {
+      text-align: left;
+    }
+
+    th {
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #f9fafb;
+    }
+
+    tfoot td {
+      font-weight: 600;
+      border-top: 2px solid var(--border);
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 0.75rem;
+    }
+
+    footer {
+      max-width: 960px;
+      margin: 0 auto 2rem;
+      padding: 0 1rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    footer p {
+      margin: 0.35rem 0;
+    }
+
+    /* Category name + info icon */
+    .name-cell {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .info-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #f9fafb;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .info-btn:hover {
+      background: #e5e7eb;
+    }
+
+    .info-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 1px;
+    }
+
+    /* Scroll / rotate hint */
+    .scroll-hint {
+      display: none; /* will be toggled via JS */
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+    }
+
+    .tilt-icon {
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="nav-brand">My Super Calculators</div>
+      <div class="nav-links">
+        <a href="#budgeting">Budgeting</a>
+        <a href="#debt">Debt</a>
+        <a href="#credit">Credit Cards</a>
+        <a href="#loans">Loans</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="welcome-blurb">
+      <strong>Welcome!</strong> Our tools are designed to help you understand your spending,
+      explore money-saving opportunities, and take control of your budget — all in a simple,
+      mobile-friendly way.
+    </div>
+
+    <div class="spotlight-label">
+      <span>⭐</span><span>Spotlight calculator of the month</span>
+    </div>
+
+    <!-- Budgeting section (you can add more calculators below later) -->
+    <section id="budgeting" class="card">
+      <h1>Smart Budget Percentages</h1>
+      <p class="subtitle">
+        Enter your <strong>monthly take-home (net) income</strong> to compare how a
+        typical American household might allocate their money versus a
+        <strong>budget-conscious target plan</strong>. Use this as a starting
+        point and adjust based on your real-world circumstances.
+      </p>
+
+      <form id="income-form" class="income-form">
+        <label for="income" class="income-label">
+          Monthly take-home income
+        </label>
+        <div class="income-row">
+          <div class="income-input-wrapper">
+            <span>$</span>
+            <input
+              type="number"
+              id="income"
+              name="income"
+              min="0"
+              step="50"
+              placeholder="e.g., 4500"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-primary">Calculate</button>
+          <button type="button" id="reset-button" class="btn-secondary">
+            Clear
+          </button>
+        </div>
+        <div id="error-message" class="error" aria-live="polite"></div>
+      </form>
+
+      <div class="results-table-container">
+        <table aria-live="polite">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Average&nbsp;%</th>
+              <th>Average&nbsp;$</th>
+              <th>Target&nbsp;%</th>
+              <th>Target&nbsp;$</th>
+            </tr>
+          </thead>
+          <tbody id="results-body">
+            <!-- rows are injected via JavaScript -->
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Total</td>
+              <td id="total-avg-pct">100%</td>
+              <td id="total-avg-amt">—</td>
+              <td id="total-target-pct">100%</td>
+              <td id="total-target-amt">—</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div id="scroll-hint" class="scroll-hint">
+        <span class="tilt-icon">↔️</span>
+        <span>Rotate or tilt your device to see the full table.</span>
+      </div>
+
+      <div id="category-details" class="muted">
+        Tap an <strong>info</strong> icon to see common expenses in each category.
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      These recommended percentages are based on a blend of
+      <em>U.S. Bureau of Labor Statistics Consumer Expenditure Survey</em> data
+      (to approximate average household spending by category) and common
+      budgeting guidelines such as the 50/30/20 rule and debt-reduction
+      strategies. They are general guidelines only and may need adjustment for
+      your income level, family size, debt load, and local cost of living.
+    </p>
+    <p>
+      These tools are provided for general information and entertainment purposes only and
+      do not constitute financial, legal, or tax advice. We are not a fiduciary and do not
+      make recommendations based on your personal financial situation. Please consult a
+      qualified professional for advice tailored to your needs.
+    </p>
+  </footer>
+
+  <script>
+    // Core configuration: categories & percentages
+    const categories = [
+      {
+        name: "Housing (incl. utilities)",
+        avgPct: 38,
+        targetPct: 30,
+        description:
+          "Rent or mortgage, property taxes, HOA dues, basic home maintenance, and standard utilities like electricity, water, gas, trash, and internet.",
+        tip:
+          "Tip: Housing tends to creep upward over time — review your insurance, utilities, and subscription services annually to keep costs in check.",
+        superTip:
+          "Included free with Super+, Subscription Management shows all your recurring charges in one place and lets you cancel what you don’t need in a tap. Get reminders before renewals so you never overpay."
+      },
+      {
+        name: "Food",
+        avgPct: 13,
+        targetPct: 11,
+        description:
+          "Groceries, household staples, work or school lunches, and occasional takeout or coffee runs.",
+        tip:
+          "Tip: Plan 3–4 core meals for the week and reuse ingredients — this cuts grocery costs without cutting quality.",
+        superTip:
+          "Earn cashback – Get 1% cashback on everyday purchases when you pay with the Super.com Card. Use it for groceries and other essentials to put a little money back in your budget each month."
+      },
+      {
+        name: "Transportation",
+        avgPct: 17,
+        targetPct: 14,
+        description:
+          "Car payment or lease, fuel, routine maintenance, repairs, parking, insurance, public transit, and rideshare trips.",
+        tip:
+          "Tip: Preventive maintenance saves money — small repairs now avoid big repairs later.",
+        superTip:
+          "Save every time you travel – Get up to 30¢/gal off your first fill-up, ongoing gas savings, 30–50% off hotels, cashback on hotel stays, plus discounts on flights, activities, and attraction tickets with Super+."
+      },
+      {
+        name: "Healthcare",
+        avgPct: 8,
+        targetPct: 7,
+        description:
+          "Health insurance premiums, doctor and specialist visits, urgent care, prescriptions, dental and vision care.",
+        tip:
+          "Tip: Use in-network providers whenever possible to avoid surprise bills and negotiate lower out-of-pocket costs.",
+        superTip:
+          "Save up to 90% on prescriptions at thousands of pharmacies with Super+. Pay less on common medications and keep your monthly healthcare costs predictable."
+      },
+      {
+        name: "Lifestyle / Discretionary",
+        avgPct: 14,
+        targetPct: 13,
+        description:
+          "Entertainment, hobbies, dining out upgrades, vacations, clothing beyond basics, personal care, gifts, and small monthly treats.",
+        tip:
+          "Tip: Try a 'fun money' limit — a flat amount you can spend guilt-free each month.",
+        superTip:
+          "Enjoy up to 40% off movie tickets and entertainment with Super+. Save on nights out, events, and fun experiences while keeping your budget on track."
+      },
+      {
+        name: "Savings & Debt",
+        avgPct: 10,
+        targetPct: 25,
+        description:
+          "Emergency fund contributions, extra payments toward debt, retirement savings from your net pay, and other long-term goals.",
+        tip:
+          "Tip: Automating savings transfers removes the temptation to skip them — pay yourself first.",
+        superTip:
+          "Earn extra cash with Super+ — get 50% more on offers, complete surveys and tasks, earn rewards for everyday activity, and cash out instantly with the Super.com Card. Put that money directly toward paying down debt faster."
+      }
+    ];
+
+    const resultsBody = document.getElementById("results-body");
+    const incomeForm = document.getElementById("income-form");
+    const incomeInput = document.getElementById("income");
+    const resetButton = document.getElementById("reset-button");
+    const errorMessage = document.getElementById("error-message");
+    const totalAvgAmtCell = document.getElementById("total-avg-amt");
+    const totalTargetAmtCell = document.getElementById("total-target-amt");
+    const categoryDetails = document.getElementById("category-details");
+    const tableContainer = document.querySelector(".results-table-container");
+    const scrollHint = document.getElementById("scroll-hint");
+
+    // Main/global tip shown on load & after Clear
+    const MAIN_TIP_HTML =
+      "Tip: If your actual spending in a category is higher than the target, " +
+      "look for small changes you can make over the next 1–3 months rather than trying to fix everything at once.";
+
+    // Utility to format as USD
+    function formatMoney(value) {
+      if (isNaN(value) || value <= 0) return "—";
+      return value.toLocaleString("en-US", {
+        style: "currency",
+        currency: "USD",
+        maximumFractionDigits: 0
+      });
+    }
+
+    // Create table rows once
+    function initTable() {
+      resultsBody.innerHTML = "";
+      categories.forEach((cat, index) => {
+        const tr = document.createElement("tr");
+
+        const nameTd = document.createElement("td");
+        nameTd.classList.add("name-cell");
+
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = cat.name;
+
+        const infoBtn = document.createElement("button");
+        infoBtn.type = "button";
+        infoBtn.className = "info-btn";
+        infoBtn.textContent = "i";
+        infoBtn.setAttribute(
+          "aria-label",
+          `Show information for ${cat.name}`
+        );
+        infoBtn.dataset.index = index;
+
+        nameTd.appendChild(nameSpan);
+        nameTd.appendChild(infoBtn);
+
+        const avgPctTd = document.createElement("td");
+        avgPctTd.textContent = cat.avgPct + "%";
+
+        const avgAmtTd = document.createElement("td");
+        avgAmtTd.id = `avg-amt-${index}`;
+        avgAmtTd.textContent = "—";
+
+        const targetPctTd = document.createElement("td");
+        targetPctTd.textContent = cat.targetPct + "%";
+
+        const targetAmtTd = document.createElement("td");
+        targetAmtTd.id = `target-amt-${index}`;
+        targetAmtTd.textContent = "—";
+
+        tr.appendChild(nameTd);
+        tr.appendChild(avgPctTd);
+        tr.appendChild(avgAmtTd);
+        tr.appendChild(targetPctTd);
+        tr.appendChild(targetAmtTd);
+
+        resultsBody.appendChild(tr);
+      });
+
+      // Initial message = global tip
+      categoryDetails.innerHTML = MAIN_TIP_HTML;
+    }
+
+    // Calculate dollar amounts for a given income
+    function updateTable(income) {
+      let totalAvg = 0;
+      let totalTarget = 0;
+
+      categories.forEach((cat, index) => {
+        const avgAmt = (income * cat.avgPct) / 100;
+        const targetAmt = (income * cat.targetPct) / 100;
+
+        document.getElementById(`avg-amt-${index}`).textContent =
+          formatMoney(avgAmt);
+        document.getElementById(`target-amt-${index}`).textContent =
+          formatMoney(targetAmt);
+
+        totalAvg += avgAmt;
+        totalTarget += targetAmt;
+      });
+
+      totalAvgAmtCell.textContent = formatMoney(totalAvg);
+      totalTargetAmtCell.textContent = formatMoney(totalTarget);
+    }
+
+    // Show scroll hint if table is wider than container
+    function updateScrollHint() {
+      if (!scrollHint || !tableContainer) return;
+      const needsScroll =
+        tableContainer.scrollWidth > tableContainer.clientWidth + 2;
+      scrollHint.style.display = needsScroll ? "flex" : "none";
+    }
+
+    // Handle form submission
+    incomeForm.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const income = parseFloat(incomeInput.value);
+
+      if (isNaN(income) || income <= 0) {
+        errorMessage.textContent =
+          "Please enter a positive monthly take-home income.";
+        updateTable(0);
+        totalAvgAmtCell.textContent = "—";
+        totalTargetAmtCell.textContent = "—";
+        return;
+      }
+
+      errorMessage.textContent = "";
+      updateTable(income);
+    });
+
+    // Clear button → reset amounts and show global tip again
+    resetButton.addEventListener("click", function () {
+      incomeForm.reset();
+      errorMessage.textContent = "";
+      updateTable(0);
+      totalAvgAmtCell.textContent = "—";
+      totalTargetAmtCell.textContent = "—";
+
+      categoryDetails.innerHTML = MAIN_TIP_HTML;
+
+      incomeInput.focus();
+    });
+
+    // Info icon clicks → show description + tip + Super+ tip
+    resultsBody.addEventListener("click", function (event) {
+      const btn = event.target.closest(".info-btn");
+      if (!btn) return;
+
+      const index = btn.dataset.index;
+      const cat = categories[index];
+
+      let html = `
+        <strong>${cat.name}</strong><br>
+        ${cat.description}<br><br>
+        <em>${cat.tip}</em>
+      `;
+
+      // Add Super+ Tip if present
+      if (cat.superTip) {
+        html += `
+          <hr style="margin: 1rem 0; border: 0; border-top: 1px solid #e5e7eb;">
+          <strong>Super+ Tip:</strong><br>
+          ${cat.superTip}<br><br>
+          <a href="https://www.super.com/home/superplus"
+             target="_blank"
+             style="
+               display: inline-block;
+               margin-top: 0.25rem;
+               padding: 0.4rem 0.8rem;
+               border-radius: 8px;
+               background: #2563eb;
+               color: white;
+               font-size: 0.85rem;
+               text-decoration: none;
+             ">
+             Learn More →
+          </a>
+        `;
+      }
+
+      categoryDetails.innerHTML = html;
+    });
+
+    // Initialize
+    initTable();
+    updateTable(0);
+    updateScrollHint();
+
+    window.addEventListener("resize", updateScrollHint);
+  </script>
+</body>
+</html>
