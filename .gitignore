@@ -1,0 +1,6 @@
+# Ignore legacy folder containing old calculator HTML pages
+legacy/
+
+# Optional: OS files
+Thumbs.db
+.DS_Store
