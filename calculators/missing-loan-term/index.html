@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Missing Loan Term calculator – solve for principal, interest rate, number of payments, or payment amount when you know the other three."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Missing Loan Term – My Super Calculators</title>
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="missing-loan-term.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header>
+      <nav class="nav" aria-label="Primary">
+        <a href="../../index.html" class="nav-brand">My Super Calculators</a>
+        <div class="nav-links">
+          <a href="../../index.html">Home</a>
+          <a href="../../calculators.html" aria-current="page">Calculators</a>
+          <a href="../../stories.html">Stories</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <div class="spotlight-label">
+        <span>🧮</span>
+        <span>Calculator • Loans</span>
+      </div>
+
+      <section id="missing-loan-term" class="card">
+        <h1>Missing Loan Term</h1>
+        <p class="subtitle">
+          If you know any three of a loan’s four core values
+          (<strong>principal</strong>, <strong>interest rate</strong>,
+          <strong>number of payments</strong>, and
+          <strong>payment amount</strong>), this calculator estimates the
+          missing one using standard amortization formulas.
+        </p>
+
+        <form id="missing-loan-form" class="loan-form" novalidate>
+          <div class="loan-row">
+            <div class="loan-label-wrap">
+              <span class="loan-label">Principal (current payoff amount)</span>
+              <button
+                type="button"
+                class="info-btn"
+                data-field="principal"
+                aria-label="More information about principal"
+                aria-controls="loan-term-details"
+                aria-expanded="false"
+              >
+                i
+              </button>
+            </div>
+            <div class="loan-field">
+              <input
+                type="text"
+                name="principal"
+                id="principal"
+                class="loan-input"
+                inputmode="decimal"
+                placeholder="e.g., 237000"
+              />
+            </div>
+          </div>
+
+          <div class="loan-row">
+            <div class="loan-label-wrap">
+              <span class="loan-label">Interest rate (APR, %)</span>
+              <button
+                type="button"
+                class="info-btn"
+                data-field="interest"
+                aria-label="More information about interest rate"
+                aria-controls="loan-term-details"
+                aria-expanded="false"
+              >
+                i
+              </button>
+            </div>
+            <div class="loan-field">
+              <input
+                type="text"
+                name="interest"
+                id="interest"
+                class="loan-input"
+                inputmode="decimal"
+                placeholder="e.g., 6.5"
+              />
+            </div>
+          </div>
+
+          <div class="loan-row">
+            <div class="loan-label-wrap">
+              <span class="loan-label">Number of payments remaining</span>
+              <button
+                type="button"
+                class="info-btn"
+                data-field="payments"
+                aria-label="More information about payments remaining"
+                aria-controls="loan-term-details"
+                aria-expanded="false"
+              >
+                i
+              </button>
+            </div>
+            <div class="loan-field">
+              <input
+                type="text"
+                name="payments"
+                id="payments"
+                class="loan-input"
+                inputmode="decimal"
+                placeholder="e.g., 360"
+              />
+            </div>
+          </div>
+
+          <div class="loan-row">
+            <div class="loan-label-wrap">
+              <span class="loan-label">Payment amount</span>
+              <button
+                type="button"
+                class="info-btn"
+                data-field="payment"
+                aria-label="More information about payment amount"
+                aria-controls="loan-term-details"
+                aria-expanded="false"
+              >
+                i
+              </button>
+            </div>
+            <div class="loan-field">
+              <input
+                type="text"
+                name="payment"
+                id="payment"
+                class="loan-input"
+                inputmode="decimal"
+                placeholder="e.g., 1500"
+              />
+            </div>
+          </div>
+
+          <div class="loan-actions">
+            <button type="submit" class="btn-primary">
+              Compute missing value
+            </button>
+            <button type="button" id="loan-clear" class="btn-secondary">
+              Clear
+            </button>
+          </div>
+
+          <p
+            id="loan-error"
+            class="error"
+            aria-live="polite"
+            role="status"
+          ></p>
+        </form>
+
+        <hr class="info-separator" />
+
+        <div class="muted" id="loan-term-details">
+          Click an <strong>info</strong> icon next to a field to see more
+          detail about that value and how to think about it.
+        </div>
+
+        <section
+          class="loan-methodology muted"
+          id="loan-methodology"
+          aria-label="Loan calculator methodology"
+        >
+          <h2 class="loan-methodology-heading">How this calculator works</h2>
+          <p>
+            Loan calculations use conventional amortizing loan formulas and
+            your inputs. Actual lender figures may differ slightly based on
+            compounding, fees, timing, or rounding. Treat these results as
+            estimates rather than exact payoff numbers.
+          </p>
+        </section>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        These tools are provided for general information and entertainment
+        purposes only and do not constitute financial, legal, or tax advice. We
+        are not a fiduciary and do not make recommendations based on your
+        personal financial situation. Please consult a qualified professional
+        for advice tailored to your needs before making major financial
+        decisions.
+      </p>
+    </footer>
+
+    <script src="../../js/utils.js"></script>
+    <script src="missing-loan-term.js"></script>
+    <script>
+      if (window.MissingLoanCalculator) {
+        MissingLoanCalculator.init(document);
+      }
+    </script>
+  </body>
+</html>

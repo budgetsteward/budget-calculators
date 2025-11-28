@@ -1,0 +1,30 @@
+.story-container {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.story-intro {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.story-section {
+  margin-bottom: 1.75rem;
+}
+
+.story-section h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1.15rem;
+}
+
+.story-section p {
+  margin: 0.3rem 0 0.6rem;
+  line-height: 1.55;
+}
+
+.story-link {
+  margin-top: 0.75rem;
+}

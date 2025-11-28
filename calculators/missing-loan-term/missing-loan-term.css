@@ -1,0 +1,84 @@
+/* calculators/missing-loan-term/missing-loan-term.css */
+
+/* Layout for the loan form */
+.loan-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.loan-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.loan-label-wrap {
+  flex: 1 1 220px;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.loan-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.loan-field {
+  flex: 1 1 200px;
+  display: flex;
+  align-items: center;
+}
+
+.loan-input {
+  flex: 1 1 auto;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.75rem;
+  background: var(--bg);
+  outline: none;
+  min-width: 0;
+}
+
+.loan-input:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-light);
+  background: #ffffff;
+}
+
+/* Buttons row */
+.loan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Highlighted result field */
+.highlight-input {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 1px var(--accent-light);
+  background: #eff6ff;
+}
+
+/* Divider above info text */
+.info-separator {
+  margin: 0.75rem 0 0.5rem;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+
+/* Methodology section */
+.loan-methodology {
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+.loan-methodology-heading {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+}
