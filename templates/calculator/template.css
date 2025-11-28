@@ -1,0 +1,113 @@
+/* templates/calculator/template.css */
+
+/* Simple responsive 2-column layout for form + results */
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .calc-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: flex-start;
+  }
+}
+
+.calc-panel {
+  padding: 0.75rem 0;
+}
+
+.calc-panel-heading {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+
+/* Form fields */
+.calc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.calc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* New: row that holds label + info icon */
+.calc-field-label-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.calc-field label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.calc-field input[type="number"],
+.calc-field input[type="text"] {
+  padding: 0.45rem 0.6rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.calc-field input[type="number"]:focus-visible,
+.calc-field input[type="text"]:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.calc-field-hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Buttons row */
+.calc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+/* Results area */
+.calc-results {
+  min-height: 3rem;
+  padding: 0.75rem 0;
+  border-radius: 8px;
+}
+
+.calc-results p {
+  margin: 0.25rem 0;
+}
+
+.calc-results-strong {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Optional notes / interpretation blurb */
+.calc-notes {
+  margin-top: 0.5rem;
+}
+
+/* Methodology section */
+.calc-methodology {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+.calc-methodology-heading {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+}

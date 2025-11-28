@@ -1,0 +1,429 @@
+:root {
+  --bg: #f4f5f7;
+  --card-bg: #ffffff;
+  --accent: #2563eb;
+  --accent-light: #dbeafe;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --error: #b91c1c;
+  --radius: 12px;
+}
+
+/* ------------------------------
+   GLOBAL RESET & BODY
+--------------------------------*/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top left, #e0f2fe, transparent 55%),
+    radial-gradient(circle at bottom right, #fee2e2, transparent 55%),
+    var(--bg);
+  color: var(--text-main);
+}
+
+/* ------------------------------
+   HEADER / NAVIGATION
+--------------------------------*/
+header {
+  background: linear-gradient(135deg, #111827, #1f2937);
+  color: #f9fafb;
+  padding: 0.75rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.nav-brand {
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  font-size: 1rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.nav-links a {
+  color: #e5e7eb;
+  text-decoration: none;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+.nav-links a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.nav-links a[aria-current="page"],
+.nav-links a.active {
+  background: rgba(255, 255, 255, 0.16);
+  color: #f9fafb;
+  font-weight: 600;
+}
+
+/* ------------------------------
+   MAIN CONTENT
+--------------------------------*/
+main {
+  max-width: 960px;
+  margin: 1.75rem auto 2.5rem;
+  padding: 0 1rem;
+}
+
+/* Spotlight feature labels */
+.welcome-blurb {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 999px;
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+  margin-bottom: 1rem;
+}
+
+.welcome-blurb strong {
+  color: var(--text-main);
+}
+
+.spotlight-label {
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-weight: 600;
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 1.25rem 1rem;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+  font-size: 1.4rem;
+}
+
+.subtitle {
+  margin: 0 0 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ------------------------------
+   FORMS & INPUTS
+--------------------------------*/
+input[type="text"],
+input[type="number"],
+select {
+  font-family: inherit;
+}
+
+/* Button-like styling shared between <button> and <a> */
+button,
+a.btn-primary,
+a.btn-secondary {
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #f9fafb !important;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+  color: #111827 !important;
+}
+
+.btn-secondary:hover {
+  background: #d1d5db;
+}
+
+.error {
+  color: var(--error);
+  font-size: 0.8rem;
+  min-height: 1.2em;
+}
+
+/* ------------------------------
+   SMART BUDGET INCOME INPUT ROW
+--------------------------------*/
+.income-form {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.income-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.income-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.income-input-wrapper {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  min-width: min(260px, 100%);
+}
+
+.income-input-wrapper span {
+  font-size: 0.9rem;
+  margin-right: 0.25rem;
+}
+
+#income {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 0.95rem;
+  padding: 0.1rem 0;
+}
+
+
+/* ------------------------------
+   SMART BUDGET TABLE
+--------------------------------*/
+.results-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 0.5rem;
+  border-radius: calc(var(--radius) - 4px);
+  border: 1px solid var(--border);
+  background: #ffffff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  min-width: 480px;
+}
+
+thead {
+  background: var(--accent-light);
+}
+
+th,
+td {
+  padding: 0.5rem 0.4rem;
+  text-align: right;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+tfoot td {
+  font-weight: 600;
+  border-top: 2px solid var(--border);
+}
+
+.name-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  padding: 0;
+}
+
+/* Category details text */
+.muted {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 0.75rem;
+}
+
+/* Scroll hint */
+.scroll-hint {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+.tilt-icon {
+  font-size: 1rem;
+}
+
+/* ------------------------------
+   FOOTER
+--------------------------------*/
+footer {
+  max-width: 960px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+footer p {
+  margin: 0.35rem 0;
+}
+
+/* ------------------------------
+   KEYBOARD FOCUS & SKIP LINK
+--------------------------------*/
+a,
+button,
+input,
+select {
+  transition: outline 0.1s ease, box-shadow 0.1s ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #ffffff;
+  color: var(--accent);
+  border-radius: 999px;
+  box-shadow: 0 2px 4px rgba(15, 23, 42, 0.25);
+  font-size: 0.9rem;
+  z-index: 50;
+}
+
+.skip-link:focus-visible {
+  left: 0.75rem;
+}
+
+/* ------------------------------
+   CALCULATOR / STORY LIST CARDS
+   (ONLY APPLIES TO calculators.html & stories.html)
+--------------------------------*/
+.list-page-intro {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.item-list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.item-card {
+  background: #ffffff;
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.06);
+}
+
+.item-card-title {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+.item-card-title a {
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.item-card-title a:hover {
+  text-decoration: underline;
+}
+
+.item-card-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.45rem;
+}
+
+.item-card-body {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-main);
+  margin: 0;
+}

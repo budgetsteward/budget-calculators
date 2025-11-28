@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Smart Budget Percentages calculator – compare typical spending to a budget-conscious target plan."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Smart Budget Percentages – My Super Calculators</title>
+    <link rel="stylesheet" href="../../css/base.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header>
+      <nav class="nav" aria-label="Primary">
+        <a href="../../index.html" class="nav-brand">My Super Calculators</a>
+        <div class="nav-links">
+          <a href="../../index.html">Home</a>
+          <a href="../../calculators.html" aria-current="page">Calculators</a>
+          <a href="../../stories.html">Stories</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <div class="spotlight-label">
+        <span>🧮</span>
+        <span>Calculator • Budgeting</span>
+      </div>
+
+      <section id="smart-budget" class="card">
+        <h1>Smart Budget Percentages</h1>
+        <p class="subtitle">
+          Enter your monthly take-home income to see how a typical American
+          household might allocate their money versus a
+          <strong>budget-conscious target plan</strong>.
+        </p>
+
+        <!-- REMOVED back link -->
+
+        <form id="income-form" class="income-form" novalidate>
+          <label for="income" class="income-label">
+            Monthly take-home income
+          </label>
+          <div class="income-row">
+            <div class="income-input-wrapper">
+              <span>$</span>
+              <input
+                type="number"
+                id="income"
+                name="income"
+                min="0"
+                step="50"
+                placeholder="e.g., 4500"
+                inputmode="decimal"
+                required
+              />
+            </div>
+            <button type="submit" class="btn-primary">Calculate</button>
+            <button type="button" id="reset-button" class="btn-secondary">
+              Clear
+            </button>
+          </div>
+          <div id="error-message" class="error" aria-live="polite"></div>
+        </form>
+
+        <div class="results-table-container">
+          <table aria-live="polite">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Average %</th>
+                <th>Average $</th>
+                <th>Target %</th>
+                <th>Target $</th>
+              </tr>
+            </thead>
+            <tbody id="results-body"></tbody>
+            <tfoot>
+              <tr>
+                <td>Total</td>
+                <td>100%</td>
+                <td id="total-avg-amt">—</td>
+                <td>100%</td>
+                <td id="total-target-amt">—</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div id="scroll-hint" class="scroll-hint">
+          <span class="tilt-icon">↔️</span>
+          <span>Rotate or tilt your device to see the full table.</span>
+        </div>
+
+        <div id="category-details" class="muted">
+          Tap an <strong>info</strong> icon to see details and Super+ tips.
+        </div>
+
+        <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--border);" />
+
+        <p class="muted">
+        These recommended percentages are based on a blend of
+        <em>U.S. Bureau of Labor Statistics Consumer Expenditure Survey</em>
+        data (to approximate average household spending by category) and common
+        budgeting guidelines such as the 50/30/20 rule and debt-reduction
+        strategies. They are general guidelines only and may need adjustment for
+        your income level, family size, debt load, and local cost of living.
+        </p>
+
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        These recommended percentages are based on government data and practical
+        budgeting rules of thumb. They may need adjustment for your income,
+        family size, and local cost of living.
+      </p>
+    </footer>
+
+    <script src="../../js/utils.js"></script>
+    <script src="smart-budget.js"></script>
+    <script>
+      SmartBudget.init(document);
+    </script>
+  </body>
+</html>
