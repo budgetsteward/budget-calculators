@@ -44,6 +44,9 @@
       return;
     }
 
+    // Detect small screens once (phone-ish)
+    var isSmallScreen = window.matchMedia("(max-width: 640px)").matches;
+
     categoryKeys.forEach(function (categoryKey) {
       var category = data[categoryKey];
       if (!category || !Array.isArray(category.stories) || category.stories.length === 0) {
@@ -65,12 +68,13 @@
 
         var article = createEl("article", "item-card");
 
+        // Optional thumbnail
         if (story.thumbnail) {
           var thumbWrapper = createEl("div", "item-card-thumbnail");
           var img = document.createElement("img");
           img.src = story.thumbnail;
           img.alt = story.title
-            ? "Thumbnail for \"" + story.title + "\""
+            ? 'Thumbnail for "' + story.title + '"'
             : "Story thumbnail";
           thumbWrapper.appendChild(img);
           article.appendChild(thumbWrapper);
@@ -78,11 +82,23 @@
 
         var titleEl = createEl("h3", "item-card-title");
         var link = document.createElement("a");
-        link.href =
-          "stories/?category=" +
-          encodeURIComponent(categoryKey) +
-          "&story=" +
-          encodeURIComponent(story.id);
+
+        // Desktop / tablet: go to viewer page
+        if (!isSmallScreen) {
+          link.href =
+            "stories/?category=" +
+            encodeURIComponent(categoryKey) +
+            "&story=" +
+            encodeURIComponent(story.id);
+        }
+        // Small screens: open the PDF directly in a new tab
+        else {
+          // story.pdf is relative to /stories/, so prefix that folder
+          link.href = "stories/" + story.pdf;
+          link.target = "_blank";
+          link.rel = "noopener";
+        }
+
         link.textContent = story.title || "Untitled story";
 
         titleEl.appendChild(link);
@@ -120,7 +136,7 @@
     if (!root.hasChildNodes()) {
       showStatus(root, "No stories are available yet. Please check back soon.");
     } else {
-      // No visible status message — only clear SR live region
+      // Clear any loading status for screen readers
       setGlobalStatus("");
     }
   }
