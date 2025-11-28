@@ -4,10 +4,10 @@
     <meta charset="utf-8" />
     <meta
       name="description"
-      content="Browse budgeting stories and how-to guides for using My Super Calculators to improve your money decisions."
+      content="Browse budgeting stories and real-world examples on My Super Calculators."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Stories & Guides – My Super Calculators</title>
+    <title>Stories – My Super Calculators</title>
     <link rel="stylesheet" href="css/base.css" />
   </head>
   <body>
@@ -24,33 +24,22 @@
       </nav>
     </header>
 
+    <!-- Live region for screen-reader status messages (populated by JS) -->
+    <div id="global-status" aria-live="polite"></div>
+
     <main id="main">
-      <h1>Stories &amp; Guides</h1>
+      <h1>Stories</h1>
       <p class="list-page-intro">
-        Use these short guides to get more out of the calculators on this site.
-        Each story walks through practical examples, common questions, and
-        simple frameworks you can apply to your own budget and loans.
+        Explore real-world examples, tips, and ideas to help you learn how to
+        budget, earn more, cut costs, tackle debt, and build savings and
+        investments. Select a story to read it inside the site or download the
+        PDF for later.
       </p>
 
-      <section aria-label="Available stories and guides">
-        <div class="item-list">
-          <!-- Getting Started story -->
-          <article class="item-card">
-            <h2 class="item-card-title">
-              <a href="stories/getting-started/">
-                Getting Started: Using These Calculators
-              </a>
-            </h2>
-            <p class="item-card-meta">Topic: Overview &amp; How-To</p>
-            <p class="item-card-body">
-              A friendly walkthrough of how to use the Smart Budget Percentages
-              and Missing Loan Term calculators together. Learn what each tool
-              is best at, how to plug in your own numbers, and how to turn the
-              results into next steps for your budget and debt payoff plan.
-            </p>
-          </article>
-
-          <!-- Future stories can be added here as new item-card blocks -->
+      <section aria-label="Stories by category">
+        <div id="stories-root">
+          <!-- stories.js will populate categories and story cards here -->
+          <p class="item-card-meta">Loading stories…</p>
         </div>
       </section>
     </main>
@@ -64,5 +53,8 @@
         professional for advice tailored to your needs.
       </p>
     </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/stories.js"></script>
   </body>
 </html>

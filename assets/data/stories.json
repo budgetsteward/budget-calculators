@@ -1,0 +1,107 @@
+{
+  "learning-budget": {
+    "label": "Learning How to Budget",
+    "stories": [
+      {
+        "id": "getting-started",
+        "title": "Getting Started with Your Budget",
+        "subtitle": "A gentle guide to understanding income, expenses, and categories.",
+        "description": "A beginner-friendly walkthrough showing how to take your first steps toward building a working personal budget.",
+        "readingTime": "8–10 minutes",
+        "pdf": "learning-budget/getting-started.pdf"
+      },
+      {
+        "id": "zero-based-budgeting",
+        "title": "Zero-Based Budgeting",
+        "subtitle": "Give every dollar a job.",
+        "description": "Learn how zero-based budgeting helps you stay intentional and avoid overspending by assigning every dollar a purpose.",
+        "readingTime": "5–7 minutes",
+        "pdf": "learning-budget/zero-based-budgeting.pdf"
+      }
+    ]
+  },
+
+  "earning-money": {
+    "label": "Tips for Earning Money",
+    "stories": [
+      {
+        "id": "easy-side-hustles",
+        "title": "Easy Side Hustles You Can Start This Week",
+        "subtitle": "Simple ways to increase your income.",
+        "description": "Explore practical, low-barrier side hustles that can help boost your monthly income right away.",
+        "readingTime": "6–8 minutes",
+        "pdf": "earning-money/easy-side-hustles.pdf"
+      }
+    ]
+  },
+
+  "cutting-costs": {
+    "label": "Tips for Cutting Costs",
+    "stories": [
+      {
+        "id": "reduce-bills",
+        "title": "How to Reduce Your Monthly Bills",
+        "subtitle": "Cut recurring expenses without sacrificing quality of life.",
+        "description": "A collection of proven strategies to negotiate bills, reduce subscriptions, and lower regular expenses.",
+        "readingTime": "6–8 minutes",
+        "pdf": "cutting-costs/reduce-bills.pdf"
+      }
+    ]
+  },
+
+  "dealing-with-debt": {
+    "label": "Dealing With Debt (and Getting Out)",
+    "stories": [
+      {
+        "id": "avalanche-vs-snowball",
+        "title": "Debt Avalanche vs. Debt Snowball",
+        "subtitle": "Two powerful strategies to pay off debt efficiently.",
+        "description": "Understand the difference between two leading debt payoff strategies and decide which one fits your situation best.",
+        "readingTime": "7–9 minutes",
+        "pdf": "dealing-with-debt/avalanche-vs-snowball.pdf"
+      }
+    ]
+  },
+
+  "saving-investing": {
+    "label": "Saving and Investing",
+    "stories": [
+      {
+        "id": "emergency-fund",
+        "title": "Building an Emergency Fund",
+        "subtitle": "Start with stability.",
+        "description": "Learn why an emergency fund is essential and how to build one step-by-step, even with a tight budget.",
+        "readingTime": "5–7 minutes",
+        "pdf": "saving-investing/emergency-fund.pdf"
+      }
+    ]
+  },
+
+  "money-mindset": {
+    "label": "Money Mindset & Motivation",
+    "stories": [
+      {
+        "id": "why-budgets-fail",
+        "title": "Why Most Budgets Fail",
+        "subtitle": "And how to make yours work.",
+        "description": "Uncover the common reasons budgets fall apart and learn what mindset shifts can keep you on track.",
+        "readingTime": "6–8 minutes",
+        "pdf": "money-mindset/why-budgets-fail.pdf"
+      }
+    ]
+  },
+
+  "life-events": {
+    "label": "Budgeting Through Life Events",
+    "stories": [
+      {
+        "id": "first-apartment",
+        "title": "Budgeting for Your First Apartment",
+        "subtitle": "Avoid common pitfalls when moving out.",
+        "description": "A practical guide to budgeting for rent, utilities, deposits, and furnishing your first home.",
+        "readingTime": "7–9 minutes",
+        "pdf": "life-events/first-apartment.pdf"
+      }
+    ]
+  }
+}
