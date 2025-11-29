@@ -1,0 +1,236 @@
+/* calculators/accelerated-debt-payoff/accelerated-debt-payoff.css */
+
+/* --- Debt entry table --------------------------------------------------- */
+
+.debt-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+}
+
+.debt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  min-width: 0;
+  table-layout: fixed;
+}
+
+.debt-table thead {
+  background: var(--accent-light);
+}
+
+.debt-table th,
+.debt-table td {
+  padding: 0.4rem 0.35rem;
+  border-bottom: 1px solid var(--border);
+  text-align: right;
+  white-space: normal; /* allow header wrapping */
+}
+
+.debt-table th {
+  font-size: 0.78rem;
+  line-height: 1.2;
+}
+
+.debt-table th:first-child,
+.debt-table td:first-child {
+  text-align: center;
+}
+
+.debt-table input[type="text"] {
+  width: 100%;
+  max-width: 7rem;
+  padding: 0.25rem 0.35rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 0.8rem;
+  font-family: inherit;
+}
+
+/* visually mark calculated cells (payments left) */
+.debt-table .calc-output {
+  background: #f3f4f6;
+  cursor: default;
+}
+
+.debt-table input[type="text"]:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Small helper text under table */
+.extra-help {
+  margin-top: 0.4rem;
+}
+
+/* --- Extra payment row -------------------------------------------------- */
+
+.extra-row {
+  margin-top: 0.75rem;
+  margin-bottom: 0.9rem; /* space before buttons */
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.extra-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.extra-row input[type="text"] {
+  max-width: 10rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+.extra-row input[type="text"]:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* --- Results summary card ---------------------------------------------- */
+
+.results-summary {
+  margin-top: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #f9fafb;
+  padding: 0.6rem 0.7rem;
+  font-size: 0.85rem;
+}
+
+/* Borderless, aligned table */
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.results-table td {
+  padding: 0.35rem 0.15rem;
+  vertical-align: middle;
+}
+
+/* Label cells */
+.rt-label {
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Cell that spans two columns for total balance */
+.rt-span {
+  width: 100%;
+}
+
+/* Inputs in results */
+.rt-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.3rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  font-size: 0.9rem;
+  font-family: inherit;
+}
+
+/* Divider line between total balance and scenario rows */
+.rt-divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 0.4rem 0 0.25rem;
+}
+
+/* Scenario header row */
+.rt-subheading-row td {
+  padding-top: 0.35rem;
+}
+
+.rt-header-cell {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.15;
+  text-align: center;
+  white-space: normal; /* allow two-line headings */
+}
+
+/* Results tables reuse the entry grid look, but with plain text cells */
+.results-table-wrapper {
+  margin-top: 0.25rem;
+}
+
+/* No row borders in results tables */
+.results-table th,
+.results-table td {
+  border-bottom: none;
+}
+
+/* First column (labels) left-aligned */
+.results-table .results-label {
+  text-align: left;
+}
+
+/* Other columns centered like numeric columns */
+.results-table td:not(.results-label),
+.results-table th:not(.results-label) {
+  text-align: center;
+}
+
+/* “Chip” style for the numeric outputs */
+.results-output {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  min-width: 5rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Divider between total balance and scenario table */
+.results-divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 0.6rem 0 0.4rem;
+}
+
+
+/* --- Responsive tweaks -------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .calc-grid {
+    gap: 1rem;
+  }
+
+  .debt-table {
+    font-size: 0.75rem;
+  }
+
+  .debt-table th,
+  .debt-table td {
+    padding: 0.25rem 0.2rem;
+  }
+
+  .debt-table input[type="text"] {
+    font-size: 0.75rem;
+  }
+
+  .results-table {
+    font-size: 0.85rem;
+  }
+
+  .rt-input {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.35rem;
+  }
+}
