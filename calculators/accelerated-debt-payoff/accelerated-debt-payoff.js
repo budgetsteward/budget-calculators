@@ -574,13 +574,7 @@
       var el = document.getElementById(id);
       if (el) el.textContent = "";
     });
-
-    // ---- Auto-scroll back to first debt input ----
-    var firstInput = document.getElementById("prin1");
-    if (firstInput) {
-      firstInput.focus({ preventScroll: false });
-    }
-
+    
     var resultsContainer = document.getElementById("calc-results");
     if (resultsContainer) {
       resultsContainer.innerHTML =
@@ -590,4 +584,13 @@
     var errorEl = document.getElementById("calc-error");
     if (errorEl) errorEl.textContent = "";
   };
+
+  window.focusFirstDebt = function () {
+    var firstInput = document.getElementById("prin1");
+    if (firstInput) {
+      firstInput.focus();
+    }
+  };
+
+
 })();
