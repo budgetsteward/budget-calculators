@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta
       name="description"
-      content="Calculator template – start here when creating a new My Super Calculators tool."
+      content="Figure out the monthly payment needed to pay off a debt by a specific goal date."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Calculator Template – My Super Calculators</title>
+    <title>Debt Payoff Goal – My Super Calculators</title>
     <link rel="stylesheet" href="../../css/base.css" />
-    <link rel="stylesheet" href="template.css" />
+    <link rel="stylesheet" href="debt-payoff-goal.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -28,15 +28,15 @@
     <main id="main">
       <div class="spotlight-label">
         <span>🧮</span>
-        <span>Calculator • Category</span>
+        <span>Calculator • Debt payoff</span>
       </div>
 
-      <section id="calculator-root" class="card">
-        <!-- TODO: Update this title and subtitle for your calculator -->
-        <h1>Calculator Name</h1>
+      <section id="debt-payoff-goal" class="card">
+        <h1>Debt Payoff Goal</h1>
         <p class="subtitle">
-          Briefly explain what this calculator does, what inputs it needs, and
-          how someone might use the results to make a better decision.
+          Enter your current balance, interest rate, and a payoff goal date to
+          see the monthly payment needed, how many months it will take, and the
+          interest cost between now and payoff.
         </p>
 
         <div class="calc-grid">
@@ -48,15 +48,15 @@
             <h2 class="calc-panel-heading">Inputs</h2>
 
             <form id="calc-form" class="calc-form" novalidate>
-              <!-- Field 1 -->
+              <!-- Balance -->
               <div class="calc-field">
                 <div class="calc-field-label-row">
-                  <label for="calc-input-1">Input label #1</label>
+                  <label for="debt-balance">Current balance</label>
                   <button
                     type="button"
                     class="info-btn"
-                    data-field="input1"
-                    aria-label="More information about input 1"
+                    data-field="balance"
+                    aria-label="More information about current balance"
                     aria-controls="calc-info-panel"
                     aria-expanded="false"
                   >
@@ -65,28 +65,28 @@
                 </div>
                 <input
                   type="number"
-                  id="calc-input-1"
-                  name="calc-input-1"
+                  id="debt-balance"
+                  name="debt-balance"
                   inputmode="decimal"
-                  placeholder="e.g., 1000"
+                  placeholder="e.g., 4500"
                   min="0"
                   step="0.01"
-                  aria-describedby="calc-input-1-hint"
+                  aria-describedby="debt-balance-hint"
                 />
-                <p id="calc-input-1-hint" class="calc-field-hint">
-                  Short hint to clarify this field (optional).
+                <p id="debt-balance-hint" class="calc-field-hint">
+                  Total amount you owe on this debt today.
                 </p>
               </div>
 
-              <!-- Field 2 -->
+              <!-- Interest rate -->
               <div class="calc-field">
                 <div class="calc-field-label-row">
-                  <label for="calc-input-2">Input label #2</label>
+                  <label for="annual-rate">Annual interest rate (APR)</label>
                   <button
                     type="button"
                     class="info-btn"
-                    data-field="input2"
-                    aria-label="More information about input 2"
+                    data-field="rate"
+                    aria-label="More information about interest rate"
                     aria-controls="calc-info-panel"
                     aria-expanded="false"
                   >
@@ -95,16 +95,68 @@
                 </div>
                 <input
                   type="number"
-                  id="calc-input-2"
-                  name="calc-input-2"
+                  id="annual-rate"
+                  name="annual-rate"
                   inputmode="decimal"
-                  placeholder="e.g., 5.5"
+                  placeholder="e.g., 18"
                   min="0"
                   step="0.01"
-                  aria-describedby="calc-input-2-hint"
+                  aria-describedby="annual-rate-hint"
                 />
-                <p id="calc-input-2-hint" class="calc-field-hint">
-                  Short hint to clarify this field (optional).
+                <p id="annual-rate-hint" class="calc-field-hint">
+                  Enter as a percentage, not a decimal (for example, 18 for
+                  18% APR).
+                </p>
+              </div>
+
+              <!-- Goal date -->
+              <div class="calc-field">
+                <div class="calc-field-label-row">
+                  <label for="goal-month">Payoff goal date</label>
+                  <button
+                    type="button"
+                    class="info-btn"
+                    data-field="goalDate"
+                    aria-label="More information about payoff goal date"
+                    aria-controls="calc-info-panel"
+                    aria-expanded="false"
+                  >
+                    i
+                  </button>
+                </div>
+
+                <div class="goal-row">
+                  <select
+                    id="goal-month"
+                    name="goal-month"
+                    aria-label="Payoff goal month"
+                  >
+                    <option value="1">Jan</option>
+                    <option value="2">Feb</option>
+                    <option value="3">Mar</option>
+                    <option value="4">Apr</option>
+                    <option value="5">May</option>
+                    <option value="6">Jun</option>
+                    <option value="7">Jul</option>
+                    <option value="8">Aug</option>
+                    <option value="9">Sep</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                  </select>
+
+                  <select
+                    id="goal-year"
+                    name="goal-year"
+                    aria-label="Payoff goal year"
+                  >
+                    <!-- Years populated by JS -->
+                  </select>
+                </div>
+
+                <p id="goal-date-hint" class="calc-field-hint">
+                  Pick the month and year you’d like this debt to be paid off.
+                  The default is the same month next year.
                 </p>
               </div>
 
@@ -140,8 +192,9 @@
 
             <div id="calc-notes" class="calc-notes muted">
               <p>
-                Tip: Use this area to help people interpret their results (for
-                example, what “good” or “risky” ranges might look like).
+                Payments are estimates based on level monthly payments and the
+                interest rate you enter. Real-world payments may differ slightly
+                due to rounding and lender rules.
               </p>
             </div>
 
@@ -157,13 +210,15 @@
           </section>
         </div>
 
-        <!-- Optional methodology / assumptions section -->
+        <!-- Methodology -->
         <section class="calc-methodology muted" aria-label="Methodology">
           <h2 class="calc-methodology-heading">How this calculator works</h2>
           <p>
-            Briefly describe the assumptions, formulas, and data sources behind
-            this calculator. Keep it short and user-friendly, and provide links
-            to more detailed explanations if needed.
+            We calculate the number of whole months between today and your
+            selected payoff goal date, then solve for the monthly payment needed
+            to reduce the balance to zero over that many months using a standard
+            amortizing loan formula. Total interest equals the sum of all
+            payments minus the starting balance.
           </p>
         </section>
       </section>
@@ -179,10 +234,9 @@
       </p>
     </footer>
 
-    <!-- Shared helpers -->
     <script src="../../js/utils.js"></script>
-    <script src="template.js"></script>
-    <!-- New: externalized init logic for the calculator template -->
-    <script src="template-init.js"></script>
+    <script src="debt-payoff-goal.js"></script>
+    <!-- New: externalized init script (no inline JS) -->
+    <script src="debt-payoff-goal-init.js"></script>
   </body>
 </html>

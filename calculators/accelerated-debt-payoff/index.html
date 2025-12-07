@@ -85,453 +85,123 @@
               </div>
 
               <div class="debt-table-wrapper">
-                <div class="debt-table-wrapper">
-                  <table class="debt-table">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">
-                          Principal<br />
-                          balance ($)
-                        </th>
-                        <th scope="col">
-                          Interest<br />
-                          rate (%)
-                        </th>
-                        <th scope="col">
-                          Monthly<br />
-                          payment ($)
-                        </th>
-                        <th scope="col">
-                          # of<br />
-                          payments left*
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <!-- 1 -->
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>
-                          <input
-                            type="text"
-                            id="prin1"
-                            name="prin1"
-                            inputmode="decimal"
-                            onChange="computeLoan(1)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="intRate1"
-                            name="intRate1"
-                            inputmode="decimal"
-                            onChange="computeLoan(1)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmt1"
-                            name="pmt1"
-                            inputmode="decimal"
-                            onChange="computeLoan(1)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmtLeft1"
-                            name="pmtLeft1"
-                            readonly
-                            tabindex="-1"
-                            class="calc-output"
-                          />
-                        </td>
-                      </tr>
+                <table class="debt-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">
+                        Principal<br />
+                        balance ($)
+                      </th>
+                      <th scope="col">
+                        Interest<br />
+                        rate (%)
+                      </th>
+                      <th scope="col">
+                        Monthly<br />
+                        payment ($)
+                      </th>
+                      <th scope="col">
+                        # of<br />
+                        payments left*
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
 
-                      <!-- 2 -->
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>
-                          <input
-                            type="text"
-                            id="prin2"
-                            name="prin2"
-                            inputmode="decimal"
-                            onChange="computeLoan(2)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="intRate2"
-                            name="intRate2"
-                            inputmode="decimal"
-                            onChange="computeLoan(2)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmt2"
-                            name="pmt2"
-                            inputmode="decimal"
-                            onChange="computeLoan(2)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmtLeft2"
-                            name="pmtLeft2"
-                            readonly
-                            tabindex="-1"
-                            class="calc-output"
-                          />
-                        </td>
-                      </tr>
+                    <!-- Generate 10 identical debt rows with NO inline JS -->
+                    <!-- Row 1 -->
+                    <tr>
+                      <th scope="row">1</th>
+                      <td><input type="text" id="prin1" name="prin1" inputmode="decimal" /></td>
+                      <td><input type="text" id="intRate1" name="intRate1" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmt1" name="pmt1" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmtLeft1" name="pmtLeft1" readonly tabindex="-1" class="calc-output" /></td>
+                    </tr>
 
-                      <!-- 3 -->
-                      <tr>
-                        <th scope="row">3</th>
-                        <td>
-                          <input
-                            type="text"
-                            id="prin3"
-                            name="prin3"
-                            inputmode="decimal"
-                            onChange="computeLoan(3)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="intRate3"
-                            name="intRate3"
-                            inputmode="decimal"
-                            onChange="computeLoan(3)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmt3"
-                            name="pmt3"
-                            inputmode="decimal"
-                            onChange="computeLoan(3)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmtLeft3"
-                            name="pmtLeft3"
-                            readonly
-                            tabindex="-1"
-                            class="calc-output"
-                          />
-                        </td>
-                      </tr>
+                    <!-- Row 2 -->
+                    <tr>
+                      <th scope="row">2</th>
+                      <td><input type="text" id="prin2" name="prin2" inputmode="decimal" /></td>
+                      <td><input type="text" id="intRate2" name="intRate2" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmt2" name="pmt2" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmtLeft2" name="pmtLeft2" readonly tabindex="-1" class="calc-output" /></td>
+                    </tr>
 
-                      <!-- 4 -->
-                      <tr>
-                        <th scope="row">4</th>
-                        <td>
-                          <input
-                            type="text"
-                            id="prin4"
-                            name="prin4"
-                            inputmode="decimal"
-                            onChange="computeLoan(4)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="intRate4"
-                            name="intRate4"
-                            inputmode="decimal"
-                            onChange="computeLoan(4)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmt4"
-                            name="pmt4"
-                            inputmode="decimal"
-                            onChange="computeLoan(4)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmtLeft4"
-                            name="pmtLeft4"
-                            readonly
-                            tabindex="-1"
-                            class="calc-output"
-                          />
-                        </td>
-                      </tr>
+                    <!-- Row 3 -->
+                    <tr>
+                      <th scope="row">3</th>
+                      <td><input type="text" id="prin3" name="prin3" inputmode="decimal" /></td>
+                      <td><input type="text" id="intRate3" name="intRate3" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmt3" name="pmt3" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmtLeft3" name="pmtLeft3" readonly tabindex="-1" class="calc-output" /></td>
+                    </tr>
 
-                      <!-- 5 -->
-                      <tr>
-                        <th scope="row">5</th>
-                        <td>
-                          <input
-                            type="text"
-                            id="prin5"
-                            name="prin5"
-                            inputmode="decimal"
-                            onChange="computeLoan(5)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="intRate5"
-                            name="intRate5"
-                            inputmode="decimal"
-                            onChange="computeLoan(5)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmt5"
-                            name="pmt5"
-                            inputmode="decimal"
-                            onChange="computeLoan(5)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmtLeft5"
-                            name="pmtLeft5"
-                            readonly
-                            tabindex="-1"
-                            class="calc-output"
-                          />
-                        </td>
-                      </tr>
+                    <!-- Row 4 -->
+                    <tr>
+                      <th scope="row">4</th>
+                      <td><input type="text" id="prin4" name="prin4" inputmode="decimal" /></td>
+                      <td><input type="text" id="intRate4" name="intRate4" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmt4" name="pmt4" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmtLeft4" name="pmtLeft4" readonly tabindex="-1" class="calc-output" /></td>
+                    </tr>
 
-                      <!-- 6 -->
-                      <tr>
-                        <th scope="row">6</th>
-                        <td>
-                          <input
-                            type="text"
-                            id="prin6"
-                            name="prin6"
-                            inputmode="decimal"
-                            onChange="computeLoan(6)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="intRate6"
-                            name="intRate6"
-                            inputmode="decimal"
-                            onChange="computeLoan(6)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmt6"
-                            name="pmt6"
-                            inputmode="decimal"
-                            onChange="computeLoan(6)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmtLeft6"
-                            name="pmtLeft6"
-                            readonly
-                            tabindex="-1"
-                            class="calc-output"
-                          />
-                        </td>
-                      </tr>
+                    <!-- Row 5 -->
+                    <tr>
+                      <th scope="row">5</th>
+                      <td><input type="text" id="prin5" name="prin5" inputmode="decimal" /></td>
+                      <td><input type="text" id="intRate5" name="intRate5" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmt5" name="pmt5" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmtLeft5" name="pmtLeft5" readonly tabindex="-1" class="calc-output" /></td>
+                    </tr>
 
-                      <!-- 7 -->
-                      <tr>
-                        <th scope="row">7</th>
-                        <td>
-                          <input
-                            type="text"
-                            id="prin7"
-                            name="prin7"
-                            inputmode="decimal"
-                            onChange="computeLoan(7)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="intRate7"
-                            name="intRate7"
-                            inputmode="decimal"
-                            onChange="computeLoan(7)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmt7"
-                            name="pmt7"
-                            inputmode="decimal"
-                            onChange="computeLoan(7)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmtLeft7"
-                            name="pmtLeft7"
-                            readonly
-                            tabindex="-1"
-                            class="calc-output"
-                          />
-                        </td>
-                      </tr>
+                    <!-- Row 6 -->
+                    <tr>
+                      <th scope="row">6</th>
+                      <td><input type="text" id="prin6" name="prin6" inputmode="decimal" /></td>
+                      <td><input type="text" id="intRate6" name="intRate6" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmt6" name="pmt6" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmtLeft6" name="pmtLeft6" readonly tabindex="-1" class="calc-output" /></td>
+                    </tr>
 
-                      <!-- 8 -->
-                      <tr>
-                        <th scope="row">8</th>
-                        <td>
-                          <input
-                            type="text"
-                            id="prin8"
-                            name="prin8"
-                            inputmode="decimal"
-                            onChange="computeLoan(8)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="intRate8"
-                            name="intRate8"
-                            inputmode="decimal"
-                            onChange="computeLoan(8)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmt8"
-                            name="pmt8"
-                            inputmode="decimal"
-                            onChange="computeLoan(8)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmtLeft8"
-                            name="pmtLeft8"
-                            readonly
-                            tabindex="-1"
-                            class="calc-output"
-                          />
-                        </td>
-                      </tr>
+                    <!-- Row 7 -->
+                    <tr>
+                      <th scope="row">7</th>
+                      <td><input type="text" id="prin7" name="prin7" inputmode="decimal" /></td>
+                      <td><input type="text" id="intRate7" name="intRate7" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmt7" name="pmt7" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmtLeft7" name="pmtLeft7" readonly tabindex="-1" class="calc-output" /></td>
+                    </tr>
 
-                      <!-- 9 -->
-                      <tr>
-                        <th scope="row">9</th>
-                        <td>
-                          <input
-                            type="text"
-                            id="prin9"
-                            name="prin9"
-                            inputmode="decimal"
-                            onChange="computeLoan(9)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="intRate9"
-                            name="intRate9"
-                            inputmode="decimal"
-                            onChange="computeLoan(9)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmt9"
-                            name="pmt9"
-                            inputmode="decimal"
-                            onChange="computeLoan(9)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmtLeft9"
-                            name="pmtLeft9"
-                            readonly
-                            tabindex="-1"
-                            class="calc-output"
-                          />
-                        </td>
-                      </tr>
+                    <!-- Row 8 -->
+                    <tr>
+                      <th scope="row">8</th>
+                      <td><input type="text" id="prin8" name="prin8" inputmode="decimal" /></td>
+                      <td><input type="text" id="intRate8" name="intRate8" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmt8" name="pmt8" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmtLeft8" name="pmtLeft8" readonly tabindex="-1" class="calc-output" /></td>
+                    </tr>
 
-                      <!-- 10 -->
-                      <tr>
-                        <th scope="row">10</th>
-                        <td>
-                          <input
-                            type="text"
-                            id="prin10"
-                            name="prin10"
-                            inputmode="decimal"
-                            onChange="computeLoan(10)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="intRate10"
-                            name="intRate10"
-                            inputmode="decimal"
-                            onChange="computeLoan(10)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmt10"
-                            name="pmt10"
-                            inputmode="decimal"
-                            onChange="computeLoan(10)"
-                          />
-                        </td>
-                        <td>
-                          <input
-                            type="text"
-                            id="pmtLeft10"
-                            name="pmtLeft10"
-                            readonly
-                            tabindex="-1"
-                            class="calc-output"
-                          />
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+                    <!-- Row 9 -->
+                    <tr>
+                      <th scope="row">9</th>
+                      <td><input type="text" id="prin9" name="prin9" inputmode="decimal" /></td>
+                      <td><input type="text" id="intRate9" name="intRate9" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmt9" name="pmt9" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmtLeft9" name="pmtLeft9" readonly tabindex="-1" class="calc-output" /></td>
+                    </tr>
 
+                    <!-- Row 10 -->
+                    <tr>
+                      <th scope="row">10</th>
+                      <td><input type="text" id="prin10" name="prin10" inputmode="decimal" /></td>
+                      <td><input type="text" id="intRate10" name="intRate10" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmt10" name="pmt10" inputmode="decimal" /></td>
+                      <td><input type="text" id="pmtLeft10" name="pmtLeft10" readonly tabindex="-1" class="calc-output" /></td>
+                    </tr>
+
+                  </tbody>
+                </table>
               </div>
 
               <p class="calc-field-hint extra-help">
@@ -539,6 +209,7 @@
                 interest rates. Changing any value will recalculate that row.
               </p>
 
+              <!-- Extra Payment -->
               <div class="extra-row">
                 <label for="accel_pmt" class="extra-label">
                   Extra amount you can add to your total monthly payments:
@@ -548,48 +219,35 @@
                   id="accel_pmt"
                   name="accel_pmt"
                   inputmode="decimal"
-                  onKeyUp="clearResults(this.form)"
                 />
               </div>
 
+              <!-- Action Buttons -->
               <div class="calc-actions">
-                <button
-                  type="button"
-                  class="btn-primary"
-                  onclick="computeForm(this.form)"
-                >
+                <button type="button" class="btn-primary" id="btn-calc">
                   Calculate results
                 </button>
-                <button
-                  type="reset"
-                  class="btn-secondary"
-                  onclick="clearResults(this.form); focusFirstDebt();"
-                >
+                <button type="reset" class="btn-secondary" id="btn-clear">
                   Clear
                 </button>
               </div>
 
-              <p
-                id="calc-error"
-                class="error"
-                role="status"
-                aria-live="polite"
-              ></p>
+              <p id="calc-error" class="error" role="status" aria-live="polite"></p>
 
-              <!-- Hidden fields for legacy calculations -->
+              <!-- Hidden legacy fields for JS math -->
               <div class="sr-only">
-                <input type="text" name="totalprin" id="totalprin" />
-                <input type="text" name="totalpmt" id="totalpmt" />
-                <input type="text" name="totalint" id="totalint" />
-                <input type="text" name="totalnprs" id="totalnprs" />
+                <input type="text" id="totalprin" name="totalprin" />
+                <input type="text" id="totalpmt" name="totalpmt" />
+                <input type="text" id="totalint" name="totalint" />
+                <input type="text" id="totalnprs" name="totalnprs" />
 
-                <input type="text" name="adp_totalprin" id="adp_totalprin" />
-                <input type="text" name="adp_totalpmt" id="adp_totalpmt" />
-                <input type="text" name="adp_totalint" id="adp_totalint" />
-                <input type="text" name="adp_totalnprs" id="adp_totalnprs" />
+                <input type="text" id="adp_totalprin" name="adp_totalprin" />
+                <input type="text" id="adp_totalpmt" name="adp_totalpmt" />
+                <input type="text" id="adp_totalint" name="adp_totalint" />
+                <input type="text" id="adp_totalnprs" name="adp_totalnprs" />
 
-                <input type="text" name="adp_int_save" id="adp_int_save" />
-                <input type="text" name="adp_npr_save" id="adp_npr_save" />
+                <input type="text" id="adp_int_save" name="adp_int_save" />
+                <input type="text" id="adp_npr_save" name="adp_npr_save" />
 
                 <input type="hidden" name="schedule_head" />
                 <input type="hidden" name="schedule_rows" />
@@ -617,15 +275,13 @@
             </div>
 
             <div class="results-summary">
-              <!-- Total balance row (table styled like entry grid) -->
+
               <div class="debt-table-wrapper results-table-wrapper">
                 <table class="debt-table results-table">
                   <tbody>
                     <tr>
                       <th scope="row" class="results-label">Total debt balance</th>
-                      <td class="results-value">
-                        <span id="display-totalprin" class="results-output"></span>
-                      </td>
+                      <td><span id="display-totalprin" class="results-output"></span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -633,7 +289,6 @@
 
               <hr class="results-divider" />
 
-              <!-- Scenario table using same pattern as entry grid, no inputs -->
               <div class="debt-table-wrapper results-table-wrapper">
                 <table class="debt-table results-table">
                   <thead>
@@ -646,28 +301,19 @@
                   <tbody>
                     <tr>
                       <td class="results-label">Current plan</td>
-                      <td>
-                        <span id="display-totalpmt" class="results-output"></span>
-                      </td>
-                      <td>
-                        <span id="display-totalnprs" class="results-output"></span>
-                      </td>
+                      <td><span id="display-totalpmt" class="results-output"></span></td>
+                      <td><span id="display-totalnprs" class="results-output"></span></td>
                     </tr>
                     <tr>
                       <td class="results-label">With extra payment</td>
-                      <td>
-                        <span id="display-adp-totalpmt" class="results-output"></span>
-                      </td>
-                      <td>
-                        <span id="display-adp-totalnprs" class="results-output"></span>
-                      </td>
+                      <td><span id="display-adp-totalpmt" class="results-output"></span></td>
+                      <td><span id="display-adp-totalnprs" class="results-output"></span></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+
             </div>
-
-
 
             <div class="calc-notes muted">
               <p>
@@ -692,7 +338,13 @@
       </p>
     </footer>
 
+    <!-- Shared helpers -->
     <script src="../../js/utils.js"></script>
+
+    <!-- Core payoff logic -->
     <script src="accelerated-debt-payoff.js"></script>
+
+    <!-- New: event-wiring / init script (YOU will create this next) -->
+    <script src="accelerated-debt-payoff-init.js"></script>
   </body>
 </html>

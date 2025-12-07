@@ -199,10 +199,7 @@
 
     <script src="../../js/utils.js"></script>
     <script src="missing-loan-term.js"></script>
-    <script>
-      if (window.MissingLoanCalculator) {
-        MissingLoanCalculator.init(document);
-      }
-    </script>
+    <!-- New: externalized init script (no inline JS) -->
+    <script src="missing-loan-term-init.js"></script>
   </body>
 </html>

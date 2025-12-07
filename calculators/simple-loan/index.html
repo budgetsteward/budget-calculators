@@ -225,10 +225,7 @@
     <!-- Shared helpers + this calculator's logic -->
     <script src="../../js/utils.js"></script>
     <script src="simple-loan.js"></script>
-    <script>
-      if (window.SimpleLoanCalculator) {
-        SimpleLoanCalculator.init(document);
-      }
-    </script>
+    <!-- New: externalized init script (no inline JS) -->
+    <script src="simple-loan-init.js"></script>
   </body>
 </html>
