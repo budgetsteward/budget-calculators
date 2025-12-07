@@ -59,39 +59,7 @@
 
     <script src="js/utils.js"></script>
     <script src="calculators/smart-budget/smart-budget.js"></script>
-    <script>
-      // Fetch the calculator markup from its own page and embed it
-      (function () {
-        const container = document.getElementById("smart-budget-embed");
-        if (!container) return;
-
-        fetch("calculators/smart-budget/index.html")
-          .then((response) => response.text())
-          .then((html) => {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(html, "text/html");
-            const section = doc.querySelector("#smart-budget");
-            if (!section) return;
-
-            // Remove the internal H1 so we don't get duplicate headings
-            const internalH1 = section.querySelector("h1");
-            if (internalH1) internalH1.remove();
-
-            // Remove the "back" link since we removed that too
-            const backLink = section.querySelector(".muted a");
-            if (backLink) backLink.parentElement.remove();
-
-            container.appendChild(section);
-
-            // Initialize calculator inside this container
-            if (window.SmartBudget) {
-              SmartBudget.init(container);
-            }
-          })
-          .catch((err) => {
-            console.error("Failed to embed calculator:", err);
-          });
-      })();
-    </script>
+    <!-- New: home page bootstrap logic (moved from inline script) -->
+    <script src="js/home.js"></script>
   </body>
 </html>
