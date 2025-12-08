@@ -471,3 +471,63 @@ select:focus-visible {
   object-fit: cover;
   border-radius: var(--radius);
 }
+
+/* ------------------------------
+   HOME HERO
+--------------------------------*/
+.home-hero {
+  position: relative;
+  width: 100%;
+  background-color: #d9f2f5;
+  background-image: url("../assets/images/home-hero-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: var(--radius);
+  padding: 2.5rem 1.5rem 3rem;
+  margin-bottom: 1.75rem;
+}
+
+/* center content inside the main column */
+.home-hero-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-hero h1 {
+  font-size: clamp(2rem, 2.6vw, 2.5rem);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  color: var(--text-main);
+}
+
+.home-hero p {
+  max-width: 38rem;
+  margin: 0 auto 1.75rem;
+  color: var(--text-muted);
+}
+
+.home-hero-figure {
+  max-width: 360px;
+  margin: 0 auto;
+}
+
+.home-hero-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+}
+
+/* Small screens */
+@media (max-width: 640px) {
+  .home-hero {
+    padding: 2rem 1rem 2.5rem;
+  }
+
+  .home-hero-figure {
+    max-width: 280px;
+  }
+}
