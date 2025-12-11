@@ -531,3 +531,51 @@ select:focus-visible {
     max-width: 280px;
   }
 }
+
+/* ----------------------------------------------------------
+   Generic "hero" calculator card
+   - Desktop: image on right, vertically centered
+   - Mobile: image floats right, text can flow underneath
+---------------------------------------------------------- */
+
+.item-card--hero {
+  position: relative;
+}
+
+/* Desktop / tablet */
+.item-card--hero .item-card-hero-img {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;           /* desktop size */
+  max-width: 35%;
+  height: auto;
+  border-radius: var(--radius);
+}
+
+/* Give text room so it doesn't run under the image on desktop */
+.item-card--hero .item-card-body {
+  padding-right: 250px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .item-card--hero {
+    position: static;
+  }
+
+  .item-card--hero .item-card-hero-img {
+    position: static;
+    transform: none;
+    float: right;
+    width: 110px;         /* mobile size */
+    max-width: 35vw;
+    margin: 0 0 0.25rem 0.5rem;
+  }
+
+  .item-card--hero .item-card-body {
+    padding-right: 0;
+  }
+}
+
