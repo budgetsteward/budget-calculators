@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "lastUpdated": "2025-12-20",
+  "categories": [
+    { "key": "housing", "label": "Housing (incl. utilities)" },
+    { "key": "food", "label": "Food" },
+    { "key": "transportation", "label": "Transportation" },
+    { "key": "healthcare", "label": "Healthcare" },
+    { "key": "lifestyle", "label": "Lifestyle / Discretionary" },
+    { "key": "savingsDebt", "label": "Savings & Debt" }
+  ],
+  "profiles": [
+    {
+      "id": "typical",
+      "label": "Typical household",
+      "description": "A general baseline for many U.S. households.",
+      "avgPct": {
+        "housing": 38,
+        "food": 13,
+        "transportation": 17,
+        "healthcare": 8,
+        "lifestyle": 14,
+        "savingsDebt": 10
+      },
+      "targetPct": {
+        "housing": 30,
+        "food": 11,
+        "transportation": 14,
+        "healthcare": 7,
+        "lifestyle": 13,
+        "savingsDebt": 25
+      },
+      "notes": "Starter baseline. Keep totals at 100."
+    },
+    {
+      "id": "singleAdult",
+      "label": "Single adult (no kids)",
+      "description": "One adult household without children.",
+      "avgPct": {
+        "housing": 40,
+        "food": 12,
+        "transportation": 16,
+        "healthcare": 7,
+        "lifestyle": 15,
+        "savingsDebt": 10
+      },
+      "targetPct": {
+        "housing": 32,
+        "food": 11,
+        "transportation": 14,
+        "healthcare": 7,
+        "lifestyle": 14,
+        "savingsDebt": 22
+      },
+      "notes": "Often higher housing share; target savings slightly lower than general target."
+    },
+    {
+      "id": "coupleNoKids",
+      "label": "Couple (no kids)",
+      "description": "Two adults household without children.",
+      "avgPct": {
+        "housing": 35,
+        "food": 12,
+        "transportation": 15,
+        "healthcare": 8,
+        "lifestyle": 16,
+        "savingsDebt": 14
+      },
+      "targetPct": {
+        "housing": 28,
+        "food": 10,
+        "transportation": 13,
+        "healthcare": 7,
+        "lifestyle": 14,
+        "savingsDebt": 28
+      },
+      "notes": "Shared costs can enable stronger savings targets."
+    },
+    {
+      "id": "familyKids",
+      "label": "Family with kids (2 adults)",
+      "description": "Two adults with one or more children.",
+      "avgPct": {
+        "housing": 36,
+        "food": 16,
+        "transportation": 18,
+        "healthcare": 9,
+        "lifestyle": 11,
+        "savingsDebt": 10
+      },
+      "targetPct": {
+        "housing": 30,
+        "food": 14,
+        "transportation": 16,
+        "healthcare": 8,
+        "lifestyle": 10,
+        "savingsDebt": 22
+      },
+      "notes": "Higher food/transport/healthcare needs; targets focus on realistic improvement."
+    },
+    {
+      "id": "singleParent",
+      "label": "Single parent",
+      "description": "One adult with one or more children.",
+      "avgPct": {
+        "housing": 42,
+        "food": 17,
+        "transportation": 16,
+        "healthcare": 9,
+        "lifestyle": 8,
+        "savingsDebt": 8
+      },
+      "targetPct": {
+        "housing": 36,
+        "food": 16,
+        "transportation": 15,
+        "healthcare": 8,
+        "lifestyle": 7,
+        "savingsDebt": 18
+      },
+      "notes": "Recognizes structural constraints; targets focus on gradual progress."
+    },
+    {
+      "id": "hcol",
+      "label": "High cost of living (HCOL)",
+      "description": "For areas where housing costs take a larger share of take-home pay.",
+      "avgPct": {
+        "housing": 45,
+        "food": 12,
+        "transportation": 15,
+        "healthcare": 7,
+        "lifestyle": 11,
+        "savingsDebt": 10
+      },
+      "targetPct": {
+        "housing": 38,
+        "food": 11,
+        "transportation": 14,
+        "healthcare": 7,
+        "lifestyle": 10,
+        "savingsDebt": 20
+      },
+      "notes": "HCOL increases housing constraint; savings target adjusted accordingly."
+    }
+  ],
+  "validationRules": {
+    "eachAvgPctMustSumTo": 100,
+    "eachTargetPctMustSumTo": 100,
+    "percentRange": { "min": 0, "max": 100 }
+  }
+}

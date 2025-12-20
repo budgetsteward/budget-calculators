@@ -1,1 +1,243 @@
-/* smart-budget.css */
+/* calculators/smart-budget/smart-budget.css
+   Only Smart Budget–specific rules live here.
+*/
+
+/* ---------------------------------------
+   Column mode: Average (default) vs Target
+   We use data-role attributes in the HTML/JS.
+   Use !important to win against any shared table styles.
+---------------------------------------- */
+
+/* Give Category more breathing room on small screens */
+#budget-table th:first-child,
+#budget-table td.name-cell {
+  width: 65%;
+}
+
+/* Prefer normal word wrapping over mid-word breaks */
+#budget-table td.name-cell {
+  word-break: normal;
+  overflow-wrap: break-word; /* breaks only if absolutely necessary */
+  hyphens: auto;
+}
+
+
+/* Hide Target columns by default */
+#budget-table th[data-role^="target-"],
+#budget-table td[data-role^="target-"] {
+  display: none !important;
+}
+
+/* When toggled, hide Average columns and show Target columns */
+#budget-table.show-target th[data-role^="avg-"],
+#budget-table.show-target td[data-role^="avg-"] {
+  display: none !important;
+}
+
+#budget-table.show-target th[data-role^="target-"],
+#budget-table.show-target td[data-role^="target-"] {
+  display: table-cell !important;
+}
+
+/* base.css often forces tables to be wide; for mobile we want the 3-col view to fit */
+#smart-budget table {
+  min-width: 0 !important;
+}
+
+/* ---------------------------------------
+   Toggle row: match site typography
+   (Do NOT introduce new fonts; inherit everything.)
+---------------------------------------- */
+
+.mode-toggle-row,
+.mode-toggle,
+.mode-toggle-label,
+.mode-toggle-help {
+  font: inherit;
+  color: inherit;
+}
+
+.mode-toggle-row {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mode-toggle-label {
+  font-weight: 600; /* align with typical label weight, but still site font */
+}
+
+.mode-toggle-help {
+  margin: 0;
+  opacity: 0.8; /* subtle help text without changing font-family */
+  line-height: 1.35;
+  max-width: 65ch;
+}
+
+/* Make switch easier to tap on mobile without changing font */
+.mode-toggle-input {
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+}
+
+/* =========================================================
+   Responsive behavior:
+   - Small screens: toggle controls whether Avg OR Target is shown
+   - Large screens: show BOTH Avg + Target, hide toggle
+========================================================= */
+
+/* Pick your breakpoint; 768px is a good "tablet and up" default */
+@media (min-width: 768px) {
+  /* Hide the toggle UI on large screens */
+  .mode-toggle-row {
+    display: none !important;
+  }
+
+  /* Always show all columns */
+  #budget-table th[data-role^="avg-"],
+  #budget-table td[data-role^="avg-"],
+  #budget-table th[data-role^="target-"],
+  #budget-table td[data-role^="target-"] {
+    display: table-cell !important;
+  }
+
+  /* Optional: turn off fixed layout so the full table breathes more */
+  #budget-table {
+    table-layout: auto;
+  }
+}
+
+
+/* ---------------------------------------
+   Safety: if base.css doesn't include sr-only, include it here.
+---------------------------------------- */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ---------- Keep the 3-column table readable on small screens ---------- */
+
+#budget-table {
+  width: 100%;
+  table-layout: fixed; /* predictable columns */
+}
+
+/* Column sizing: give category the most space */
+#budget-table .col-category { width: 56%; }
+#budget-table .col-pct { width: 18%; }
+#budget-table .col-amt { width: 26%; }
+
+/* Category wraps nicely; numbers do not */
+#budget-table td.name-cell {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+#budget-table th,
+#budget-table td {
+  overflow: hidden;              /* prevents header text bleeding into next cell */
+  text-overflow: ellipsis;
+}
+
+#budget-table th[data-role$="-pct-h"],
+#budget-table th[data-role$="-amt-h"],
+#budget-table td[data-role$="-pct"],
+#budget-table td[data-role$="-amt"] {
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Short/long header label swap */
+#budget-table .th-short { display: none; }
+
+/* At narrow widths, show short labels to prevent cramped header collisions */
+@media (max-width: 390px) {
+  #budget-table .th-long { display: none; }
+  #budget-table .th-short { display: inline; }
+}
+
+/* Slight padding + font tightening */
+@media (max-width: 420px) {
+  #budget-table th,
+  #budget-table td {
+    padding: 0.45rem 0.4rem;
+    font-size: 0.86rem;
+  }
+}
+
+/* Prevent ellipsis on headers */
+#budget-table th {
+  text-overflow: clip;
+}
+
+/* Default: show full labels */
+#budget-table .th-short {
+  display: none;
+}
+
+/* Small screens: prefer short labels */
+@media (max-width: 420px) {
+  #budget-table .th-long {
+    display: none;
+  }
+  #budget-table .th-short {
+    display: inline;
+  }
+}
+
+/* Ensure target headers never collapse into ellipsis */
+#budget-table.show-target th[data-role^="target-"] {
+  white-space: nowrap;
+}
+
+/* ---------- Profile tooltip ---------- */
+.profile-label-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Add breathing room above Budget profile selector */
+.profile-row {
+  margin-top: 1rem;
+}
+
+
+.tooltip-btn {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: #fff;
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.tooltip-wrap { position: relative; display: inline-flex; margin-left: 0.35rem; }
+.tooltip-btn {
+  width: 1.25rem; height: 1.25rem; border-radius: 999px;
+  border: 1px solid var(--border); background: #fff; font: inherit; line-height: 1;
+}
+.tooltip-panel {
+  position: absolute; z-index: 10; left: 0; top: calc(100% + 0.4rem);
+  width: min(320px, 85vw); padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border); border-radius: calc(var(--radius) - 6px);
+  background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+.tooltip-panel[hidden] { display: none; }
