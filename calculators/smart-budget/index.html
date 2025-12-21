@@ -36,7 +36,8 @@
 
       <p class="subtitle">
         Enter your monthly take-home income to see how a typical American household
-        might allocate their money versus a <strong>budget-conscious target plan</strong>.
+        might allocate their money versus a <strong>budget-conscious target plan</strong>. 
+        Click the info-btn wherever shown for more details and to discover more ways to save and earn money and cut costs.
       </p>
 
       <!-- Income form -->
@@ -78,11 +79,22 @@
       </form>
 
       <div class="profile-row">
-        <label for="profile-select">Budget profile</label>
+        <label for="profile-select" class="profile-label-row">
+          <span>Budget profile</span>
+          <button
+            type="button"
+            class="info-btn"
+            id="profile-info-btn"
+            aria-label="Show information about budget profile"
+            aria-controls="category-details"
+            aria-expanded="false"
+          >
+            i
+          </button>
+        </label>
+
         <select id="profile-select" name="profile" aria-describedby="profile-help profile-status"></select>
-        <p id="profile-help" class="muted">
-          Profiles adjust the average and target percentages to better match different household situations.
-        </p>
+        
         <div id="profile-status" class="sr-only" aria-live="polite"></div>
       </div>
 

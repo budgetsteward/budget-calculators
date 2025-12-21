@@ -182,7 +182,7 @@
     }
 
     // NEW: income (optional but recommended)
-  const income = json?.income && typeof json.income === "object"
+    const income = json?.income && typeof json.income === "object"
     ? {
         heading: String(json.income.heading || "").trim(),
         description: String(json.income.description || "").trim(),
@@ -198,7 +198,26 @@
       }
     : null;
 
-    return { byKey, income };
+    // NEW: profile (optional)
+    const profile = json?.profile && typeof json.profile === "object"
+    ? {
+        heading: String(json.profile.heading || "").trim(),
+        description: String(json.profile.description || "").trim(),
+        tip: {
+          text: String(json.profile.tip?.text || "").trim(),
+          moreUrl: String(json.profile.tip?.moreUrl || "").trim()
+        },
+        superTip: {
+          heading: String(json.profile.superTip?.heading || "Super+ Tip").trim() || "Super+ Tip",
+          text: String(json.profile.superTip?.text || "").trim(),
+          moreUrl: String(json.profile.superTip?.moreUrl || "").trim()
+        }
+      }
+    : null;
+
+
+    return { byKey, income, profile };
+
   }
 
   // FIX: renderDetails must receive scope (root) since it's outside init()
@@ -352,6 +371,8 @@
     const categoryInfo = validateCategoryInfoJson(categoryInfoSource, knownKeys) || null;
     const categoryInfoByKey = categoryInfo?.byKey || null;
     const incomeInfo = categoryInfo?.income || null;
+    const profileInfo = categoryInfo?.profile || null;
+
 
     function setDetailsHtml(html, expandedButton) {
       if (!categoryDetails) return;
@@ -407,6 +428,49 @@
         );
       });
     }
+
+    const profileInfoBtn = scope.querySelector("#profile-info-btn");
+    if (profileInfoBtn && categoryDetails) {
+      profileInfoBtn.addEventListener("click", () => {
+        const info = profileInfo; // may be null if not provided
+
+        if (info) {
+          renderDetails(
+            categoryDetails,
+            {
+              heading: info.heading,
+              description: info.description,
+              tipText: info.tip?.text || "",
+              tipMoreUrl: info.tip?.moreUrl || "",
+              superHeading: info.superTip?.heading || "Super+ Tip",
+              superText: info.superTip?.text || "",
+              superMoreUrl: info.superTip?.moreUrl || ""
+            },
+            scope,
+            profileInfoBtn
+          );
+          return;
+        }
+
+        // Minimal fallback (optional)
+        renderDetails(
+          categoryDetails,
+          {
+            heading: "Budget profile",
+            description:
+              "Choose a profile that adjusts the average and target percentages to better match different household situations.",
+            tipText: "",
+            tipMoreUrl: "",
+            superHeading: "Super+ Tip",
+            superText: "",
+            superMoreUrl: ""
+          },
+          scope,
+          profileInfoBtn
+        );
+      });
+    }
+
 
 
     const modeToggle = scope.querySelector("#mode-toggle");

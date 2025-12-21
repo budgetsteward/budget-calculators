@@ -194,6 +194,21 @@
   font-weight: 600;
 }
 
+.profile-label-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+label.profile-label-row {
+  font-weight: 400;
+}
+
+.profile-row {
+  margin-bottom: 1.25rem;
+}
+
+
 /* Premium select: ID-based so it styles both calculator page + home embed reliably */
 #profile-select {
   -webkit-appearance: none;

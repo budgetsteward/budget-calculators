@@ -11,10 +11,25 @@
     },
     "superTip": {
       "heading": "Super+ Tip",
-      "text": "If you get paid biweekly, multiply your average paycheck by 26 and divide by 12 to estimate a monthly amount.",
+      "text": "Get paid up to 2 days early. Pay your bills, treat yourself, or just enjoy the extra peace of mind. How? Setup a direct deposit to your Super.com Deposit Account and maximize your financial flexibility. Need cash? Get up to $100 of extra cash when you need it with Super.com cash.",
       "moreUrl": ""
     }
   },
+
+  "profile": {
+    "heading": "Budget profile",
+    "description": "Choose a profile that best matches your household. It adjusts the average and target percentages to be more realistic for different situations.",
+    "tip": {
+      "text": "Budget profiles are starting points that help tailor budget percentages to different household situations. Each profile adjusts how income is typically divided across major spending categories like housing, food, transportation, savings, and discretionary expenses. The percentages are not rules — they’re benchmarks based on a blend of national spending data, common financial planning guidelines, and real-world household patterns. They’re meant to reflect what tends to work for households with similar circumstances, not what you must spend.",
+      "moreUrl": ""
+    },
+    "superTip": {
+      "heading": "Super+ Tip",
+      "text": "Different profiles reflect meaningful differences in how households typically allocate money. For example, renters often spend less on housing than homeowners, families with children tend to spend more on food and transportation, and higher-income households may devote a smaller percentage to essentials while increasing savings or discretionary spending. These profiles are designed to give you a realistic reference, not a perfect match. The most effective budget is one that reflects your life — this tool simply helps you see where your spending aligns with common patterns and where you may want to make intentional choices.",
+      "moreUrl": ""
+    }
+  },
+
   
   "categories": [
     {
@@ -22,12 +37,12 @@
       "heading": "Housing (incl. utilities)",
       "description": "Rent or mortgage, property taxes, HOA dues, basic home maintenance, and household utilities like electricity, water, gas, trash, and internet.",
       "tip": {
-        "text": "Tip placeholder: Review major housing-related bills once per year (insurance, utilities, subscriptions) to prevent slow budget creep.",
+        "text": "Review major housing-related bills once per year (insurance, utilities, subscriptions) to prevent slow budget creep.",
         "moreUrl": ""
       },
       "superTip": {
         "heading": "Super+ Tip",
-        "text": "Super+ tip placeholder: Use a monthly subscription review to catch auto-renewals and re-negotiate providers when possible.",
+        "text": "Build and understand your credit with our credit building tools. With Rent Reporting, report your current and past rent payments to all 3 bureaus. On average, people who report their rent see an increase of 28 points in 2 weeks. With Credit Monitoring, we'll keep an eye on things for you. With Super.com Card Reporting, use your Super.com Card activity to help build credit",
         "moreUrl": ""
       }
     },
@@ -36,12 +51,12 @@
       "heading": "Food",
       "description": "Groceries, household staples, work/school lunches, restaurants, takeout, coffee, snacks, and delivery fees.",
       "tip": {
-        "text": "Tip placeholder: Plan a few repeatable meals each week and reuse ingredients to reduce food waste and spending.",
+        "text": "Plan a few repeatable meals each week and reuse ingredients to reduce food waste and spending.",
         "moreUrl": ""
       },
       "superTip": {
         "heading": "Super+ Tip",
-        "text": "Super+ tip placeholder: Track “convenience spending” (delivery, impulse snacks) separately so it’s visible and easier to reduce.",
+        "text": "Spend and earn 1% cash back with your Super.com Card.",
         "moreUrl": ""
       }
     },
@@ -50,12 +65,12 @@
       "heading": "Transportation",
       "description": "Car payments, fuel, insurance, maintenance, parking, tolls, public transit, rideshares, and other commuting costs.",
       "tip": {
-        "text": "Tip placeholder: Average irregular costs (repairs, registration, tires) into a monthly estimate so they don’t surprise you later.",
+        "text": "Average irregular costs (repairs, registration, tires) into a monthly estimate so they don’t surprise you later. Compare insurance annually and revisit deductibles—small changes can produce meaningful savings.",
         "moreUrl": ""
       },
       "superTip": {
         "heading": "Super+ Tip",
-        "text": "Super+ tip placeholder: Compare insurance annually and revisit deductibles—small changes can produce meaningful savings.",
+        "text": "Travel with Super+. 10% cash back on hotels. Up to $50 off flights. Get discounted rates on car rentals. Never pay full price on gas again with Super.com + Upside. Save 30 cents per gallon on your first fill-up.",
         "moreUrl": ""
       }
     },
@@ -64,12 +79,12 @@
       "heading": "Healthcare",
       "description": "Health insurance premiums, copays, prescriptions, dental/vision, therapy, and out-of-pocket medical expenses.",
       "tip": {
-        "text": "Tip placeholder: Build a small monthly healthcare buffer even if you’re healthy—medical spending often arrives in bursts.",
+        "text": "Build a small monthly healthcare buffer even if you’re healthy—medical spending often arrives in bursts. If you have access to tax-advantaged accounts (HSA/FSA), plan contributions around expected annual expenses.",
         "moreUrl": ""
       },
       "superTip": {
         "heading": "Super+ Tip",
-        "text": "Super+ tip placeholder: If you have access to tax-advantaged accounts (HSA/FSA), plan contributions around expected annual expenses.",
+        "text": "Save up to 85% on your prescription costs. Compare pricing and get verified discounts at over 74,000 trusted pharmacies, such as CVS, Walgreens, Kroger, and Walmart. Pharmacy savings made simple.",
         "moreUrl": ""
       }
     },
@@ -78,12 +93,12 @@
       "heading": "Lifestyle / Discretionary",
       "description": "Entertainment, clothing, personal care, hobbies, subscriptions, gifts, vacations, and other non-essential spending.",
       "tip": {
-        "text": "Tip placeholder: Give yourself a realistic “fun money” amount—over-restriction often backfires and leads to overspending later.",
+        "text": "Give yourself a realistic “fun money” amount—over-restriction often backfires and leads to overspending later. Create a short “pause list” for discretionary buys—wait 24–72 hours before purchasing to reduce impulse spending.",
         "moreUrl": ""
       },
       "superTip": {
         "heading": "Super+ Tip",
-        "text": "Super+ tip placeholder: Create a short “pause list” for discretionary buys—wait 24–72 hours before purchasing to reduce impulse spending.",
+        "text": "Cancel unwanted subscriptions with Subscription Manager. On average, consumers underestimate their monthly subscription spend by $133. Turn on Location Rewards and get paid when you travel.Remember to use your Super.com Card to get 1% cash back on all purchases. ",
         "moreUrl": ""
       }
     },
@@ -92,12 +107,12 @@
       "heading": "Savings / Goals",
       "description": "Emergency fund, retirement contributions, debt payoff beyond minimums, sinking funds, and progress toward financial goals.",
       "tip": {
-        "text": "Tip placeholder: Start with small, automatic transfers—consistency matters more than size at the beginning.",
+        "text": "Start with small, automatic transfers—consistency matters more than size at the beginning. Use goal-based buckets (emergency, car repair, vacation) so your “remaining” money has a job.",
         "moreUrl": ""
       },
       "superTip": {
         "heading": "Super+ Tip",
-        "text": "Super+ tip placeholder: Use goal-based buckets (emergency, car repair, vacation) so your “remaining” money has a job.",
+        "text": "Earn money by playing games, completing tasks, and taking surveys on Super.com. Use the extra money you earn for savings or to payoff debt or student loans.",
         "moreUrl": "https://www.super.com"
       }
     }
