@@ -10,22 +10,80 @@
     <title>My Super Calculators – Home</title>
     <link rel="stylesheet" href="css/base.css" />
   </head>
-  <body>
+  <body class="page-home">
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <header>
       <nav class="nav" aria-label="Primary">
         <a href="index.html" class="nav-brand">My Super Calculators</a>
+
         <div class="nav-links">
           <a href="index.html" aria-current="page">Home</a>
           <a href="calculators.html">Calculators</a>
-          <a href="stories.html">Stories</a>
+
+          <!-- Stories + Alert icon (HOME ONLY) -->
+          <span class="nav-alert-wrap">
+            <a href="stories.html">Stories</a>
+
+            <button
+              type="button"
+              id="home-alert-btn"
+              class="nav-alert-btn"
+              aria-label="Site updates"
+              aria-haspopup="dialog"
+              aria-controls="home-alert-popover"
+              aria-expanded="false"
+            >
+              <!-- Inline SVG bell so we don't need an icon file -->
+              <svg
+                class="nav-alert-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M12 22a2.2 2.2 0 0 0 2.2-2.2h-4.4A2.2 2.2 0 0 0 12 22Zm7-6.2V11a7 7 0 0 0-5-6.7V3.2a2 2 0 0 0-4 0v1.1A7 7 0 0 0 5 11v4.8l-1.4 1.4a1 1 0 0 0 .7 1.7h15.4a1 1 0 0 0 .7-1.7L19 15.8Z"
+                  fill="currentColor"
+                />
+              </svg>
+              <span class="sr-only" id="home-alert-btn-sr">Updates</span>
+            </button>
+          </span>
         </div>
+
+        <!-- Popover lives in the header so it can overlay nicely -->
+        <div
+          id="home-alert-popover"
+          class="home-alert-popover"
+          role="dialog"
+          aria-modal="false"
+          aria-labelledby="home-alert-heading"
+          hidden
+        >
+          <div class="home-alert-popover-inner">
+            <div class="home-alert-popover-head">
+              <span id="home-alert-heading" class="home-alert-heading">New updates available</span>
+
+              <button type="button" class="home-alert-close" aria-label="Close updates">
+                ×
+              </button>
+            </div>
+
+            <p class="home-alert-date muted" id="home-alert-date"></p>
+            <p class="home-alert-text" id="home-alert-text"></p>
+
+            <p class="muted home-alert-hint">
+              Tip: Click anywhere outside this box to close.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+
       </nav>
     </header>
 
     <main id="main">
-      <!-- Home hero -->
       <!-- Home hero -->
       <section class="home-hero" aria-labelledby="home-hero-heading">
         <div class="home-hero-inner">
@@ -78,5 +136,8 @@
     <script src="calculators/smart-budget/smart-budget-init.js"></script>
     <!-- New: home page bootstrap logic (moved from inline script) -->
     <script src="js/home.js"></script>
+
+    <!-- NEW: homepage-only site alert -->
+    <script src="js/home-alert.js"></script>
   </body>
 </html>

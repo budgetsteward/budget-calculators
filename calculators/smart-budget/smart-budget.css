@@ -1,14 +1,12 @@
 /* calculators/smart-budget/smart-budget.css
-   Only Smart Budget–specific rules live here.
+   Smart Budget–specific rules only.
 */
 
 /* ---------------------------------------
-   Column mode: Average (default) vs Target
-   We use data-role attributes in the HTML/JS.
-   Use !important to win against any shared table styles.
+   Table: column mode (Average default vs Target)
 ---------------------------------------- */
 
-/* Give Category more breathing room on small screens */
+/* Give Category more breathing room */
 #budget-table th:first-child,
 #budget-table td.name-cell {
   width: 65%;
@@ -17,18 +15,17 @@
 /* Prefer normal word wrapping over mid-word breaks */
 #budget-table td.name-cell {
   word-break: normal;
-  overflow-wrap: break-word; /* breaks only if absolutely necessary */
+  overflow-wrap: break-word;
   hyphens: auto;
 }
 
-
-/* Hide Target columns by default */
+/* Hide Target columns by default (mobile-first) */
 #budget-table th[data-role^="target-"],
 #budget-table td[data-role^="target-"] {
   display: none !important;
 }
 
-/* When toggled, hide Average columns and show Target columns */
+/* When toggled, show Target columns and hide Avg columns */
 #budget-table.show-target th[data-role^="avg-"],
 #budget-table.show-target td[data-role^="avg-"] {
   display: none !important;
@@ -39,14 +36,13 @@
   display: table-cell !important;
 }
 
-/* base.css often forces tables to be wide; for mobile we want the 3-col view to fit */
+/* base.css can force wide tables; allow this one to shrink on mobile */
 #smart-budget table {
   min-width: 0 !important;
 }
 
 /* ---------------------------------------
-   Toggle row: match site typography
-   (Do NOT introduce new fonts; inherit everything.)
+   Toggle row: inherit site typography
 ---------------------------------------- */
 
 .mode-toggle-row,
@@ -70,36 +66,30 @@
 }
 
 .mode-toggle-label {
-  font-weight: 600; /* align with typical label weight, but still site font */
+  font-weight: 600;
 }
 
 .mode-toggle-help {
   margin: 0;
-  opacity: 0.8; /* subtle help text without changing font-family */
+  opacity: 0.8;
   line-height: 1.35;
   max-width: 65ch;
 }
 
-/* Make switch easier to tap on mobile without changing font */
 .mode-toggle-input {
   inline-size: 1.15rem;
   block-size: 1.15rem;
 }
 
-/* =========================================================
-   Responsive behavior:
-   - Small screens: toggle controls whether Avg OR Target is shown
-   - Large screens: show BOTH Avg + Target, hide toggle
-========================================================= */
+/* ---------------------------------------
+   Desktop: show BOTH Avg + Target; hide toggle
+---------------------------------------- */
 
-/* Pick your breakpoint; 768px is a good "tablet and up" default */
 @media (min-width: 768px) {
-  /* Hide the toggle UI on large screens */
   .mode-toggle-row {
     display: none !important;
   }
 
-  /* Always show all columns */
   #budget-table th[data-role^="avg-"],
   #budget-table td[data-role^="avg-"],
   #budget-table th[data-role^="target-"],
@@ -107,16 +97,15 @@
     display: table-cell !important;
   }
 
-  /* Optional: turn off fixed layout so the full table breathes more */
   #budget-table {
     table-layout: auto;
   }
 }
 
-
 /* ---------------------------------------
-   Safety: if base.css doesn't include sr-only, include it here.
+   Accessibility helpers (safety)
 ---------------------------------------- */
+
 .sr-only {
   position: absolute !important;
   width: 1px !important;
@@ -129,19 +118,21 @@
   border: 0 !important;
 }
 
-/* ---------- Keep the 3-column table readable on small screens ---------- */
+/* ---------------------------------------
+   Mobile readability for the 3-col table
+---------------------------------------- */
 
 #budget-table {
   width: 100%;
-  table-layout: fixed; /* predictable columns */
+  table-layout: fixed;
 }
 
-/* Column sizing: give category the most space */
+/* Column sizing */
 #budget-table .col-category { width: 56%; }
 #budget-table .col-pct { width: 18%; }
 #budget-table .col-amt { width: 26%; }
 
-/* Category wraps nicely; numbers do not */
+/* Category wraps; numbers do not */
 #budget-table td.name-cell {
   white-space: normal;
   overflow-wrap: anywhere;
@@ -150,7 +141,7 @@
 
 #budget-table th,
 #budget-table td {
-  overflow: hidden;              /* prevents header text bleeding into next cell */
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -162,82 +153,93 @@
   white-space: nowrap;
 }
 
-/* Short/long header label swap */
-#budget-table .th-short { display: none; }
-
-/* At narrow widths, show short labels to prevent cramped header collisions */
-@media (max-width: 390px) {
-  #budget-table .th-long { display: none; }
-  #budget-table .th-short { display: inline; }
+/* Prevent ellipsis on headers */
+#budget-table th {
+  text-overflow: clip;
 }
 
-/* Slight padding + font tightening */
+/* Header label swap (short labels on narrow screens) */
+#budget-table .th-short { display: none; }
+
 @media (max-width: 420px) {
   #budget-table th,
   #budget-table td {
     padding: 0.45rem 0.4rem;
     font-size: 0.86rem;
   }
+
+  #budget-table .th-long { display: none; }
+  #budget-table .th-short { display: inline; }
 }
 
-/* Prevent ellipsis on headers */
-#budget-table th {
-  text-overflow: clip;
-}
+/* ---------------------------------------
+   Budget profile row (spacing + premium select)
+---------------------------------------- */
 
-/* Default: show full labels */
-#budget-table .th-short {
-  display: none;
-}
-
-/* Small screens: prefer short labels */
-@media (max-width: 420px) {
-  #budget-table .th-long {
-    display: none;
-  }
-  #budget-table .th-short {
-    display: inline;
-  }
-}
-
-/* Ensure target headers never collapse into ellipsis */
-#budget-table.show-target th[data-role^="target-"] {
-  white-space: nowrap;
-}
-
-/* ---------- Profile tooltip ---------- */
-.profile-label-row {
+.income-label-row {
   display: inline-flex;
   align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem; /* 👈 creates breathing room above the input */
+}
+
+.profile-row {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
   gap: 0.35rem;
 }
 
-/* Add breathing room above Budget profile selector */
-.profile-row {
-  margin-top: 1rem;
+.profile-row label {
+  font-weight: 600;
 }
 
+/* Premium select: ID-based so it styles both calculator page + home embed reliably */
+#profile-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 
-.tooltip-btn {
-  width: 1.25rem;
-  height: 1.25rem;
+  display: inline-block;
+  max-width: 100%;
+
+  padding: 0.55rem 2.4rem 0.55rem 0.85rem;
+  min-height: 2.5rem;
+  line-height: 1.2;
+
   border-radius: 999px;
-  border: 1px solid var(--border);
-  background: #fff;
+  border: 1px solid var(--border, rgba(0,0,0,0.2));
+  background-color: #fff;
+  color: inherit;
   font: inherit;
-  line-height: 1;
+
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(0,0,0,0.55) 50%),
+    linear-gradient(135deg, rgba(0,0,0,0.55) 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.1rem) 52%,
+    calc(100% - 0.8rem) 52%;
+  background-size: 7px 7px, 7px 7px;
+  background-repeat: no-repeat;
+
   cursor: pointer;
 }
 
-.tooltip-wrap { position: relative; display: inline-flex; margin-left: 0.35rem; }
-.tooltip-btn {
-  width: 1.25rem; height: 1.25rem; border-radius: 999px;
-  border: 1px solid var(--border); background: #fff; font: inherit; line-height: 1;
+@media (hover: hover) {
+  #profile-select:hover {
+    border-color: var(--accent, rgba(0,0,0,0.35));
+  }
 }
-.tooltip-panel {
-  position: absolute; z-index: 10; left: 0; top: calc(100% + 0.4rem);
-  width: min(320px, 85vw); padding: 0.6rem 0.75rem;
-  border: 1px solid var(--border); border-radius: calc(var(--radius) - 6px);
-  background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+
+#profile-select:focus {
+  outline: none;
+  border-color: var(--accent, rgba(0,0,0,0.35));
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
 }
-.tooltip-panel[hidden] { display: none; }
+
+/* Desktop polish */
+@media (min-width: 640px) {
+  .profile-row {
+    max-width: 26rem;
+  }
+}

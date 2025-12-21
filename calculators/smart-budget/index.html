@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="../../css/base.css" />
 
   <!-- Calculator-specific styles -->
-  <link rel="stylesheet" href="smart-budget.css" />
+  <link id="smart-budget-css" rel="stylesheet" href="smart-budget.css" />
 </head>
 
 <body>
@@ -41,7 +41,20 @@
 
       <!-- Income form -->
       <form id="income-form" novalidate>
-        <label for="income">Monthly take-home income</label>
+        <label for="income" class="income-label-row">
+          <span>Monthly take-home income</span>
+          <button
+            type="button"
+            class="info-btn income-info-btn"
+            id="income-info-btn"
+            aria-label="Show information about monthly take-home income"
+            aria-controls="category-details"
+            aria-expanded="false"
+          >
+            i
+          </button>
+        </label>
+
 
         <div class="income-row">
           <div class="income-input-wrapper">

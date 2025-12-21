@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "lastUpdated": "2025-12-20",
+
+  "income": {
+    "heading": "Monthly take-home income",
+    "description": "Use your after-tax income (net pay) for the month—what actually lands in your checking account.",
+    "tip": {
+      "text": "If your pay varies, use a 3–6 month average so your budget doesn’t swing wildly month to month.",
+      "moreUrl": ""
+    },
+    "superTip": {
+      "heading": "Super+ Tip",
+      "text": "If you get paid biweekly, multiply your average paycheck by 26 and divide by 12 to estimate a monthly amount.",
+      "moreUrl": ""
+    }
+  },
+  
+  "categories": [
+    {
+      "key": "housing",
+      "heading": "Housing (incl. utilities)",
+      "description": "Rent or mortgage, property taxes, HOA dues, basic home maintenance, and household utilities like electricity, water, gas, trash, and internet.",
+      "tip": {
+        "text": "Tip placeholder: Review major housing-related bills once per year (insurance, utilities, subscriptions) to prevent slow budget creep.",
+        "moreUrl": ""
+      },
+      "superTip": {
+        "heading": "Super+ Tip",
+        "text": "Super+ tip placeholder: Use a monthly subscription review to catch auto-renewals and re-negotiate providers when possible.",
+        "moreUrl": ""
+      }
+    },
+    {
+      "key": "food",
+      "heading": "Food",
+      "description": "Groceries, household staples, work/school lunches, restaurants, takeout, coffee, snacks, and delivery fees.",
+      "tip": {
+        "text": "Tip placeholder: Plan a few repeatable meals each week and reuse ingredients to reduce food waste and spending.",
+        "moreUrl": ""
+      },
+      "superTip": {
+        "heading": "Super+ Tip",
+        "text": "Super+ tip placeholder: Track “convenience spending” (delivery, impulse snacks) separately so it’s visible and easier to reduce.",
+        "moreUrl": ""
+      }
+    },
+    {
+      "key": "transportation",
+      "heading": "Transportation",
+      "description": "Car payments, fuel, insurance, maintenance, parking, tolls, public transit, rideshares, and other commuting costs.",
+      "tip": {
+        "text": "Tip placeholder: Average irregular costs (repairs, registration, tires) into a monthly estimate so they don’t surprise you later.",
+        "moreUrl": ""
+      },
+      "superTip": {
+        "heading": "Super+ Tip",
+        "text": "Super+ tip placeholder: Compare insurance annually and revisit deductibles—small changes can produce meaningful savings.",
+        "moreUrl": ""
+      }
+    },
+    {
+      "key": "healthcare",
+      "heading": "Healthcare",
+      "description": "Health insurance premiums, copays, prescriptions, dental/vision, therapy, and out-of-pocket medical expenses.",
+      "tip": {
+        "text": "Tip placeholder: Build a small monthly healthcare buffer even if you’re healthy—medical spending often arrives in bursts.",
+        "moreUrl": ""
+      },
+      "superTip": {
+        "heading": "Super+ Tip",
+        "text": "Super+ tip placeholder: If you have access to tax-advantaged accounts (HSA/FSA), plan contributions around expected annual expenses.",
+        "moreUrl": ""
+      }
+    },
+    {
+      "key": "lifestyle",
+      "heading": "Lifestyle / Discretionary",
+      "description": "Entertainment, clothing, personal care, hobbies, subscriptions, gifts, vacations, and other non-essential spending.",
+      "tip": {
+        "text": "Tip placeholder: Give yourself a realistic “fun money” amount—over-restriction often backfires and leads to overspending later.",
+        "moreUrl": ""
+      },
+      "superTip": {
+        "heading": "Super+ Tip",
+        "text": "Super+ tip placeholder: Create a short “pause list” for discretionary buys—wait 24–72 hours before purchasing to reduce impulse spending.",
+        "moreUrl": ""
+      }
+    },
+    {
+      "key": "savingsDebt",
+      "heading": "Savings / Goals",
+      "description": "Emergency fund, retirement contributions, debt payoff beyond minimums, sinking funds, and progress toward financial goals.",
+      "tip": {
+        "text": "Tip placeholder: Start with small, automatic transfers—consistency matters more than size at the beginning.",
+        "moreUrl": ""
+      },
+      "superTip": {
+        "heading": "Super+ Tip",
+        "text": "Super+ tip placeholder: Use goal-based buckets (emergency, car repair, vacation) so your “remaining” money has a job.",
+        "moreUrl": "https://www.super.com"
+      }
+    }
+  ]
+}
