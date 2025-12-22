@@ -6,13 +6,46 @@
 (function (global) {
   "use strict";
 
-  const {
-    safeNumber,
-    formatCurrency,
-    setAriaMessage
-  } = global.BudgetUtils || {};
+  const Utils = global.BudgetUtils || {};
 
-  // Info text for the three inputs (shown in the side panel)
+  // Fallbacks (so this file works even if BudgetUtils isn't present)
+  const safeNumber =
+    typeof Utils.safeNumber === "function"
+      ? Utils.safeNumber
+      : function (value, fallback) {
+          const n = parseFloat(String(value).trim());
+          return Number.isFinite(n) ? n : fallback;
+        };
+
+  const formatCurrency =
+    typeof Utils.formatCurrency === "function"
+      ? Utils.formatCurrency
+      : function (amount, options) {
+          const opts = Object.assign(
+            { style: "currency", currency: "USD" },
+            options || {}
+          );
+          try {
+            return new Intl.NumberFormat(undefined, opts).format(amount);
+          } catch (e) {
+            // Very small fallback
+            const fixed =
+              typeof opts.maximumFractionDigits === "number"
+                ? amount.toFixed(opts.maximumFractionDigits)
+                : String(amount);
+            return "$" + fixed;
+          }
+        };
+
+  const setAriaMessage =
+    typeof Utils.setAriaMessage === "function"
+      ? Utils.setAriaMessage
+      : function (el, message) {
+          if (!el) return;
+          el.textContent = message || "";
+        };
+
+  // Info text for the three inputs (shown below Results)
   const fieldInfo = {
     principal: {
       title: "Loan amount (principal)",
@@ -25,8 +58,7 @@
       title: "Annual interest rate (APR)",
       body:
         "Enter the yearly interest rate charged on the loan. Lenders usually quote this as a percentage (APR).",
-      tip:
-        "Tip: If your rate is 7.5%, enter 7.5 — not 0.075."
+      tip: "Tip: If your rate is 7.5%, enter 7.5 — not 0.075."
     },
     term: {
       title: "Number of years",
@@ -39,11 +71,11 @@
 
   function calculateMonthlyPayment(principal, annualRatePct, years) {
     const months = years * 12;
-    if (!isFinite(months) || months <= 0) return NaN;
+    if (!Number.isFinite(months) || months <= 0) return NaN;
 
     const monthlyRate = annualRatePct / 100 / 12;
 
-    if (!isFinite(monthlyRate) || Math.abs(monthlyRate) < 1e-10) {
+    if (!Number.isFinite(monthlyRate) || Math.abs(monthlyRate) < 1e-10) {
       // No interest (or extremely small rate): simple division
       return principal / months;
     }
@@ -78,19 +110,48 @@
       return;
     }
 
+    // Ensure core panels are visible (older versions used is-hidden)
+    resultsEl.classList.remove("is-hidden");
+    if (notesEl) notesEl.classList.remove("is-hidden");
+    infoPanel.classList.remove("is-hidden");
+
     function collapseInfoButtons() {
-      const infoButtons = scope.querySelectorAll(
-        "#simple-loan-form .info-btn"
-      );
+      const infoButtons = scope.querySelectorAll("#simple-loan-form .info-btn");
       infoButtons.forEach((btn) => btn.setAttribute("aria-expanded", "false"));
     }
 
+    function setDefaultResultsMessage() {
+      resultsEl.innerHTML = `
+        <p class="muted">
+          Enter your values and select <strong>Calculate</strong> to see
+          your estimated payment and total interest.
+        </p>
+      `;
+    }
+
     function resetInfoPanel() {
-      // Default message when no specific field is selected
       infoPanel.innerHTML =
         'Click an <strong>info</strong> icon next to an input to see tips for that field.';
       infoPanel.classList.remove("is-hidden");
       collapseInfoButtons();
+    }
+
+    function showInfoForKey(key, triggerBtn) {
+      const info = fieldInfo[key];
+      if (!info) return;
+
+      infoPanel.innerHTML = `
+        <strong>${info.title}</strong><br />
+        ${info.body}<br /><br />
+        <em>${info.tip}</em>
+      `;
+      infoPanel.classList.remove("is-hidden");
+
+      collapseInfoButtons();
+      if (triggerBtn) triggerBtn.setAttribute("aria-expanded", "true");
+
+      // Smooth scroll to the info panel below results
+      infoPanel.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
     function hideInfoPanel() {
@@ -98,20 +159,7 @@
       collapseInfoButtons();
     }
 
-    function hideResultsAndNotes() {
-      resultsEl.classList.add("is-hidden");
-      if (notesEl) {
-        notesEl.classList.add("is-hidden");
-      }
-    }
-
-    function showResultsAndNotes() {
-      resultsEl.classList.remove("is-hidden");
-      if (notesEl) {
-        notesEl.classList.remove("is-hidden");
-      }
-    }
-
+    // Calculate
     form.addEventListener("submit", function (event) {
       event.preventDefault();
 
@@ -120,36 +168,30 @@
       const years = safeNumber(yearsInput.value, NaN);
 
       if (
-        !isFinite(principal) ||
+        !Number.isFinite(principal) ||
         principal <= 0 ||
-        !isFinite(rate) ||
+        !Number.isFinite(rate) ||
         rate < 0 ||
-        !isFinite(years) ||
+        !Number.isFinite(years) ||
         years <= 0
       ) {
-        // Invalid inputs: show an error, keep results hidden, and hide any info text
         setAriaMessage(
           errorEl,
           "Please enter a positive loan amount, a non-negative interest rate, and a positive number of years.",
           "polite"
         );
-        hideResultsAndNotes();
-        hideInfoPanel();
-        return;
+        return; // Results stay visible; we just show the error
       }
 
-      // Clear any previous error
       setAriaMessage(errorEl, "", "polite");
 
       const monthlyPayment = calculateMonthlyPayment(principal, rate, years);
-      if (!isFinite(monthlyPayment) || monthlyPayment <= 0) {
+      if (!Number.isFinite(monthlyPayment) || monthlyPayment <= 0) {
         setAriaMessage(
           errorEl,
           "The calculation did not produce a valid payment. Please check your inputs.",
           "polite"
         );
-        hideResultsAndNotes();
-        hideInfoPanel();
         return;
       }
 
@@ -167,47 +209,37 @@
         maximumFractionDigits: 2
       });
 
-    resultsEl.innerHTML = `
+      resultsEl.innerHTML = `
         <div class="results-table" role="group" aria-label="Loan results">
-
-            <div class="results-row">
+          <div class="results-row">
             <div class="results-label">Estimated monthly payment</div>
             <div class="results-value results-value-strong">${monthlyDisplay}</div>
-            </div>
+          </div>
 
-            <div class="results-row">
+          <div class="results-row">
             <div class="results-label">Number of payments</div>
             <div class="results-value">${months}</div>
-            </div>
+          </div>
 
-            <div class="results-row">
+          <div class="results-row">
             <div class="results-label">Total amount paid</div>
             <div class="results-value">${totalPaidDisplay}</div>
-            </div>
+          </div>
 
-            <div class="results-row">
+          <div class="results-row">
             <div class="results-label">Total interest paid</div>
             <div class="results-value">${totalInterestDisplay}</div>
-            </div>
-
+          </div>
         </div>
-        `;
-
-
-      // Show results + notes, hide any info text that was open
-      showResultsAndNotes();
-      hideInfoPanel();
+      `;
     });
 
+    // Clear
     resetButton.addEventListener("click", function () {
       form.reset();
       setAriaMessage(errorEl, "", "polite");
-
-      // After Clear: hide results + notes and hide any info text
-      hideResultsAndNotes();
-      hideInfoPanel();
-
-      // Focus back on the first field
+      setDefaultResultsMessage();
+      resetInfoPanel();
       principalInput.focus();
     });
 
@@ -217,33 +249,27 @@
       if (!btn) return;
 
       const key = btn.getAttribute("data-field");
-      const info = fieldInfo[key];
-      if (!info) return;
+      if (!key) return;
 
-      infoPanel.innerHTML = `
-        <strong>${info.title}</strong><br />
-        ${info.body}<br /><br />
-        <em>${info.tip}</em>
-      `;
-      infoPanel.classList.remove("is-hidden");
+      // Toggle behavior: if this one is already expanded and panel visible, collapse it
+      const isExpanded = btn.getAttribute("aria-expanded") === "true";
+      const isHidden = infoPanel.classList.contains("is-hidden");
 
-      const infoButtons = scope.querySelectorAll(
-        "#simple-loan-form .info-btn"
-      );
-      infoButtons.forEach((b) => b.setAttribute("aria-expanded", "false"));
-      btn.setAttribute("aria-expanded", "true");
+      if (isExpanded && !isHidden) {
+        hideInfoPanel();
+        return;
+      }
 
-      // Make sure results stay hidden until a successful calculate
-      // (info text is what we want the user to notice in mobile view).
-      hideResultsAndNotes();
+      showInfoForKey(key, btn);
     });
 
-    // Initial state: no results yet, but show the generic info message
-    hideResultsAndNotes();
+    // Initial state
+    // (Results already have a default message in HTML, but we keep it safe if anything changed.)
+    if (!resultsEl.textContent || resultsEl.textContent.trim().length === 0) {
+      setDefaultResultsMessage();
+    }
     resetInfoPanel();
   }
 
-  global.SimpleLoanCalculator = {
-    init
-  };
+  global.SimpleLoanCalculator = { init };
 })(window);

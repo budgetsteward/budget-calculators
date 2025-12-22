@@ -278,7 +278,14 @@
       const infoButtons = scope.querySelectorAll(".info-btn");
       infoButtons.forEach((b) => b.setAttribute("aria-expanded", "false"));
       btn.setAttribute("aria-expanded", "true");
+
+      // ✅ Smooth scroll to the info panel
+      infoPanel.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     });
+
 
     // Initial info panel state
     resetInfoPanel(scope, infoPanel);
