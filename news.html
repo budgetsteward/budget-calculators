@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Latest newsletter from My Super Calculators."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News – My Super Calculators</title>
+
+    <link rel="stylesheet" href="css/base.css" />
+
+    <style>
+      .news-loader {
+        max-width: 860px;
+        margin: 2.5rem auto;
+        padding: 1.25rem;
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+      }
+      .news-loader h1 {
+        margin: 0 0 0.5rem;
+        font-size: 1.25rem;
+      }
+      .news-loader p {
+        margin: 0.25rem 0 0;
+        color: var(--text-muted);
+        line-height: 1.5;
+      }
+      .news-loader a {
+        color: inherit;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- SAME HEADER AS calculators.html -->
+    <header>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" class="nav-brand">My Super Calculators</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="calculators.html">Calculators</a>
+          <a href="news.html" aria-current="page">News</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <div class="news-loader" role="status" aria-live="polite">
+        <h1>Loading the latest issue…</h1>
+        <p>
+          If nothing happens, you can open the
+          <a href="news-archive.html">newsletter archive</a>.
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        These tools and stories are provided for general information and
+        entertainment purposes only and do not constitute financial, legal, or
+        tax advice. Please consult a qualified professional for advice tailored
+        to your needs.
+      </p>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+
+        var NEWS_JSON_URL = "assets/data/news.json";
+
+        function parseDateSafe(iso) {
+          var d = new Date(iso);
+          return isNaN(d.getTime()) ? null : d;
+        }
+
+        function pickLatestIssue(issues) {
+          if (!Array.isArray(issues) || !issues.length) return null;
+
+          return issues
+            .slice()
+            .sort(function (a, b) {
+              var da = parseDateSafe(a && a.publishedDate) || new Date(0);
+              var db = parseDateSafe(b && b.publishedDate) || new Date(0);
+              return db.getTime() - da.getTime();
+            })[0];
+        }
+
+        function redirect(url) {
+          window.location.replace(url);
+        }
+
+        function checkExists(url) {
+          return fetch(url, { method: "HEAD", cache: "no-cache" })
+            .then(function (r) { return r.ok; })
+            .catch(function () { return false; });
+        }
+
+        fetch(NEWS_JSON_URL, { cache: "no-cache" })
+          .then(function (r) {
+            if (!r.ok) throw new Error("Failed to load news.json");
+            return r.json();
+          })
+          .then(function (data) {
+            var issue = pickLatestIssue(data && data.issues);
+            if (!issue || !issue.id) {
+              throw new Error("No issues found in news.json");
+            }
+
+            var canonical =
+              "news/" + encodeURIComponent(issue.id) + "/index.html";
+
+            var fallback =
+              "templates/news/template.html?issue=" +
+              encodeURIComponent(issue.id);
+
+            checkExists(canonical).then(function (exists) {
+              redirect(exists ? canonical : fallback);
+            });
+          })
+          .catch(function (err) {
+            console.error(err);
+            var box = document.querySelector(".news-loader");
+            if (box) {
+              box.innerHTML =
+                "<h1>Unable to load the latest issue</h1>" +
+                "<p>Please check <code>assets/data/news.json</code> or visit the " +
+                '<a href="news-archive.html">archive</a>.</p>';
+            }
+          });
+      })();
+    </script>
+  </body>
+</html>

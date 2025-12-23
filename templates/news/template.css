@@ -1,0 +1,422 @@
+/* templates/news/template.css
+   Newspaper front-page styling (improved hierarchy + real "paper" feel) */
+
+.news-page {
+  padding: 1.1rem 1rem 2rem;
+}
+
+/* Optional minimalist site bar */
+.site-minibar {
+  position: static; /* was: sticky */
+  z-index: auto;    /* optional */
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+
+.site-minibar-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0.7rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.site-minibar-brand {
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--text-main);
+}
+
+.site-minibar-links {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.site-minibar-links a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.site-minibar-links a:hover {
+  text-decoration: underline;
+}
+
+/* Paper container */
+.news-paper {
+  max-width: 1120px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.09);
+  overflow: hidden;
+}
+
+/* Theme color pulled from the lead image vibe */
+.news-paper {
+  --news-aqua: #c6e3e6;          /* softer, more editorial */
+  --news-aqua-border: rgba(17, 17, 17, 0.28);
+}
+
+.news-paper::before {
+  content: "";
+  display: block;
+  height: 3px;
+  background: #111;
+}
+
+/* ===== Masthead (newspaper-like) ===== */
+.news-masthead {
+  padding: 0.85rem 1.1rem 0.75rem;   /* tighter vertical rhythm */
+  background: var(--news-aqua);
+  border-bottom: 3px solid #111;
+}
+
+.news-masthead {
+  padding: 0.85rem 1.1rem 0.75rem;
+  background: linear-gradient(
+    to bottom,
+    #d9eef0 0%,
+    var(--news-aqua) 100%
+  );
+  border-bottom: 3px solid #111;
+}
+
+/* Top row: name centered on desktop, meta right */
+.news-masthead-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 860px) {
+  .news-masthead-top {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+
+.news-name {
+  margin: 0;
+  color: #111;
+  font-size: 2.15rem;
+  line-height: 1.05;
+  letter-spacing: 0.015em;
+
+  /* Newspaper-ish serif stack */
+  font-family: Georgia, "Times New Roman", Times, serif;
+
+  /* Make it feel like a masthead */
+  text-transform: none;
+}
+
+@media (min-width: 860px) {
+  .news-name {
+    font-size: 2.65rem;
+  }
+}
+
+.news-tagline {
+  margin: 0.25rem 0 0;
+  color: #333;
+  line-height: 1.35;
+  font-size: 0.98rem;
+  max-width: 54rem;
+}
+
+.news-masthead-meta {
+  display: grid;
+  gap: 0.25rem;
+  justify-items: start;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 860px) {
+  .news-masthead-meta {
+    justify-items: end;
+    text-align: right;
+  }
+}
+
+.news-meta-line {
+  margin: 0;
+  color: #111;
+  font-size: 0.86rem;
+}
+
+.news-meta-line strong {
+  font-weight: 700;
+}
+
+/* NEW: archive control in masthead */
+.news-archive-link {
+  margin-top: 0.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.25);
+  color: #111;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.news-archive-link:hover {
+  background: #f7fbfb;
+  border-color: rgba(17, 17, 17, 0.35);
+}
+
+.news-archive-link:focus {
+  outline: 2px solid rgba(17, 17, 17, 0.25);
+  outline-offset: 2px;
+}
+
+/* Rulebar: badges like “Front Page”, “3 sections”, etc. */
+.news-rulebar {
+  margin-top: 0.9rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(17, 17, 17, 0.25);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.85rem;
+  color: #333;
+  font-size: 0.85rem;
+}
+
+.news-kicker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.22rem 0.6rem;
+  border: 1px solid rgba(17, 17, 17, 0.22);
+  border-radius: 999px;
+  background: #ffffff;
+  border-color: rgba(17, 17, 17, 0.25);
+  font-size: 0.8rem;
+}
+
+/* ===== Body / Columns ===== */
+.news-body {
+  padding: 1.2rem 1.25rem 1.25rem;
+}
+
+/* 3 “newspaper” columns with rules between them */
+.news-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+}
+
+@media (min-width: 980px) {
+  .news-columns {
+    grid-template-columns: 1.25fr 1fr 0.9fr;
+    column-gap: 1.35rem;
+  }
+
+  .news-columns > div:nth-child(2),
+  .news-columns > div:nth-child(3) {
+    border-left: 1px solid rgba(17, 17, 17, 0.18);
+    padding-left: 1.15rem;
+  }
+}
+
+/* ===== Story blocks ===== */
+.news-story {
+  padding-top: 0.95rem;
+  border-top: 1px solid rgba(17, 17, 17, 0.16);
+}
+
+.news-story:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+/* Small caps section label line (less bulky) */
+.news-section-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 0.5rem;
+}
+
+.news-section-label h2 {
+  margin: 0;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #111;
+}
+
+.news-section-label p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Headline hierarchy (serif headline feels more “paper”) */
+.news-headline {
+  margin: 0 0 0.35rem;
+  color: #111;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 1.18rem;
+  line-height: 1.14;
+}
+
+.news-subhead {
+  margin: 0 0 0.55rem;
+  color: #4b5563;
+  line-height: 1.35;
+  font-size: 0.92rem;
+}
+
+.news-snippet {
+  margin: 0 0 0.7rem;
+  color: #111;
+  line-height: 1.5;
+  font-size: 0.92rem;
+}
+
+/* Lead story styling */
+.news-story--lead .news-headline {
+  font-size: 1.65rem;
+  line-height: 1.06;
+}
+
+.news-story--lead .news-snippet {
+  font-size: 0.98rem;
+}
+
+/* Image slots */
+.news-photo {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  overflow: hidden;
+  background: #fafafa;
+  margin: 0.65rem 0 0.75rem;
+}
+
+.news-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.news-photo figcaption {
+  padding: 0.45rem 0.6rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+  background: #fff;
+}
+
+/* Actions */
+.news-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.news-actions .btn-primary,
+.news-actions .btn-secondary {
+  font-size: 0.8rem;
+  padding: 0.4rem 0.7rem;
+}
+
+/* If your base.css makes buttons too “app-like”, this helps the “paper” vibe */
+.news-actions .btn-primary {
+  border-radius: 999px;
+}
+
+/* Make Read more feel like part of the paper (less "app button") */
+.news-actions .btn-primary {
+  background: var(--news-aqua);
+  color: #111 !important;
+  border: 1px solid var(--news-aqua-border);
+  box-shadow: none;
+  font-weight: 600;
+}
+
+.news-actions .btn-primary:hover {
+  background: #dfeeee;
+  color: #111;
+}
+
+.news-actions .btn-primary:active {
+  background: #d7e8e8;
+  color: #111;
+}
+
+/* Optional: if your base.css applies a strong focus ring, keep it subtle */
+.news-actions .btn-primary:focus {
+  outline: 2px solid rgba(17, 17, 17, 0.25);
+  outline-offset: 2px;
+}
+
+.news-actions .news-mini-link {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(15, 23, 42, 0.25);
+}
+
+.news-actions .news-mini-link:hover {
+  color: var(--text-main);
+  border-bottom-color: rgba(15, 23, 42, 0.45);
+}
+
+/* Right rail modules */
+.news-rail {
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  border-radius: 14px;
+  padding: 0.9rem;
+  background: #fcfcfd;
+}
+
+.news-rail h3 {
+  margin: 0 0 0.45rem;
+  font-size: 1rem;
+  color: #111;
+}
+
+.news-rail p {
+  margin: 0.35rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.news-divider {
+  margin: 0.85rem 0;
+  border: none;
+  border-top: 1px solid rgba(17, 17, 17, 0.14);
+}
+
+/* Footer note inside the paper */
+.news-paper-note {
+  padding: 0.95rem 1.25rem 1.2rem;
+  border-top: 1px solid rgba(17, 17, 17, 0.14);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+
+.news-footer {
+  max-width: 1120px;
+  margin: 1rem auto 0;
+  padding: 0 1rem 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.45;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Browse prior newsletter issues from My Super Calculators."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News Archive – My Super Calculators</title>
+
+    <link rel="stylesheet" href="css/base.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Same header style/markup as calculators.html -->
+    <header>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" class="nav-brand">My Super Calculators</a>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="calculators.html">Calculators</a>
+          <a href="news.html" aria-current="page">News</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <h1>News Archive</h1>
+
+      <p class="list-page-intro">
+        Browse past newsletter issues. The most recent issue is always available from the News tab.
+      </p>
+
+      <section aria-label="Newsletter archive">
+        <div id="global-status" class="sr-only" aria-live="polite"></div>
+
+        <div id="news-archive-list" class="item-list">
+          <!-- Populated by js/news-archive.js -->
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        These tools and stories are provided for general information and entertainment purposes only
+        and do not constitute financial, legal, or tax advice. Please consult a qualified
+        professional for advice tailored to your needs.
+      </p>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/news-archive.js"></script>
+  </body>
+</html>

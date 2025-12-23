@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Newsletter – newspaper-style front page featuring curated stories."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News – My Super Calculators</title>
+
+    <!-- Global site styles -->
+    <link rel="stylesheet" href="../../css/base.css" />
+    <!-- Newsletter-specific styles -->
+    <link rel="stylesheet" href="template.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <!-- Optional: keep your normal site nav minimal for newsletters -->
+    <header class="site-minibar" aria-label="Site">
+      <div class="site-minibar-inner">
+        <a href="../../index.html" class="site-minibar-brand">My Super Calculators</a>
+        <nav class="site-minibar-links" aria-label="Primary">
+          <a href="../../calculators.html">Calculators</a>
+          <a href="../../news.html">News</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="news-page">
+      <!-- Screen reader status -->
+      <div id="global-status" class="sr-only" aria-live="polite"></div>
+
+      <!-- NEWSPAPER FRAME -->
+      <article id="news-root" class="news-paper" aria-label="Newsletter front page">
+        <!-- Filled by template.js.
+             If JS fails, the publisher can still paste content into the fallback area. -->
+        <noscript>
+          <div class="news-noscript">
+            <h1>News</h1>
+            <p>
+              This newsletter uses JavaScript to load content. Please enable JavaScript
+              or open the Stories page.
+            </p>
+          </div>
+        </noscript>
+      </article>
+    </main>
+
+    <footer class="news-footer">
+      <p>
+        These tools and stories are provided for general information and entertainment
+        purposes only and do not constitute financial, legal, or tax advice. Please
+        consult a qualified professional for advice tailored to your needs.
+      </p>
+    </footer>
+
+    <script src="../../js/utils.js"></script>
+    <script src="template.js"></script>
+    <script>
+      if (window.NewsletterTemplate) {
+        NewsletterTemplate.init(document);
+      }
+    </script>
+  </body>
+</html>
