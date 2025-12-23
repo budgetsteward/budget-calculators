@@ -33,9 +33,20 @@
   }
 
   function parseDateSafe(iso) {
-    var d = new Date(iso);
+    if (!iso) return null;
+
+    // Force local date parsing (YYYY-MM-DD)
+    var parts = iso.split("-");
+    if (parts.length !== 3) return null;
+
+    var year = Number(parts[0]);
+    var month = Number(parts[1]) - 1; // zero-based
+    var day = Number(parts[2]);
+
+    var d = new Date(year, month, day);
     return isNaN(d.getTime()) ? null : d;
   }
+
 
   function formatDisplayDate(iso) {
     var d = parseDateSafe(iso);
@@ -348,7 +359,11 @@
     rail.appendChild(el("h3", null, "Quick Links"));
     var links = el("p", null, "");
     links.innerHTML =
-      '<a href="../../stories.html">Browse all stories</a> · <a href="../../calculators.html">Explore calculators</a>';
+      '<a href="../../calculators.html">Explore calculators</a> · ' +
+      '<a href="https://www.super.com/home/superplus" target="_blank" rel="noopener">Super+ Home</a> · ' +
+      '<a href="https://www.super.com/help" target="_blank" rel="noopener">Help Center</a> · ' +
+      '<a href="https://www.super.com/reviews" target="_blank" rel="noopener">Reviews</a>';
+
     rail.appendChild(links);
 
     if (issue.callout) {

@@ -1,16 +1,16 @@
 {
   "issues": [
     {
-      "id": "2026-01-04",
-      "issueNumber": "2",
+      "id": "2026-01-05",
+      "issueNumber": "1",
       "title": "Budget Daily",
       "subtitle": "A front-page digest of the most useful budgeting reads this week.",
       "tagline": "Curated by the Super.com employees and the people who use it.",
-      "publishedDate": "2026-01-04",
+      "publishedDate": "2026-01-05",
       "edition": "Digital Edition",
-      "website": "budgetcalculators.local",
+      "website": "www.super.com",
       "price": "Free",
-      "sidebarNote": "Layout idea: rotate your lead story weekly. Keep a few supporting stories across the remaining columns to maintain a true ‘front page’ feel.",
+      "sidebarNote": "Happy 2026 and welcome to the inaugural issue of Budget Daily, our new front-page digest of budgeting stories designed to help you start the year with clarity and confidence.",
       "callout": {
         "title": "Try This Next",
         "text": "Choose one action today: cancel one subscription, negotiate one bill, or automate a small weekly transfer to savings."
@@ -29,7 +29,7 @@
               "subhead": "And how to make yours work.",
               "snippet": "A realistic budget isn’t a set-it-and-forget-it document. Learn the common failure points and the mindset shifts that keep your plan working even when life changes.",
               "photo": {
-                "src": "images/home-hero-bg.png",
+                "src": "images/why-most-budgets-fail-headline.png",
                 "alt": "Soft background hero image",
                 "caption": "A simple reset can unlock progress."
               }
@@ -94,100 +94,7 @@
         }
       ],
       "footerNote": "Publisher tip: keep snippets to 2–4 lines. Use 1–2 images per issue to pull attention to the lead story."
-    },
-    {
-      "id": "2025-12-22",
-      "issueNumber": "1",
-      "title": "Budget Calculators Daily",
-      "subtitle": "Tools, tactics, and quick reads for better money decisions",
-      "tagline": "A newspaper-style front page curated from our latest stories.",
-      "publishedDate": "2025-12-22",
-      "edition": "Digital Edition",
-      "website": "budgetcalculators.local",
-      "price": "Free",
-      "sidebarNote": "Editor’s note: This is a sample issue layout. Swap headlines, blurbs, and photos as needed — these links are wired to real story IDs.",
-      "callout": {
-        "title": "Spotlight Calculator Images",
-        "text": "Use your calculator thumbnails as supporting art until you have custom newsletter photos."
-      },
-      "sections": [
-        {
-          "label": "Top Story",
-          "hint": "Featured",
-          "layout": "lead",
-          "items": [
-            {
-              "category": "saving-investing",
-              "storyId": "emergency-fund",
-              "kicker": "Stability",
-              "headline": "Building an Emergency Fund",
-              "subhead": "Start with stability — even if money is tight.",
-              "snippet": "Emergency funds aren’t about perfection—they’re about reducing stress. Start small, automate what you can, and build a buffer that keeps you from going backward.",
-              "photo": {
-                "src": "images/debt-payoff-goal-thumb.png",
-                "alt": "Debt payoff goal thumbnail (supporting image)",
-                "caption": "Pair savings stories with goal imagery for a strong hook."
-              }
-            }
-          ]
-        },
-        {
-          "label": "Debt & Decisions",
-          "hint": "Popular read",
-          "layout": "grid",
-          "items": [
-            {
-              "category": "dealing-with-debt",
-              "storyId": "avalanche-vs-snowball",
-              "kicker": "Payoff strategy",
-              "headline": "Debt Avalanche vs. Debt Snowball",
-              "subhead": "Two powerful strategies to pay off debt efficiently.",
-              "snippet": "Which method works best depends on your motivation and your math. This guide breaks down the tradeoffs so you can pick a strategy you’ll actually stick with.",
-              "photo": {
-                "src": "images/accelerated-debt-payoff-thumb.png",
-                "alt": "Accelerated debt payoff calculator thumbnail",
-                "caption": "Momentum matters — build it on purpose."
-              }
-            }
-          ]
-        },
-        {
-          "label": "Increase Income",
-          "hint": "Quick win",
-          "layout": "grid",
-          "items": [
-            {
-              "category": "earning-money",
-              "storyId": "easy-side-hustles",
-              "kicker": "Boost income",
-              "headline": "Easy Side Hustles You Can Start This Week",
-              "subhead": "Simple ways to increase your income.",
-              "snippet": "If cutting costs has hit a wall, earning more can help. These are low-barrier options you can try quickly—without long setup times.",
-              "photo": {
-                "src": "images/simple-loan-thumb.png",
-                "alt": "Simple loan thumbnail (supporting image)",
-                "caption": "Use any consistent supporting art — swap later."
-              }
-            }
-          ]
-        },
-        {
-          "label": "Start Here",
-          "hint": "Foundations",
-          "layout": "grid",
-          "items": [
-            {
-              "category": "learning-budget",
-              "storyId": "getting-started",
-              "kicker": "Basics",
-              "headline": "Getting Started with Your Budget",
-              "subhead": "A gentle guide to understanding income, expenses, and categories.",
-              "snippet": "If budgeting has felt confusing or frustrating, start here. Build a plan you can follow without tracking every penny."
-            }
-          ]
-        }
-      ],
-      "footerNote": "Publisher tip: don’t overcrowd the page. One lead, 3–5 supporting stories, and one right-rail note is plenty."
     }
+    
   ]
 }
