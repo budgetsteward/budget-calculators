@@ -5,6 +5,13 @@
   padding: 1.1rem 1rem 2rem;
 }
 
+/* Prevent base.css global header { position: sticky } from affecting the newsletter masthead */
+.news-paper .news-masthead {
+  position: static;
+  top: auto;
+  z-index: auto;
+}
+
 /* Optional minimalist site bar */
 .site-minibar {
   position: static; /* was: sticky */

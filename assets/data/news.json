@@ -29,7 +29,7 @@
               "subhead": "And how to make yours work.",
               "snippet": "A realistic budget isn’t a set-it-and-forget-it document. Learn the common failure points and the mindset shifts that keep your plan working even when life changes.",
               "photo": {
-                "src": "images/why-most-budgets-fail-headline.png",
+                "src": "images/why-most-budgets-fail-headline.webp",
                 "alt": "Soft background hero image",
                 "caption": "A simple reset can unlock progress."
               }
@@ -43,7 +43,7 @@
           "items": [
             {
               "category": "learning-budget",
-              "storyId": "getting-started",
+              "storyId": "getting-started-with-your-budget",
               "kicker": "Basics",
               "headline": "Getting Started with Your Budget",
               "subhead": "A gentle guide to understanding income, expenses, and categories.",
@@ -57,8 +57,8 @@
               "subhead": "Give every dollar a job.",
               "snippet": "Zero-based budgeting helps you stay intentional by assigning every dollar a purpose. It can be especially powerful when money feels tight.",
               "photo": {
-                "src": "images/smart-budget-percentages-thumb.png",
-                "alt": "Smart budget percentages thumbnail",
+                "src": "images/zero-based-budgeting-woman-desk.webp",
+                "alt": "Zero Based Budgeting illustration",
                 "caption": "A proven baseline you can customize."
               }
             }
@@ -71,7 +71,7 @@
           "items": [
             {
               "category": "life-events",
-              "storyId": "first-apartment",
+              "storyId": "budgeting-for-your-first-apartment",
               "kicker": "Moving out",
               "headline": "Budgeting for Your First Apartment",
               "subhead": "Avoid common pitfalls when moving out.",
@@ -85,8 +85,8 @@
               "subhead": "Cut recurring expenses without sacrificing quality of life.",
               "snippet": "If your budget feels squeezed, recurring bills are the fastest place to find breathing room. Use a short checklist and do one negotiation at a time.",
               "photo": {
-                "src": "images/home-hero-illustration.png",
-                "alt": "Home hero illustration",
+                "src": "images/reduce-bills.webp",
+                "alt": "Reduce Bills illustration",
                 "caption": "Small changes can add up quickly."
               }
             }

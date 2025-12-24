@@ -3,12 +3,12 @@
     "label": "Learning How to Budget",
     "stories": [
       {
-        "id": "getting-started",
+        "id": "getting-started-with-your-budget",
         "title": "Getting Started with Your Budget",
         "subtitle": "A gentle guide to understanding income, expenses, and categories.",
         "description": "A beginner-friendly walkthrough showing how to take your first steps toward building a working personal budget.",
         "readingTime": "8–10 minutes",
-        "pdf": "learning-budget/getting-started.pdf"
+        "pdf": "learning-budget/getting-started-with-your-budget.pdf"
       },
       {
         "id": "zero-based-budgeting",
@@ -85,7 +85,7 @@
         "title": "Why Most Budgets Fail",
         "subtitle": "And how to make yours work.",
         "description": "Uncover the common reasons budgets fall apart and learn what mindset shifts can keep you on track.",
-        "readingTime": "6–8 minutes",
+        "readingTime": "2–3 minutes",
         "pdf": "money-mindset/why-budgets-fail.pdf"
       }
     ]
@@ -95,12 +95,12 @@
     "label": "Budgeting Through Life Events",
     "stories": [
       {
-        "id": "first-apartment",
+        "id": "budgeting-for-your-first-apartment",
         "title": "Budgeting for Your First Apartment",
         "subtitle": "Avoid common pitfalls when moving out.",
         "description": "A practical guide to budgeting for rent, utilities, deposits, and furnishing your first home.",
-        "readingTime": "7–9 minutes",
-        "pdf": "life-events/first-apartment.pdf"
+        "readingTime": "2–3 minutes",
+        "pdf": "life-events/budgeting-for-your-first-apartment.pdf"
       }
     ]
   }
