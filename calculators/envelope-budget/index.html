@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="Envelope Budget – simple monthly budgeting with targets and transaction-based actuals."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Envelope Budget – My Super Calculators</title>
+
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="./envelope-budget.css" />
+    <link rel="icon" href="../../favicon.ico" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header>
+      <nav class="nav" aria-label="Primary">
+        <a href="../../index.html" class="nav-brand">My Super Calculators</a>
+        <div class="nav-links">
+          <a href="../../index.html">Home</a>
+          <a href="../../calculators.html" aria-current="page">Calculators</a>
+          <a href="../../news.html">News</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <div class="spotlight-label">
+        <span>📬</span>
+        <span>Budgeting Tool • Envelopes</span>
+      </div>
+
+      <section id="calculator-root" class="card">
+        <h1>Envelope Budget</h1>
+        <p class="subtitle">
+          Set targets for each envelope and track actual spending (or income) by adding transactions.
+          Use Prepare Next Month to copy targets forward.
+        </p>
+
+        <section class="eb-shell" aria-label="Envelope budget tool">
+          <!-- Toolbar -->
+          <div class="eb-toolbar" role="region" aria-label="Month and actions">
+            <div class="eb-month">
+              <label class="eb-label" for="eb-monthSelect">Month</label>
+              <select id="eb-monthSelect" class="eb-select" aria-label="Select month"></select>
+            </div>
+
+            <div class="eb-actions">
+              <button id="eb-prepareNextBtn" class="btn-primary" type="button">
+                Prepare Next Month
+              </button>
+              <button id="eb-exportBtn" class="btn-secondary" type="button">
+                Export
+              </button>
+            </div>
+          </div>
+
+          <!-- Envelopes -->
+          <section class="eb-grid" aria-label="Envelopes">
+            <!-- Rendered by JS -->
+          </section>
+
+          <!-- Drawer -->
+          <section id="eb-drawer" class="eb-drawer" aria-label="Envelope entries" hidden>
+            <div class="eb-drawer__head">
+              <div>
+                <h2 id="eb-drawerTitle" class="eb-drawer__title">Envelope</h2>
+                <p id="eb-drawerMeta" class="eb-drawer__meta muted"></p>
+              </div>
+              <button
+                id="eb-drawerClose"
+                class="btn-secondary eb-close"
+                type="button"
+                aria-label="Close entries panel"
+              >
+                Close
+              </button>
+            </div>
+
+            <div class="eb-drawer__body">
+              <!-- Target editor (NEW) -->
+              <div class="eb-targetEditor" role="region" aria-label="Target for this envelope">
+                <div class="eb-targetEditor__row">
+                  <div class="eb-targetEditor__labelWrap">
+                    <label class="eb-label" id="eb-targetLabel" for="eb-target">
+                      Target for this month
+                    </label>
+                    <div class="muted eb-targetEditor__hint">
+                      Update target for this envelope (this month only).
+                    </div>
+                  </div>
+
+                  <input
+                    id="eb-target"
+                    class="eb-input eb-targetEditor__input"
+                    type="text"
+                    inputmode="decimal"
+                    placeholder="0"
+                    aria-describedby="eb-targetLabel"
+                  />
+                </div>
+              </div>
+
+              <div class="eb-divider" aria-hidden="true"></div>
+
+              <!-- Transactions -->
+              <form id="eb-entryForm" class="eb-form" autocomplete="off">
+                <div class="eb-form__row">
+                  <div class="eb-field">
+                    <label class="eb-label" for="eb-desc">Description</label>
+                    <input
+                      id="eb-desc"
+                      class="eb-input"
+                      type="text"
+                      maxlength="80"
+                      placeholder="e.g., Paycheck, Groceries"
+                    />
+                  </div>
+
+                  <div class="eb-field">
+                    <label class="eb-label" for="eb-date">Date</label>
+                    <input id="eb-date" class="eb-input" type="date" required />
+                  </div>
+
+                  <div class="eb-field">
+                    <label class="eb-label" for="eb-amount">Amount</label>
+                    <input
+                      id="eb-amount"
+                      class="eb-input"
+                      type="text"
+                      inputmode="decimal"
+                      placeholder="e.g., 125.50 or -25"
+                      required
+                    />
+                  </div>
+
+                  <div class="eb-field eb-field--button">
+                    <label class="eb-label eb-label--ghost" aria-hidden="true">Add</label>
+                    <button class="btn-primary eb-btn-full" type="submit">Add Entry</button>
+                  </div>
+                </div>
+
+                <p id="eb-formMsg" class="error eb-formMsg" role="status" aria-live="polite"></p>
+              </form>
+
+              <div class="eb-entries">
+                <div class="eb-entries__head">
+                  <h3 class="eb-entries__title">Entries</h3>
+                  <p class="muted eb-entries__hint">Delete only.</p>
+                </div>
+
+                <div id="eb-entriesList" class="eb-entries__list" role="list"></div>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section
+          id="eb-category-info"
+          class="calc-methodology muted"
+          aria-live="polite"
+          hidden
+        >
+          <h2 id="eb-category-heading" class="calc-methodology-heading"></h2>
+          <p id="eb-category-description"></p>
+        </section>
+
+
+        <section class="calc-methodology muted" aria-label="How this calculator works">
+          <h2 class="calc-methodology-heading">How this calculator works</h2>
+          <ul>
+            <li>Each envelope has a Target and Actual total for the selected month.</li>
+            <li>Targets are edited inside the envelope (open an envelope to set its target).</li>
+            <li>Click an envelope to add transactions (description, date, amount).</li>
+            <li>Prepare Next Month copies targets forward (transactions are not copied).</li>
+            <li>IMPORTANT: All data is stored locally in your browser for this device only (localStorage). Other devices you have will not have visibility to this budget. Use Backup option below, and then Import on your other device as needed. </li>
+          </ul>
+        </section>
+
+        <section class="calc-methodology muted eb-dataControls" aria-label="Data controls">
+          <h2 class="calc-methodology-heading">Data controls</h2>
+          <p>
+            This tool stores your budget data locally in your browser (localStorage). Use the options below to transfer to a different device, or to remove it from this device. NOTE: import option will only show on a new budget.
+          </p>
+
+          <div class="eb-dataControls__actions">
+            <button id="eb-backupBtn" class="btn-secondary" type="button">
+              Backup
+            </button>
+
+            <button id="eb-importBtn" class="btn-secondary" type="button" hidden>
+              Import Backup (Replace)
+            </button>
+
+            <input id="eb-importFile" type="file" accept="application/json" hidden />
+
+            <button id="eb-forgetBtn" class="btn-secondary eb-danger" type="button">
+              Delete all Envelope Budget data
+            </button>
+          </div>
+
+<p id="eb-forgetMsg" role="status" aria-live="polite"></p>
+
+
+          <p id="eb-forgetMsg" role="status" aria-live="polite"></p>
+        </section>
+
+      </section>
+
+    </main>
+
+    <footer>
+      <p>
+        These tools are provided for general information and entertainment purposes only and do not constitute
+        financial, legal, or tax advice. We are not a fiduciary and do not make recommendations based on your
+        personal financial situation. Please consult a qualified professional for advice tailored to your needs.
+      </p>
+    </footer>
+
+    <script src="./envelope-budget.js"></script>
+  </body>
+</html>

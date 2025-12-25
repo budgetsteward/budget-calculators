@@ -1,0 +1,374 @@
+/* calculators/envelope-budget/envelope-budget.css
+   Envelope Budget styling aligned to your calculator template look/feel.
+   Uses base.css variables (e.g., --border, --accent, --text-muted).
+*/
+
+.eb-shell { margin-top: 1rem; }
+
+/* ---------- Toolbar ---------- */
+.eb-toolbar {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+@media (min-width: 768px) {
+  .eb-toolbar { grid-template-columns: 1fr auto; align-items: end; }
+}
+
+.eb-month { display: grid; gap: 0.35rem; max-width: 340px; }
+
+.eb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
+@media (min-width: 768px) { .eb-actions { justify-content: flex-end; } }
+
+.eb-label { font-size: 0.9rem; font-weight: 500; }
+.eb-label--ghost { visibility: hidden; }
+
+.eb-select,
+.eb-input {
+  padding: 0.5rem 0.65rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: 0.92rem;
+  font-family: inherit;
+  background: #fff;
+}
+
+.eb-select:focus-visible,
+.eb-input:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ---------- Envelopes grid ---------- */
+.eb-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .eb-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .eb-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* ---------- Envelope cards (buttons) ---------- */
+.eb-envelope {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.9rem 0.9rem 0.8rem;
+  cursor: pointer;
+  overflow: hidden;
+
+  background: linear-gradient(180deg, rgba(0, 180, 170, 0.14), rgba(0, 180, 170, 0.05));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.eb-envelope:hover {
+  border-color: rgba(0, 0, 0, 0.18);
+  background: linear-gradient(180deg, rgba(0, 180, 170, 0.20), rgba(0, 180, 170, 0.08));
+}
+
+.eb-envelope[data-kind="income"] {
+  background: linear-gradient(180deg, rgba(0, 180, 170, 0.22), rgba(0, 180, 170, 0.08));
+}
+
+.eb-envelope[data-kind="income"]:hover {
+  background: linear-gradient(180deg, rgba(0, 180, 170, 0.28), rgba(0, 180, 170, 0.12));
+}
+
+.eb-envelope:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.eb-envelope::before {
+  content: "";
+  position: absolute;
+  top: 0.55rem;
+  left: 0.9rem;
+  right: 0.9rem;
+  height: 34px;
+  background: rgba(0, 180, 170, 0.16);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  pointer-events: none;
+}
+
+.eb-envelope[data-kind="income"]::before { background: rgba(0, 180, 170, 0.24); }
+
+/* Header row */
+.eb-envelope__head {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.eb-envelope__name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+}
+
+.eb-pill {
+  font-size: 0.78rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  background: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+}
+
+.eb-envelope__numbers {
+  position: relative;
+  margin-top: 0.85rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+/* ==========================
+   Over/Under visual cues
+   ========================== */
+
+/* Default (neutral) */
+.eb-envelope[data-status="neutral"] {
+  border-color: var(--border);
+}
+
+/* GOOD: under expense target, or over income target */
+.eb-envelope[data-status="good"] {
+  border-color: rgba(30, 140, 90, 0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* WARN: over expense target, or under income target */
+.eb-envelope[data-status="warn"] {
+  border-color: rgba(200, 70, 70, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Very subtle background tint overlay */
+.eb-envelope[data-status="good"]::after,
+.eb-envelope[data-status="warn"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.eb-envelope[data-status="good"]::after {
+  background: rgba(40, 170, 120, 0.06);
+}
+
+.eb-envelope[data-status="warn"]::after {
+  background: rgba(230, 80, 80, 0.06);
+}
+
+/* Diff line colors */
+.eb-diff--neutral { color: var(--text-muted); }
+.eb-diff--good    { color: rgba(30, 140, 90, 0.95); }
+.eb-diff--warn    { color: rgba(200, 70, 70, 0.95); }
+
+
+.eb-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.eb-row__label { color: var(--text-muted); font-size: 0.92rem; }
+.eb-row__value { font-weight: 750; }
+.eb-diff { color: var(--text-muted); font-size: 0.86rem; }
+
+/* ---------- Drawer ---------- */
+.eb-drawer {
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: #fff;
+}
+
+.eb-drawer__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.eb-drawer__title { margin: 0; font-size: 1.05rem; }
+.eb-drawer__meta { margin: 0.35rem 0 0; }
+.eb-drawer__body { padding: 0.9rem; }
+.eb-close { padding: 0.45rem 0.65rem; border-radius: 10px; }
+
+/* Target editor */
+.eb-targetEditor {
+  padding: 0.25rem 0.1rem;
+}
+
+.eb-targetEditor__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+  align-items: end;
+}
+
+@media (min-width: 900px) {
+  .eb-targetEditor__row {
+    grid-template-columns: 1fr 220px;
+  }
+}
+
+.eb-targetEditor__hint {
+  font-size: 0.85rem;
+  margin-top: 0.2rem;
+}
+
+.eb-targetEditor__input {
+  text-align: right;
+}
+
+.eb-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0.9rem 0;
+}
+
+/* ---------- Entry form (aligned) ---------- */
+.eb-form__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
+  align-items: end;
+}
+
+@media (min-width: 900px) {
+  .eb-form__row {
+    grid-template-columns: 2fr 1.1fr 1fr auto;
+    gap: 0.9rem;
+  }
+}
+
+.eb-field { display: grid; gap: 0.25rem; }
+.eb-field--button { display: grid; align-content: end; }
+.eb-btn-full { width: 100%; white-space: nowrap; }
+.eb-formMsg { margin-top: 0.5rem; }
+
+/* ---------- Entries list ---------- */
+.eb-entries { margin-top: 1rem; }
+
+.eb-entries__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.eb-entries__title { margin: 0; font-size: 0.98rem; }
+
+.eb-entries__list { display: grid; gap: 0.55rem; }
+
+.eb-entry {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.85rem;
+  padding: 0.8rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.eb-entry__main { display: grid; gap: 0.25rem; min-width: 0; }
+
+.eb-entry__line1 {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.eb-entry__desc {
+  font-weight: 750;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.eb-entry__amount { font-weight: 800; white-space: nowrap; }
+
+.eb-entry__date { color: var(--text-muted); font-size: 0.86rem; white-space: nowrap; }
+
+.eb-trash {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 10px;
+  padding: 0.45rem 0.65rem;
+  cursor: pointer;
+  align-self: center;
+}
+
+.eb-trash:hover { border-color: rgba(0, 0, 0, 0.18); }
+
+.eb-trash:focus-visible {
+  border-color: var(--accent);
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.eb-empty {
+  padding: 0.85rem;
+  border: 1px dashed var(--border);
+  border-radius: 12px;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.01);
+}
+
+@media (max-width: 480px) {
+  .eb-targetEditor__input { text-align: left; }
+}
+
+/* ---------- Data controls (inside card/methodology) ---------- */
+.eb-dataControls {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.eb-dataControls__actions {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.eb-danger {
+  border-color: rgba(200, 0, 0, 0.25);
+}
