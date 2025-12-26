@@ -310,19 +310,29 @@
 
   function updateCategoryInfoPanel() {
     if (!categoryInfoSection || !categoryHeadingEl || !categoryDescEl) return;
+
+    // Only show this panel when an envelope (drawer) is open
+    if (drawer.hidden) {
+      categoryInfoSection.hidden = true;
+      return;
+    }
+
     if (!categoryInfoByKey) {
       categoryInfoSection.hidden = true;
       return;
     }
+
     const info = categoryInfoByKey[activeEnvelopeId];
     if (!info) {
       categoryInfoSection.hidden = true;
       return;
     }
-    categoryHeadingEl.textContent = info.heading || "";
-    categoryDescEl.textContent = info.description || "";
-    categoryInfoSection.hidden = false;
-  }
+
+  categoryHeadingEl.textContent = info.heading || "";
+  categoryDescEl.textContent = info.description || "";
+  categoryInfoSection.hidden = false;
+}
+
 
   // ---------- Rendering ----------
   function rebuildMonthSelect() {
@@ -566,6 +576,7 @@
   function closeDrawer() {
     drawer.hidden = true;
     clearFormMsg();
+    if (categoryInfoSection) categoryInfoSection.hidden = true; 
   }
 
   function renderAll() {

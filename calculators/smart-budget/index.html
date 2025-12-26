@@ -149,7 +149,15 @@
         Tip: If your actual spending in a category is higher than the target,
         make small adjustments over 1–3 months rather than trying to fix everything at once.
       </p>
+
+      <!-- Related Stories (inside calculator card) -->
+      <section id="related-stories" class="related-stories" aria-label="Related Stories">
+        <!-- Filled by related-stories.js -->
+      </section>
     </section>
+
+    
+
   </main>
 
   <footer>
@@ -161,6 +169,10 @@
 
   <!-- Scripts -->
   <script src="../../js/utils.js"></script>
+  <script src="../../js/related-stories.js"></script>
+  <script>
+    if (window.RelatedStories) RelatedStories.init(document);
+  </script>
   <script src="smart-budget.js"></script>
   <script src="smart-budget-init.js"></script>
 </body>

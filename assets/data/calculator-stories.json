@@ -1,0 +1,16 @@
+{
+  "ALL STORIES": [
+    { "category": "learning-budget", "storyId": "getting-started" },
+    { "category": "learning-budget", "storyId": "zero-based-budgeting" },
+    { "category": "earning-money", "storyId": "easy-side-hustles" },
+    { "category": "cutting-costs", "storyId": "reduce-bills" },
+    { "category": "dealing-with-debt", "storyId": "avalanche-vs-snowball" },
+    { "category": "saving-investing", "storyId": "emergency-fund" },
+    { "category": "money-mindset", "storyId": "why-budgets-fail" },
+    { "category": "life-events", "storyId": "first-apartment" }
+  ],
+  "smart-budget": [
+    { "category": "learning-budget", "storyId": "zero-based-budgeting" },
+    { "category": "dealing-with-debt", "storyId": "avalanche-vs-snowball" }
+  ]
+}

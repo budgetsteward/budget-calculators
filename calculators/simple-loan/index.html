@@ -209,6 +209,11 @@
             payments minus the original principal.
           </p>
         </section>
+
+        <!-- Related Stories (inside calculator card) -->
+        <section id="related-stories" class="related-stories" aria-label="Related Stories">
+          <!-- Filled by related-stories.js -->
+        </section>
       </section>
     </main>
 
@@ -224,6 +229,10 @@
 
     <!-- Shared helpers + this calculator's logic -->
     <script src="../../js/utils.js"></script>
+    <script src="../../js/related-stories.js"></script>
+    <script>
+      if (window.RelatedStories) RelatedStories.init(document);
+    </script>
     <script src="simple-loan.js"></script>
     <!-- New: externalized init script (no inline JS) -->
     <script src="simple-loan-init.js"></script>

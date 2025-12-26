@@ -323,7 +323,13 @@
                 payments and doesn’t include new borrowing.
               </p>
             </div>
+
+            <!-- Related Stories (inside calculator card) -->
+            <section id="related-stories" class="related-stories" aria-label="Related Stories">
+              <!-- Filled by related-stories.js --> 
+            </section>
           </section>
+
         </div>
       </section>
     </main>
@@ -340,6 +346,10 @@
 
     <!-- Shared helpers -->
     <script src="../../js/utils.js"></script>
+    <script src="../../js/related-stories.js"></script>
+    <script>
+      if (window.RelatedStories) RelatedStories.init(document);
+    </script>
 
     <!-- Core payoff logic -->
     <script src="accelerated-debt-payoff.js"></script>

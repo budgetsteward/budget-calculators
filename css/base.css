@@ -706,3 +706,125 @@ select:focus-visible {
   }
 }
 
+.related-story-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.story-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Simple book icon using CSS */
+.story-icon::before,
+.story-icon::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  width: 7px;
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+}
+
+.story-icon::before {
+  left: 0;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.story-icon::after {
+  right: 0;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.story-text {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Related Stories (calculator cards) */
+.related-stories {
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.related-stories-title {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.related-stories-empty {
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 0.95rem;
+}
+
+.related-stories-ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.related-story-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.story-icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Simple open-book icon */
+.story-icon::before,
+.story-icon::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  width: 7px;
+  height: 14px;
+  border: 1.5px solid currentColor;
+  border-radius: 2px;
+}
+
+.story-icon::before {
+  left: 0;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.story-icon::after {
+  right: 0;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.story-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.related-stories-link {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.related-stories-link:hover {
+  text-decoration: underline;
+}
+
+.related-stories-meta {
+  margin-top: 4px;
+  font-size: 0.92rem;
+  opacity: 0.8;
+}

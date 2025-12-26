@@ -183,6 +183,12 @@
             estimates rather than exact payoff numbers.
           </p>
         </section>
+        
+        <!-- Related Stories (inside calculator card) -->
+        <section id="related-stories" class="related-stories" aria-label="Related Stories">
+          <!-- Filled by related-stories.js -->
+        </section>
+
       </section>
     </main>
 
@@ -198,6 +204,10 @@
     </footer>
 
     <script src="../../js/utils.js"></script>
+    <script src="../../js/related-stories.js"></script>
+    <script>
+      if (window.RelatedStories) RelatedStories.init(document);
+    </script>
     <script src="missing-loan-term.js"></script>
     <!-- New: externalized init script (no inline JS) -->
     <script src="missing-loan-term-init.js"></script>

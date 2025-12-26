@@ -184,7 +184,7 @@
         <section class="calc-methodology muted eb-dataControls" aria-label="Data controls">
           <h2 class="calc-methodology-heading">Data controls</h2>
           <p>
-            This tool stores your budget data locally in your browser (localStorage). Use the options below to transfer to a different device, or to remove it from this device. NOTE: import option will only show on a new budget.
+            This tool stores your budget data locally in your browser (localStorage). Use the options below to transfer to a different device, or to remove it from this device.
           </p>
 
           <div class="eb-dataControls__actions">
@@ -209,6 +209,11 @@
           <p id="eb-forgetMsg" role="status" aria-live="polite"></p>
         </section>
 
+        <!-- Related Stories (inside calculator card) -->
+        <section id="related-stories" class="related-stories" aria-label="Related Stories">
+          <!-- Filled by related-stories.js -->
+        </section>
+
       </section>
 
     </main>
@@ -222,5 +227,10 @@
     </footer>
 
     <script src="./envelope-budget.js"></script>
+    <script src="../../js/utils.js"></script>
+    <script src="../../js/related-stories.js"></script>   
+    <script>
+      if (window.RelatedStories) RelatedStories.init(document);
+    </script>
   </body>
 </html>
