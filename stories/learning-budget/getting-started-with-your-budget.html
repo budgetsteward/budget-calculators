@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <base target="_top">
+
+  <title>Getting Started with Your Budget</title>
+  <meta
+    name="description"
+    content="A beginner-friendly walkthrough showing how to take your first steps toward building a working personal budget."
+  />
+  
+  <link rel="stylesheet" href="../../css/base.css" />
+
+  <style>
+    /* ===== Local story-only layout ===== */
+
+    /* Intro layout: text + image (matches PDF intent) */
+    .story-intro {
+      display: grid;
+      grid-template-columns: 1.25fr 0.95fr;
+      gap: 1.25rem;
+      align-items: start;
+      margin-top: 0;
+    }
+
+    @media (max-width: 760px) {
+      .story-intro {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .story-figure {
+      margin: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(17, 17, 17, 0.16);
+      background: #fff;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.1);
+    }
+
+    .story-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* Category blocks: image at the start of each category */
+    .category-block {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1rem;
+      align-items: start;
+      margin: 0.85rem 0 1.25rem;
+    }
+
+    .category-block h3 {
+      margin-top: 0;
+    }
+
+    @media (max-width: 760px) {
+      .category-block {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Callout block */
+    .callout {
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 0.85rem 0.95rem;
+      margin: 0.9rem 0 1.1rem;
+    }
+
+    .callout strong {
+      display: inline-block;
+      margin-bottom: 0.15rem;
+      color: var(--text-main);
+    }
+
+    .callout p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    /* Action buttons */
+    .story-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.9rem;
+    }
+
+    .story-actions a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <main id="main">
+    <article class="card" aria-label="Story content">
+
+      <p class="item-card-meta">
+        By the Super.com Editorial Board · Originally published: January 5, 2026
+      </p>
+
+      <!-- Intro -->
+      <section class="story-intro" aria-label="Introduction">
+        <div>
+          <p>
+            Budgeting doesn’t have to feel restrictive, overwhelming, or technical.
+            At its core, a budget is simply a plan for your money—one that helps you
+            decide where your income should go before it disappears on you.
+          </p>
+
+          <p>
+            If you’ve ever wondered where your money went, felt unsure about what you
+            can afford, or felt stressed when bills pile up at the same time, you’re
+            not alone. This guide is designed to give you a simple, practical starting
+            point so you can build a budget that actually works in real life.
+          </p>
+        </div>
+
+        <figure class="story-figure">
+          <picture>
+            <source srcset="images/intro-calendar.webp" type="image/webp" />
+            <img
+              src="images/intro-calendar.jpg"
+              alt="A person reflecting with a calendar and shopping bags, representing a fresh start with budgeting."
+              loading="lazy"
+            />
+          </picture>
+        </figure>
+      </section>
+
+      <!-- Big picture -->
+      <section aria-label="Start with the big picture">
+        <h2>Start with the Big Picture</h2>
+
+        <p>
+          Before worrying about spreadsheets or apps, start with one simple idea:
+        </p>
+
+        <div class="callout">
+          <strong>Your money should reflect your priorities.</strong>
+          <p>
+            A good budget doesn’t tell you “no” to everything—it helps you say “yes”
+            to the things that matter most, without guilt or surprises later.
+          </p>
+        </div>
+
+        <p>That starts by understanding three basics:</p>
+        <ol>
+          <li>How much money comes in</li>
+          <li>Where your money goes</li>
+          <li>How to organize those expenses in a way that makes sense</li>
+        </ol>
+
+        <p>That’s where budgeting categories come in.</p>
+      </section>
+
+      <!-- Categories -->
+      <section aria-label="Major budget categories">
+        <h2>The Major Budget Categories (and What They Include)</h2>
+
+        <p>
+          While everyone’s budget is a little different, most successful budgets are
+          built around a few core categories. Think of these as buckets for your money.
+          These are also the same categories found in the
+          <strong>Smart Budget Percentages</strong> calculator.
+        </p>
+
+        <!-- Housing -->
+        <div class="category-block">
+          <div>
+            <h3>1. Housing</h3>
+            <p>This category covers the cost of having a place to live. It often includes:</p>
+            <ul>
+              <li>Rent or mortgage</li>
+              <li>Property taxes and insurance</li>
+              <li>Utilities like electricity, water, and gas</li>
+              <li>Internet and basic home services</li>
+            </ul>
+            <p>
+              Housing is usually the largest expense, so understanding this category
+              first gives you instant clarity.
+            </p>
+          </div>
+
+          <figure class="story-figure">
+            <picture>
+              <source srcset="images/housing-door.webp" type="image/webp" />
+              <img
+                src="images/housing-door.jpg"
+                alt="A person arriving home with keys, representing housing costs."
+                loading="lazy"
+              />
+            </picture>
+          </figure>
+        </div>
+
+        <!-- Transportation -->
+        <div class="category-block">
+          <div>
+            <h3>2. Transportation</h3>
+            <p>Transportation is more than just a car payment. This category often includes:</p>
+            <ul>
+              <li>Car loans or leases</li>
+              <li>Fuel</li>
+              <li>Insurance</li>
+              <li>Maintenance and repairs</li>
+              <li>Registration and tags</li>
+            </ul>
+          </div>
+
+          <figure class="story-figure">
+            <picture>
+              <source srcset="images/transportation-gas.webp" type="image/webp" />
+              <img
+                src="images/transportation-gas.jpg"
+                alt="A person fueling a car, representing transportation costs."
+                loading="lazy"
+              />
+            </picture>
+          </figure>
+        </div>
+
+        <!-- Food -->
+        <div class="category-block">
+          <div>
+            <h3>3. Food</h3>
+            <p>Food expenses are easy to underestimate. This category typically includes:</p>
+            <ul>
+              <li>Groceries</li>
+              <li>Dining out</li>
+              <li>School lunches or work meals</li>
+            </ul>
+            <p>
+              Separating groceries from eating out can be especially helpful—you’ll
+              quickly see where adjustments are possible without sacrificing enjoyment.
+            </p>
+          </div>
+
+          <figure class="story-figure">
+            <picture>
+              <source srcset="images/food-groceries.webp" type="image/webp" />
+              <img
+                src="images/food-groceries.jpg"
+                alt="Groceries on a kitchen counter, representing food spending."
+                loading="lazy"
+              />
+            </picture>
+          </figure>
+        </div>
+
+        <!-- Lifestyle -->
+        <div class="category-block">
+          <div>
+            <h3>4. Personal &amp; Lifestyle</h3>
+            <p>This is where everyday life shows up. Common items include:</p>
+            <ul>
+              <li>Cell phones</li>
+              <li>Streaming services</li>
+              <li>Clothing</li>
+              <li>Personal care</li>
+              <li>Entertainment</li>
+              <li>Hobbies and subscriptions</li>
+            </ul>
+          </div>
+
+          <figure class="story-figure">
+            <picture>
+              <source srcset="images/lifestyle-streaming.webp" type="image/webp" />
+              <img
+                src="images/lifestyle-streaming.jpg"
+                alt="A person relaxing with streaming apps, representing lifestyle spending."
+                loading="lazy"
+              />
+            </picture>
+          </figure>
+        </div>
+
+        <!-- Debt -->
+        <div class="category-block">
+          <div>
+            <h3>5. Debt &amp; Obligations</h3>
+            <p>If you owe money, it belongs in its own category. This often includes:</p>
+            <ul>
+              <li>Credit cards</li>
+              <li>Student loans</li>
+              <li>Personal loans</li>
+              <li>Medical bills</li>
+            </ul>
+            <p>
+              Seeing all debt together helps you make better decisions about progress
+              and priorities.
+            </p>
+          </div>
+
+          <figure class="story-figure">
+            <picture>
+              <source srcset="images/debt-bills.webp" type="image/webp" />
+              <img
+                src="images/debt-bills.jpg"
+                alt="Bills and statements, representing debt and obligations."
+                loading="lazy"
+              />
+            </picture>
+          </figure>
+        </div>
+
+        <!-- Savings -->
+        <div class="category-block">
+          <div>
+            <h3>6. Savings &amp; Goals</h3>
+            <p>
+              Savings isn’t what happens if money is left over—it’s something you plan
+              for. This category may include:
+            </p>
+            <ul>
+              <li>Emergency savings</li>
+              <li>Upcoming irregular expenses</li>
+              <li>Long-term goals</li>
+              <li>Giving or generosity</li>
+            </ul>
+          </div>
+
+          <figure class="story-figure">
+            <picture>
+              <source srcset="images/savings-piggy.webp" type="image/webp" />
+              <img
+                src="images/savings-piggy.jpg"
+                alt="A piggy bank representing savings goals."
+                loading="lazy"
+              />
+            </picture>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Calculator -->
+      <section aria-label="Smart Budget Percentages Calculator">
+        <h2>The Smart Budget Percentages Calculator</h2>
+        <h3>Moving From “Average” to Intentional</h3>
+
+        <p>
+          Once you understand the categories above, the next step is knowing what to
+          aim for. That’s where this calculator becomes especially useful—not as a
+          rulebook, but as a comparison tool.
+        </p>
+
+        <div class="story-actions">
+          <a class="btn-primary" href="../../calculators/smart-budget/">
+            Try Smart Budget Percentages
+          </a>
+        </div>
+      </section>
+
+      <!-- Wrap up -->
+      <section aria-label="Build simple then improve">
+        <h2>Build Simple, Then Improve</h2>
+        <p>
+          Your first budget doesn’t need to be perfect. Start simple. Use broad
+          categories. Focus on the biggest expenses first. The most important step
+          is starting.
+        </p>
+      </section>
+
+      <section aria-label="Practical next step">
+        <h2>A Practical Next Step</h2>
+
+        <p>
+          One simple way to make a budget feel more tangible is envelope-style
+          budgeting. Our Budget Envelope calculator introduces that approach.
+        </p>
+
+        <div class="story-actions">
+          <a class="btn-primary" href="../../calculators/envelope-budget/">
+            Try Budget Envelope
+          </a>
+        </div>
+      </section>
+
+    </article>
+  </main>
+</body>
+</html>

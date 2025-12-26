@@ -8,7 +8,8 @@
         "subtitle": "A gentle guide to understanding income, expenses, and categories.",
         "description": "A beginner-friendly walkthrough showing how to take your first steps toward building a working personal budget.",
         "readingTime": "8–10 minutes",
-        "pdf": "learning-budget/getting-started-with-your-budget.pdf"
+        "pdf": "learning-budget/getting-started-with-your-budget.pdf",
+        "html": "learning-budget/getting-started-with-your-budget.html"
       },
       {
         "id": "zero-based-budgeting",
@@ -16,7 +17,8 @@
         "subtitle": "Give every dollar a job.",
         "description": "Learn how zero-based budgeting helps you stay intentional and avoid overspending by assigning every dollar a purpose.",
         "readingTime": "5–7 minutes",
-        "pdf": "learning-budget/zero-based-budgeting.pdf"
+        "pdf": "learning-budget/zero-based-budgeting.pdf",
+        "html": "learning-budget/zero-based-budgeting.html"
       }
     ]
   },
@@ -44,7 +46,8 @@
         "subtitle": "Cut recurring expenses without sacrificing quality of life.",
         "description": "A collection of proven strategies to negotiate bills, reduce subscriptions, and lower regular expenses.",
         "readingTime": "2–3 minutes",
-        "pdf": "cutting-costs/reduce-bills.pdf"
+        "pdf": "cutting-costs/reduce-bills.pdf",
+        "html": "cutting-costs/reduce-bills.html"
       }
     ]
   },
@@ -86,7 +89,8 @@
         "subtitle": "And how to make yours work.",
         "description": "Uncover the common reasons budgets fall apart and learn what mindset shifts can keep you on track.",
         "readingTime": "2–3 minutes",
-        "pdf": "money-mindset/why-budgets-fail.pdf"
+        "pdf": "money-mindset/why-budgets-fail.pdf",
+        "html": "money-mindset/why-budgets-fail.html"
       }
     ]
   },
@@ -100,7 +104,8 @@
         "subtitle": "Avoid common pitfalls when moving out.",
         "description": "A practical guide to budgeting for rent, utilities, deposits, and furnishing your first home.",
         "readingTime": "2–3 minutes",
-        "pdf": "life-events/budgeting-for-your-first-apartment.pdf"
+        "pdf": "life-events/budgeting-for-your-first-apartment.pdf",
+        "html": "life-events/budgeting-for-your-first-apartment.html"
       }
     ]
   }

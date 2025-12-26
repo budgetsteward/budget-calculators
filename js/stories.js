@@ -33,6 +33,15 @@
     setGlobalStatus(message || "");
   }
 
+  function viewerHref(categoryKey, storyId) {
+    return (
+      "stories/?category=" +
+      encodeURIComponent(categoryKey) +
+      "&story=" +
+      encodeURIComponent(storyId)
+    );
+  }
+
   function renderStories(root, data) {
     if (!root) return;
 
@@ -49,7 +58,11 @@
 
     categoryKeys.forEach(function (categoryKey) {
       var category = data[categoryKey];
-      if (!category || !Array.isArray(category.stories) || category.stories.length === 0) {
+      if (
+        !category ||
+        !Array.isArray(category.stories) ||
+        category.stories.length === 0
+      ) {
         return;
       }
 
@@ -83,24 +96,27 @@
         var titleEl = createEl("h3", "item-card-title");
         var link = document.createElement("a");
 
-        // Desktop / tablet: go to viewer page
-        if (!isSmallScreen) {
-          link.href =
-            "stories/?category=" +
-            encodeURIComponent(categoryKey) +
-            "&story=" +
-            encodeURIComponent(story.id);
-        }
-        // Small screens: open the PDF directly in a new tab
-        else {
-          // story.pdf is relative to /stories/, so prefix that folder
-          link.href = "stories/" + story.pdf;
-          link.target = "_blank";
-          link.rel = "noopener";
+        // NEW RULE:
+        // If an HTML story exists, always use the viewer (better on mobile too).
+        // Otherwise, keep the current behavior:
+        // - Desktop/tablet: viewer
+        // - Small screens: open PDF directly in a new tab
+        if (story.html) {
+          link.href = viewerHref(categoryKey, story.id);
+        } else if (!isSmallScreen) {
+          link.href = viewerHref(categoryKey, story.id);
+        } else {
+          if (story.pdf) {
+            link.href = "stories/" + story.pdf; // story.pdf is relative to /stories/
+            link.target = "_blank";
+            link.rel = "noopener";
+          } else {
+            // No PDF and no HTML: fall back to viewer (will show an error state)
+            link.href = viewerHref(categoryKey, story.id);
+          }
         }
 
         link.textContent = story.title || "Untitled story";
-
         titleEl.appendChild(link);
         article.appendChild(titleEl);
 
@@ -118,12 +134,13 @@
 
         if (story.readingTime) {
           var readingTime = createEl("p", "item-card-meta");
-          readingTime.textContent = "Estimated reading time: " + story.readingTime;
+          readingTime.textContent =
+            "Estimated reading time: " + story.readingTime;
           article.appendChild(readingTime);
         }
 
         var formatLabel = createEl("p", "item-card-meta");
-        formatLabel.textContent = "Format: PDF Story";
+        formatLabel.textContent = story.html ? "Format: Web Story + PDF" : "Format: PDF Story";
         article.appendChild(formatLabel);
 
         list.appendChild(article);
@@ -136,7 +153,6 @@
     if (!root.hasChildNodes()) {
       showStatus(root, "No stories are available yet. Please check back soon.");
     } else {
-      // Clear any loading status for screen readers
       setGlobalStatus("");
     }
   }

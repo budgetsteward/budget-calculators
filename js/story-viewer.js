@@ -100,11 +100,23 @@
           descEl.textContent = story.description || "";
         }
 
-        // Set up iframe and download link
-        if (story.pdf) {
+        // NEW: Prefer HTML story when available; fall back to PDF
+        var hasHtml = !!story.html;
+        var hasPdf = !!story.pdf;
+
+        if (hasHtml || hasPdf) {
           if (frameWrapperEl) frameWrapperEl.style.display = "block";
-          if (frameEl) frameEl.src = story.pdf;
+          if (frameEl) frameEl.src = hasHtml ? story.html : story.pdf;
+          setStatus("");
+        } else {
+          if (frameWrapperEl) frameWrapperEl.style.display = "none";
+          setStatus("This story is missing its content. Please check back later.");
+        }
+
+        // Download link remains PDF only (if available)
+        if (hasPdf) {
           if (downloadLinkEl) {
+            downloadLinkEl.style.display = "inline";
             downloadLinkEl.href = story.pdf;
 
             if (story.title) {
@@ -115,14 +127,8 @@
               downloadLinkEl.setAttribute("download", safeName + ".pdf");
             }
           }
-
-          setStatus("");
         } else {
-          if (frameWrapperEl) frameWrapperEl.style.display = "none";
           if (downloadLinkEl) downloadLinkEl.style.display = "none";
-          setStatus(
-            "This story is missing its PDF file. Please check back later."
-          );
         }
       })
       .catch(function (err) {
