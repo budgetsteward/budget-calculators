@@ -10,7 +10,10 @@
     { "category": "life-events", "storyId": "first-apartment" }
   ],
   "smart-budget": [
-    { "category": "learning-budget", "storyId": "zero-based-budgeting" },
-    { "category": "dealing-with-debt", "storyId": "avalanche-vs-snowball" }
+    { "category": "money-mindset", "storyId": "why-budgets-fail" },
+    { "category": "learning-budget", "storyId": "getting-started" }
+  ],
+  "envelope-budget": [
+    { "category": "learning-budget", "storyId": "getting-started" }
   ]
 }
