@@ -1,112 +1,52 @@
-{
-  "learning-budget": {
-    "label": "Learning How to Budget",
-    "stories": [
-      {
-        "id": "getting-started-with-your-budget",
-        "title": "Getting Started with Your Budget",
-        "subtitle": "A gentle guide to understanding income, expenses, and categories.",
-        "description": "A beginner-friendly walkthrough showing how to take your first steps toward building a working personal budget.",
-        "readingTime": "8–10 minutes",
-        "pdf": "learning-budget/getting-started-with-your-budget.pdf",
-        "html": "learning-budget/getting-started-with-your-budget.html"
-      },
-      {
-        "id": "zero-based-budgeting",
-        "title": "Zero-Based Budgeting",
-        "subtitle": "Give every dollar a job.",
-        "description": "Learn how zero-based budgeting helps you stay intentional and avoid overspending by assigning every dollar a purpose.",
-        "readingTime": "5–7 minutes",
-        "pdf": "learning-budget/zero-based-budgeting.pdf",
-        "html": "learning-budget/zero-based-budgeting.html"
-      }
-    ]
+[
+  {
+    "id": "getting-started-with-your-budget",
+    "title": "Getting Started with Your Budget",
+    "subtitle": "A gentle guide to understanding income, expenses, and categories.",
+    "description": "A beginner-friendly walkthrough showing how to take your first steps toward building a working personal budget.",
+    "issueId": "2026-01-05",
+    "categories": ["learning-budget"],
+    "pdf": "news/2026-01-05/stories/getting-started-with-your-budget.pdf",
+    "html": "news/2026-01-05/stories/getting-started-with-your-budget.html"
   },
-
-  "earning-money": {
-    "label": "Tips for Earning Money",
-    "stories": [
-      {
-        "id": "easy-side-hustles",
-        "title": "Easy Side Hustles You Can Start This Week",
-        "subtitle": "Simple ways to increase your income.",
-        "description": "Explore practical, low-barrier side hustles that can help boost your monthly income right away.",
-        "readingTime": "6–8 minutes",
-        "pdf": "earning-money/easy-side-hustles.pdf"
-      }
-    ]
+  {
+    "id": "zero-based-budgeting",
+    "title": "Zero-Based Budgeting",
+    "subtitle": "Give every dollar a job.",
+    "description": "Learn how zero-based budgeting helps you stay intentional and avoid overspending by assigning every dollar a purpose.",
+    "issueId": "2026-01-05",
+    "categories": ["learning-budget"],
+    "pdf": "news/2026-01-05/stories/zero-based-budgeting.pdf",
+    "html": "news/2026-01-05/stories/zero-based-budgeting.html"
   },
-
-  "cutting-costs": {
-    "label": "Tips for Cutting Costs",
-    "stories": [
-      {
-        "id": "reduce-bills",
-        "title": "How to Reduce Your Monthly Bills",
-        "subtitle": "Cut recurring expenses without sacrificing quality of life.",
-        "description": "A collection of proven strategies to negotiate bills, reduce subscriptions, and lower regular expenses.",
-        "readingTime": "2–3 minutes",
-        "pdf": "cutting-costs/reduce-bills.pdf",
-        "html": "cutting-costs/reduce-bills.html"
-      }
-    ]
+  {
+    "id": "reduce-bills",
+    "title": "How to Reduce Your Monthly Bills",
+    "subtitle": "Cut recurring expenses without sacrificing quality of life.",
+    "description": "A collection of proven strategies to negotiate bills, reduce subscriptions, and lower regular expenses.",
+    "issueId": "2026-01-05",
+    "categories": ["cutting-costs"],
+    "pdf": "news/2026-01-05/stories/reduce-bills.pdf",
+    "html": "news/2026-01-05/stories/reduce-bills.html"
   },
-
-  "dealing-with-debt": {
-    "label": "Dealing With Debt (and Getting Out)",
-    "stories": [
-      {
-        "id": "avalanche-vs-snowball",
-        "title": "Debt Avalanche vs. Debt Snowball",
-        "subtitle": "Two powerful strategies to pay off debt efficiently.",
-        "description": "Understand the difference between two leading debt payoff strategies and decide which one fits your situation best.",
-        "readingTime": "7–9 minutes",
-        "pdf": "dealing-with-debt/avalanche-vs-snowball.pdf"
-      }
-    ]
+  {
+    "id": "why-budgets-fail",
+    "title": "Why Most Budgets Fail",
+    "subtitle": "And how to make yours work.",
+    "description": "Uncover the common reasons budgets fall apart and learn what mindset shifts can keep you on track.",
+    "issueId": "2026-01-05",
+    "categories": ["money-mindset"],
+    "pdf": "news/2026-01-05/stories/why-budgets-fail.pdf",
+    "html": "news/2026-01-05/stories/why-budgets-fail.html"
   },
-
-  "saving-investing": {
-    "label": "Saving and Investing",
-    "stories": [
-      {
-        "id": "emergency-fund",
-        "title": "Building an Emergency Fund",
-        "subtitle": "Start with stability.",
-        "description": "Learn why an emergency fund is essential and how to build one step-by-step, even with a tight budget.",
-        "readingTime": "5–7 minutes",
-        "pdf": "saving-investing/emergency-fund.pdf"
-      }
-    ]
-  },
-
-  "money-mindset": {
-    "label": "Money Mindset & Motivation",
-    "stories": [
-      {
-        "id": "why-budgets-fail",
-        "title": "Why Most Budgets Fail",
-        "subtitle": "And how to make yours work.",
-        "description": "Uncover the common reasons budgets fall apart and learn what mindset shifts can keep you on track.",
-        "readingTime": "2–3 minutes",
-        "pdf": "money-mindset/why-budgets-fail.pdf",
-        "html": "money-mindset/why-budgets-fail.html"
-      }
-    ]
-  },
-
-  "life-events": {
-    "label": "Budgeting Through Life Events",
-    "stories": [
-      {
-        "id": "budgeting-for-your-first-apartment",
-        "title": "Budgeting for Your First Apartment",
-        "subtitle": "Avoid common pitfalls when moving out.",
-        "description": "A practical guide to budgeting for rent, utilities, deposits, and furnishing your first home.",
-        "readingTime": "2–3 minutes",
-        "pdf": "life-events/budgeting-for-your-first-apartment.pdf",
-        "html": "life-events/budgeting-for-your-first-apartment.html"
-      }
-    ]
+  {
+    "id": "budgeting-for-your-first-apartment",
+    "title": "Budgeting for Your First Apartment",
+    "subtitle": "Avoid common pitfalls when moving out.",
+    "description": "A practical guide to budgeting for rent, utilities, deposits, and furnishing your first home.",
+    "issueId": "2026-01-05",
+    "categories": ["life-events"],
+    "pdf": "news/2026-01-05/stories/budgeting-for-your-first-apartment.pdf",
+    "html": "news/2026-01-05/stories/budgeting-for-your-first-apartment.html"
   }
-}
+]

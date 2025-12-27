@@ -22,9 +22,7 @@
           "layout": "lead",
           "items": [
             {
-              "category": "money-mindset",
               "storyId": "why-budgets-fail",
-              "kicker": "Front Page",
               "headline": "Why Most Budgets Fail",
               "subhead": "And how to make yours work.",
               "snippet": "A realistic budget isn’t a set-it-and-forget-it document. Learn the common failure points and the mindset shifts that keep your plan working even when life changes.",
@@ -42,17 +40,13 @@
           "layout": "grid",
           "items": [
             {
-              "category": "learning-budget",
               "storyId": "getting-started-with-your-budget",
-              "kicker": "Basics",
               "headline": "Getting Started with Your Budget",
               "subhead": "A gentle guide to understanding income, expenses, and categories.",
               "snippet": "A quick refresher: set up categories, track the big rocks, and build a plan you can actually follow week to week."
             },
             {
-              "category": "learning-budget",
               "storyId": "zero-based-budgeting",
-              "kicker": "Method",
               "headline": "Zero-Based Budgeting",
               "subhead": "Give every dollar a job.",
               "snippet": "Zero-based budgeting helps you stay intentional by assigning every dollar a purpose. It can be especially powerful when money feels tight.",
@@ -70,17 +64,13 @@
           "layout": "grid",
           "items": [
             {
-              "category": "life-events",
               "storyId": "budgeting-for-your-first-apartment",
-              "kicker": "Moving out",
               "headline": "Budgeting for Your First Apartment",
               "subhead": "Avoid common pitfalls when moving out.",
               "snippet": "Rent is only the start. Plan for utilities, deposits, move-in costs, and furnishing so your first place feels exciting—not financially stressful."
             },
             {
-              "category": "cutting-costs",
               "storyId": "reduce-bills",
-              "kicker": "Lower overhead",
               "headline": "How to Reduce Your Monthly Bills",
               "subhead": "Cut recurring expenses without sacrificing quality of life.",
               "snippet": "If your budget feels squeezed, recurring bills are the fastest place to find breathing room. Use a short checklist and do one negotiation at a time.",
@@ -93,8 +83,7 @@
           ]
         }
       ],
-      "footerNote": "Publisher tip: keep snippets to 2–4 lines. Use 1–2 images per issue to pull attention to the lead story."
+      "footerNote": "Thank you for reading the first issue of Budget Daily! We hope these stories help you build a budget that works for you in 2026 and beyond. Stay tuned for more tips, tools, and insights in our next edition."
     }
-    
   ]
 }

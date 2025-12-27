@@ -3,59 +3,66 @@
 /
 ├── index.html
 ├── calculators.html
-├── stories.html
+├── stories.html             ← displays story categories and links
+├── news.html
+├── news-archive.html
+├── README.md
 │
 ├── calculators/
 │   ├── smart-budget/
 │   │   ├── index.html
 │   │   ├── smart-budget.js
-│   │   ├── smart-budget.css
-│   │   └── assets/ (optional)
+│   │   └── smart-budget.css
+│   │
+│   ├── envelope-budget/
+│   │   ├── index.html
+│   │   ├── envelope-budget.js
+│   │   └── envelope-budget.css
 │   │
 │   ├── missing-loan-term/
 │   │   ├── index.html
 │   │   ├── missing-loan-term.js
-│   │   ├── missing-loan-term.css
-│   │   └── assets/ (optional)
+│   │   └── missing-loan-term.css
 │   │
-│   ├── simple-loan/ *(future)*
+│   ├── simple-loan/
 │   │   ├── index.html
 │   │   ├── simple-loan.js
-│   │   ├── simple-loan.css
-│   │   └── assets/ (optional)
+│   │   └── simple-loan.css
 │   │
-│   └── ...(future calculators)
+│   ├── accelerated-debt-payoff/
+│   │   ├── index.html
+│   │   ├── accelerated-debt-payoff.js
+│   │   ├── accelerated-debt-payoff.css
+│   │   └── accelerated-debt-payoff-init.js
+│   │
+│   └── debt-payoff-goal/
+│       ├── index.html
+│       ├── debt-payoff-goal.js
+│       ├── debt-payoff-goal.css
+│       └── debt-payoff-goal-init.js
 │
-├── stories/
-│   ├── index.html              ← story viewer page (Option B)
+├── news/                        ← newsletter/edition structure
+│   ├── 2025-12-22/
+│   │   └── index.html
 │   │
-│   ├── learning-budget/
-│   │   ├── story1.pdf
-│   │   └── story2.pdf
-│   │
-│   ├── earning-money/
-│   │   ├── story1.pdf
-│   │   └── story2.pdf
-│   │
-│   ├── cutting-costs/
-│   │   ├── story1.pdf
-│   │   └── story2.pdf
-│   │
-│   ├── dealing-with-debt/
-│   │   ├── story1.pdf
-│   │   └── story2.pdf
-│   │
-│   ├── saving-investing/
-│   │   ├── story1.pdf
-│   │   └── story2.pdf
-│   │
-│   ├── money-mindset/
-│   │   ├── story1.pdf
-│   │   └── story2.pdf
-│   │
-│   └── life-events/
-│       ├── story1.pdf
-│       └── story2.pdf
+│   └── 2026-01-05/             ← latest newsletter edition
+│       ├── index.html
+│       ├── template.js         ← newsletter-specific scripts
+│       ├── template.css        ← newsletter-specific styles
+│       ├── images/             ← newsletter images (hero, thumbnails, etc.)
+│       │
+│       └── stories/            ← stories bundled with this newsletter edition
+│           ├── getting-started-with-your-budget.html
+│           ├── getting-started-with-your-budget.pdf
+│           ├── zero-based-budgeting.html
+│           ├── zero-based-budgeting.pdf
+│           ├── reduce-bills.html
+│           ├── reduce-bills.pdf
+│           ├── why-budgets-fail.html
+│           ├── why-budgets-fail.pdf
+│           ├── budgeting-for-your-first-apartment.html
+│           ├── budgeting-for-your-first-apartment.pdf
+│           └── images/         ← all story images (jpg and webp)
 │
 ├── templates/
 │   ├── calculator/
@@ -63,27 +70,61 @@
 │   │   ├── template.js
 │   │   └── template.css
 │   │
-│   └── ...(future template types)
+│   ├── news/
+│   │   ├── template.html
+│   │   ├── template.js
+│   │   ├── template.css
+│   │   └── images/
+│   │
+│   └── story/
+│       └── (story templates)
 │
 ├── css/
 │   ├── base.css          ← global typography, layout, colors, accessibility
-│   ├── layout.css        ← optional additional layout helpers
-│   └── components.css    ← optional shared UI components
+│   ├── layout.css        ← layout helpers
+│   └── components.css    ← shared UI components
 │
 ├── js/
 │   ├── utils.js          ← shared formatting, math helpers, a11y helpers
-│   ├── stories.js        ← builds story cards on stories.html from stories.json
+│   ├── stories.js        ← builds story cards on stories.html from categories.json
+│   ├── story-viewer.js   ← handles story viewer functionality
+│   ├── related-stories.js ← displays related stories on calculator pages
 │   ├── a11y.js           ← reusable accessibility patterns (tooltips, focus mgmt)
-│   └── analytics.js      ← optional future event tracking
+│   ├── analytics.js      ← event tracking
+│   ├── home.js           ← home page functionality
+│   ├── home-alert.js     ← site alert banner
+│   ├── news.js           ← news page functionality
+│   └── news-archive.js   ← news archive functionality
 │
 ├── assets/
 │   ├── icons/
 │   ├── images/
+│   │   └── calculators/  ← calculator thumbnails (webp format)
+│   │
 │   └── data/
-│       └── stories.json  ← story metadata consumed by stories.js and story viewer
+│       ├── categories.json        ← story category definitions
+│       ├── stories.json           ← story metadata and links
+│       ├── calculator-stories.json ← maps calculators to related stories
+│       ├── news.json              ← news/newsletter metadata
+│       └── site-alert.json        ← site-wide alert configuration
+│
+├── legacy/
+│   └── (old calculator HTML files)
 │
 └── docs/
-    ├── site-structure.md ← this document
-    ├── i18n-guidelines.md *(future)*
-    ├── accessibility-standards.md *(future)*
-    └── seo-notes.md *(future)*
+    └── site-structure.md ← this document
+
+## Key Structural Changes
+
+### Stories Architecture
+Stories are now integrated into the newsletter structure:
+- Stories live within newsletter editions at `/news/{edition}/stories/`
+- Each story has both HTML and PDF versions for accessibility
+- Story images are co-located with the stories in `/news/{edition}/stories/images/`
+- The `/stories.html` page displays categories and links to stories
+- Story metadata is managed via `categories.json` and `stories.json`
+
+### Newsletter Structure
+- Each newsletter edition (e.g., `2026-01-05/`) is self-contained
+- Editions include their own stories, images, and edition-specific CSS/JS
+- Newsletter metadata is managed via `news.json`

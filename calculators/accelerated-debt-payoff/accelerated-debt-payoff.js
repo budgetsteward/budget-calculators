@@ -281,8 +281,7 @@
         cost_arr[debtCnt] = accumInt;
 
         if (pmtLeft_cell) pmtLeft_cell.value = count;
-        if (intLeft_cell)
-          intLeft_cell.value = "$" + fn(accumInt, 2, 1);
+        if (intLeft_cell) intLeft_cell.value = "$" + fn(accumInt, 2, 1);
       }
     }
 
@@ -401,8 +400,7 @@
             adp_bal_arr[i] = Number(adp_bal_arr[i]) - Number(adp_pmt_amt);
 
             if (adp_bal_arr[i] > 0) {
-              adp_pmt_arr[i] =
-                Number(adp_pmt_arr[i]) + Number(adp_pmt_amt);
+              adp_pmt_arr[i] = Number(adp_pmt_arr[i]) + Number(adp_pmt_amt);
               adp_pmt_amt = 0;
             } else {
               adp_pmt_arr[i] =
@@ -424,8 +422,7 @@
       while (i < debtCnt) {
         i = Number(i) + 1;
 
-        tot_period_pmts =
-          Number(tot_period_pmts) + Number(adp_pmt_arr[i]);
+        tot_period_pmts = Number(tot_period_pmts) + Number(adp_pmt_arr[i]);
         if (adp_pmt_arr[i] === 0) {
           Vschedule_cols = Vschedule_cols + "<td align='right'> </td>";
         } else {
@@ -512,17 +509,12 @@
     var displayAdpTotalNprs = document.getElementById("display-adp-totalnprs");
     var resultsContainer = document.getElementById("calc-results");
 
-    if (displayTotalPrin)
-      displayTotalPrin.textContent = form.totalprin.value || "";
-    if (displayTotalPmt)
-      displayTotalPmt.textContent = form.totalpmt.value || "";
-    if (displayTotalNprs)
-      displayTotalNprs.textContent = form.totalnprs.value || "";
+    if (displayTotalPrin) displayTotalPrin.textContent = form.totalprin.value || "";
+    if (displayTotalPmt) displayTotalPmt.textContent = form.totalpmt.value || "";
+    if (displayTotalNprs) displayTotalNprs.textContent = form.totalnprs.value || "";
 
-    if (displayAdpTotalPmt)
-      displayAdpTotalPmt.textContent = form.adp_totalpmt.value || "";
-    if (displayAdpTotalNprs)
-      displayAdpTotalNprs.textContent = form.adp_totalnprs.value || "";
+    if (displayAdpTotalPmt) displayAdpTotalPmt.textContent = form.adp_totalpmt.value || "";
+    if (displayAdpTotalNprs) displayAdpTotalNprs.textContent = form.adp_totalnprs.value || "";
 
     if (resultsContainer) {
       resultsContainer.innerHTML =
@@ -534,7 +526,6 @@
     if (resultsSection) {
       resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-
   };
 
   window.clearResults = function (form) {
@@ -574,7 +565,7 @@
       var el = document.getElementById(id);
       if (el) el.textContent = "";
     });
-    
+
     var resultsContainer = document.getElementById("calc-results");
     if (resultsContainer) {
       resultsContainer.innerHTML =
@@ -592,5 +583,144 @@
     }
   };
 
+  // ------------------------------------------------------------
+  // Related Stories (NEW)
+  // ------------------------------------------------------------
+  // IMPORTANT: Update this to match the key used in calculator-stories.json
+  var CALCULATOR_ID = "accelerated-debt-payoff";
 
+  function viewerHref(storyId) {
+    // This script runs under /calculators/accelerated-debt-payoff/
+    // so we must go up to site root first.
+    return "../../stories/?story=" + encodeURIComponent(storyId || "");
+  }
+
+  function fetchJson(url) {
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error("Failed to load " + url);
+      return r.json();
+    });
+  }
+
+  function buildStoriesById(storiesData) {
+    var map = {};
+    if (!Array.isArray(storiesData)) return map;
+    storiesData.forEach(function (s) {
+      if (s && s.id) map[s.id] = s;
+    });
+    return map;
+  }
+
+  function findRelatedStoriesHost() {
+    // Try a few reasonable container options.
+    // Use whichever you already have in the calculator HTML.
+    return (
+      document.getElementById("related-stories") ||
+      document.querySelector("[data-related-stories]") ||
+      document.querySelector(".related-stories")
+    );
+  }
+
+  function renderRelatedStories(relatedRefs, storiesById) {
+    var host = findRelatedStoriesHost();
+    if (!host) return;
+
+    host.innerHTML = "";
+    host.classList.add("related-stories");
+
+    var title = document.createElement("h3");
+    title.className = "related-stories-title";
+    title.textContent = "Related Stories";
+    host.appendChild(title);
+
+    if (!Array.isArray(relatedRefs) || relatedRefs.length === 0) {
+      var empty = document.createElement("p");
+      empty.className = "related-stories-empty";
+      empty.textContent = "No related stories yet.";
+      host.appendChild(empty);
+      return;
+    }
+
+    var ul = document.createElement("ul");
+    ul.className = "related-stories-ul";
+
+    relatedRefs.forEach(function (ref) {
+      var storyId = ref && ref.storyId ? String(ref.storyId) : "";
+      if (!storyId) return;
+
+      var story = storiesById[storyId];
+      if (!story) return;
+
+      var li = document.createElement("li");
+
+      var item = document.createElement("div");
+      item.className = "related-story-item";
+
+      var icon = document.createElement("span");
+      icon.className = "story-icon";
+      icon.setAttribute("aria-hidden", "true");
+
+      var textWrap = document.createElement("div");
+      textWrap.className = "story-text";
+
+      var a = document.createElement("a");
+      a.className = "related-stories-link";
+      a.href = viewerHref(storyId);
+      a.textContent = story.title || storyId;
+
+      textWrap.appendChild(a);
+
+      if (story.subtitle) {
+        var meta = document.createElement("div");
+        meta.className = "related-stories-meta";
+        meta.textContent = story.subtitle;
+        textWrap.appendChild(meta);
+      }
+
+      item.appendChild(icon);
+      item.appendChild(textWrap);
+
+      li.appendChild(item);
+      ul.appendChild(li);
+    });
+
+    if (!ul.hasChildNodes()) {
+      var empty2 = document.createElement("p");
+      empty2.className = "related-stories-empty";
+      empty2.textContent = "No related stories yet.";
+      host.appendChild(empty2);
+      return;
+    }
+
+    host.appendChild(ul);
+  }
+
+  function initRelatedStories() {
+    // Calculator page is /calculators/accelerated-debt-payoff/
+    // Data is at /assets/data/...
+    var calcStoriesUrl = "../../assets/data/calculator-stories.json";
+    var storiesUrl = "../../assets/data/stories.json";
+
+    Promise.all([fetchJson(calcStoriesUrl), fetchJson(storiesUrl)])
+      .then(function (res) {
+        var calcStories = res[0] || {};
+        var storiesData = res[1] || [];
+
+        var relatedRefs = calcStories[CALCULATOR_ID] || [];
+        var storiesById = buildStoriesById(storiesData);
+
+        renderRelatedStories(relatedRefs, storiesById);
+      })
+      .catch(function (e) {
+        // Fail silently; calculator should still function.
+        console.warn("Related stories failed to load:", e);
+      });
+  }
+
+  // Non-blocking init
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initRelatedStories);
+  } else {
+    initRelatedStories();
+  }
 })();

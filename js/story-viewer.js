@@ -1,14 +1,18 @@
 // js/story-viewer.js
-// Loads story metadata from stories.json and renders:
+// Loads story metadata from stories.json (flat array) and renders:
 // - HTML stories inline (no iframe) to avoid iOS double-scroll
 // - PDF stories in an iframe as fallback
+//
+// Supports both URL shapes:
+//   New:    /stories/?story=<id>
+//   Legacy: /stories/?category=<categoryId>&story=<id>
 
 (function () {
   "use strict";
 
   const searchParams = new URLSearchParams(window.location.search);
-  const categoryParam = searchParams.get("category");
-  const storyParam = searchParams.get("story");
+  const categoryParam = searchParams.get("category"); // legacy
+  const storyParam = searchParams.get("story");       // required
 
   const titleEl = document.getElementById("story-title");
   const subtitleEl = document.getElementById("story-subtitle");
@@ -25,6 +29,9 @@
 
   const statusEl = document.getElementById("story-status");
   const globalStatusEl = document.getElementById("global-status");
+
+  const STORIES_URL = "../assets/data/stories.json";
+  const CATEGORIES_URL = "../assets/data/categories.json";
 
   function setStatus(message) {
     const msg = message || "";
@@ -55,6 +62,21 @@
       u.startsWith("/") ||
       u.startsWith("#")
     );
+  }
+
+  function normalizePath(p) {
+    // Normalize stored metadata path (commonly like "news/2026-01-04/stories/x.html")
+    // Return without leading slash.
+    if (!p || typeof p !== "string") return "";
+    return p.charAt(0) === "/" ? p.slice(1) : p;
+  }
+
+  function viewerToSitePath(p) {
+    // story metadata paths are site-root relative. Viewer is /stories/.
+    // Convert "news/..." => "../news/..."
+    const np = normalizePath(p);
+    if (!np) return "";
+    return isAbsoluteUrl(np) ? np : "../" + np;
   }
 
   function resolveRelative(u, baseDir) {
@@ -109,12 +131,18 @@
     storyContentEl.style.display = "block";
     storyContentEl.innerHTML = "";
 
-    // baseDir is folder containing story.html (relative to /stories/)
-    const baseDir = story.html.split("/").slice(0, -1).join("/") + "/";
-
     setStatus("Loading story…");
 
-    return fetch(story.html)
+    const htmlUrl = viewerToSitePath(story.html);
+
+    // baseDir = folder containing story.html as seen from viewer page
+    // Example story.html: "news/2026-01-04/stories/x.html"
+    // => viewer fetch URL "../news/2026-01-04/stories/x.html"
+    // => baseDir "../news/2026-01-04/stories/"
+    const normalizedHtml = normalizePath(story.html);
+    const baseDir = "../" + normalizedHtml.split("/").slice(0, -1).join("/") + "/";
+
+    return fetch(htmlUrl)
       .then(function (r) {
         if (!r.ok) throw new Error("Failed to load story HTML");
         return r.text();
@@ -160,16 +188,18 @@
         const wrapper = document.createElement("div");
         wrapper.className = "story-injected-wrap";
 
-        // If we grabbed an article.card, unwrap it so we don't get a "card inside card"
-        // but still keep the inner content styled
-        if (clone.tagName && clone.tagName.toLowerCase() === "article" && clone.classList.contains("card")) {
+        // If we grabbed an article.card, unwrap it so we don't get "card inside card"
+        if (
+          clone.tagName &&
+          clone.tagName.toLowerCase() === "article" &&
+          clone.classList.contains("card")
+        ) {
           while (clone.firstChild) wrapper.appendChild(clone.firstChild);
         } else {
           wrapper.appendChild(clone);
         }
 
         storyContentEl.appendChild(wrapper);
-
         setStatus("");
       });
   }
@@ -177,12 +207,51 @@
   function showPdfStory(story) {
     if (storyContentEl) storyContentEl.style.display = "none";
     if (frameWrapperEl) frameWrapperEl.style.display = "block";
-    if (frameEl) frameEl.src = story.pdf;
+
+    const pdfUrl = viewerToSitePath(story.pdf);
+    if (frameEl) frameEl.src = pdfUrl;
+
     setStatus("");
   }
 
+  function slugifyForDownload(name) {
+    return (name || "story")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "");
+  }
+
+  function fetchJson(url) {
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error("Failed to load " + url);
+      return r.json();
+    });
+  }
+
+  function categoryLabelFromStory(story, categories) {
+    // If legacy categoryParam exists and matches, show that.
+    // Otherwise show first category from story.categories.
+    // If multiple categories, show the first (simple + clean for now).
+    if (!categoryEl) return;
+
+    const map = {};
+    (Array.isArray(categories) ? categories : []).forEach(function (c) {
+      if (c && c.id) map[c.id] = c.label || c.id;
+    });
+
+    let chosen = "";
+    if (categoryParam && map[categoryParam]) {
+      chosen = map[categoryParam];
+    } else if (Array.isArray(story.categories) && story.categories.length > 0) {
+      const first = story.categories[0];
+      chosen = map[first] || first;
+    }
+
+    categoryEl.textContent = chosen ? "Category: " + chosen : "";
+  }
+
   function init() {
-    if (!categoryParam || !storyParam) {
+    if (!storyParam) {
       showError(
         "We couldn't find the requested story. Please return to the stories list and try again."
       );
@@ -191,22 +260,21 @@
 
     setStatus("Loading story…");
 
-    fetch("../assets/data/stories.json")
-      .then(function (response) {
-        if (!response.ok) throw new Error("Failed to load stories metadata.");
-        return response.json();
-      })
-      .then(function (data) {
-        const category = data[categoryParam];
+    Promise.all([fetchJson(STORIES_URL), fetchJson(CATEGORIES_URL)])
+      .then(function (results) {
+        const storiesData = results[0];
+        const categoriesData = results[1];
 
-        if (!category || !Array.isArray(category.stories)) {
+        // stories.json is now expected to be a flat array.
+        // If someone accidentally still has the old shape, fail gracefully.
+        if (!Array.isArray(storiesData)) {
           showError(
-            "This story category could not be found. Please return to the stories list."
+            "Stories metadata is in an unexpected format. Please check your stories.json structure."
           );
           return;
         }
 
-        const story = category.stories.find(function (s) {
+        const story = storiesData.find(function (s) {
           return s && s.id === storyParam;
         });
 
@@ -219,40 +287,32 @@
 
         // Populate viewer hero
         document.title = (story.title || "Story") + " – My Super Calculators";
-        if (categoryEl) {
-          categoryEl.textContent = category.label
-            ? "Category: " + category.label
-            : "";
-        }
         if (titleEl) titleEl.textContent = story.title || "Untitled story";
         if (subtitleEl) subtitleEl.textContent = story.subtitle || "";
         if (descEl) descEl.textContent = story.description || "";
 
-        // Download link: PDF only
+        categoryLabelFromStory(story, categoriesData);
+
+        // Download link (if PDF exists)
         const hasPdf = !!story.pdf;
         if (downloadWrapEl) downloadWrapEl.style.display = hasPdf ? "block" : "none";
         if (hasPdf && downloadLinkEl) {
-          downloadLinkEl.href = story.pdf;
-
-          if (story.title) {
-            const safeName = story.title
-              .toLowerCase()
-              .replace(/[^a-z0-9]+/g, "-")
-              .replace(/^-+|-+$/g, "");
-            downloadLinkEl.setAttribute("download", safeName + ".pdf");
-          }
+          downloadLinkEl.href = viewerToSitePath(story.pdf);
+          downloadLinkEl.setAttribute("download", slugifyForDownload(story.title) + ".pdf");
         }
 
         // Render story content
         if (story.html) {
           return injectHtmlStory(story).catch(function (err) {
             console.error(err);
+
             // Fallback to PDF if HTML fails
             if (story.pdf) {
               setStatus("Loaded PDF version (web story unavailable).");
               showPdfStory(story);
               return;
             }
+
             showError("There was a problem loading this story. Please try again later.");
           });
         }

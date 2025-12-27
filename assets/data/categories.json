@@ -1,0 +1,9 @@
+[
+  { "id": "learning-budget", "label": "Learning How to Budget" },
+  { "id": "earning-money", "label": "Tips for Earning Money" },
+  { "id": "cutting-costs", "label": "Tips for Cutting Costs" },
+  { "id": "dealing-with-debt", "label": "Dealing With Debt (and Getting Out)" },
+  { "id": "saving-investing", "label": "Saving and Investing" },
+  { "id": "money-mindset", "label": "Money Mindset & Motivation" },
+  { "id": "life-events", "label": "Budgeting Through Life Events" }
+]

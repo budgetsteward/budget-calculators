@@ -3,13 +3,18 @@
   "use strict";
 
   const Utils = global.BudgetUtils || {};
-  const formatCurrency = Utils.formatCurrency || ((n) => `$${Number(n || 0).toFixed(0)}`);
+  const formatCurrency =
+    Utils.formatCurrency || ((n) => `$${Number(n || 0).toFixed(0)}`);
   const safeNumber =
     Utils.safeNumber ||
     ((v, d = 0) => {
       const n = Number(v);
       return Number.isFinite(n) ? n : d;
     });
+
+  // -------------------------------
+  // Smart Budget calculator logic
+  // -------------------------------
 
   // Category definitions (display + info panel content)
   // Keys MUST match budget-profiles.json categories keys
@@ -38,13 +43,14 @@
       description:
         "Car payments, gas, insurance, rideshares, public transit, parking, maintenance, and tolls.",
       tip: "Tip: A realistic transportation budget includes maintenance and insurance—not just gas or your car payment.",
-      superTip: "Use SuperTravel and SuperShop to find savings that reduce transportation and travel costs over time."
+      superTip:
+        "Use SuperTravel and SuperShop to find savings that reduce transportation and travel costs over time."
     },
     {
       key: "healthcare",
       name: "Healthcare",
       description:
-        "Insurance premiums, co-pays, deductibles, prescriptions, dental care, vision care, and mental health expenses.",
+        "Insurance premiums, co-pays, deductibles, prescriptions, dental care, vision care, mental health expenses.",
       tip: "Tip: Preventive care and in-network providers can significantly reduce medical surprises later.",
       superTip:
         "Cutting costs in other budget categories using Super+ rewards frees up more room for health needs when they arise."
@@ -55,7 +61,8 @@
       description:
         "Streaming services, hobbies, vacations, events, dining upgrades, shopping, and personal treats.",
       tip: "Tip: Give yourself a guilt-free fun-money amount each month—once it’s gone, wait until next month before spending more.",
-      superTip: "Super+ helps you unlock more value from the trips, entertainment, and experiences you already plan to enjoy."
+      superTip:
+        "Super+ helps you unlock more value from the trips, entertainment, and experiences you already plan to enjoy."
     },
     {
       key: "savingsDebt",
@@ -63,7 +70,8 @@
       description:
         "Emergency fund savings, retirement contributions from take-home pay, extra debt payments, and long-term goals.",
       tip: "Tip: Automate transfers or debt payments the day after payday so you never miss your saving goals.",
-      superTip: "Use cashback earned with Super+ to accelerate debt payoff or grow your long-term savings faster."
+      superTip:
+        "Use cashback earned with Super+ to accelerate debt payoff or grow your long-term savings faster."
     }
   ];
 
@@ -74,8 +82,22 @@
         id: "typical",
         label: "Typical household",
         description: "A general baseline for many U.S. households.",
-        avgPct: { housing: 38, food: 13, transportation: 17, healthcare: 8, lifestyle: 14, savingsDebt: 10 },
-        targetPct: { housing: 30, food: 11, transportation: 14, healthcare: 7, lifestyle: 13, savingsDebt: 25 }
+        avgPct: {
+          housing: 38,
+          food: 13,
+          transportation: 17,
+          healthcare: 8,
+          lifestyle: 14,
+          savingsDebt: 10
+        },
+        targetPct: {
+          housing: 30,
+          food: 11,
+          transportation: 14,
+          healthcare: 7,
+          lifestyle: 13,
+          savingsDebt: 25
+        }
       }
     ]
   };
@@ -176,57 +198,52 @@
       };
     }
 
-    // Must cover all keys (keeps UX consistent)
     for (const k of knownKeys) {
       if (!byKey[k]) return null;
     }
 
-    // NEW: income (optional but recommended)
-    const income = json?.income && typeof json.income === "object"
-    ? {
-        heading: String(json.income.heading || "").trim(),
-        description: String(json.income.description || "").trim(),
-        tip: {
-          text: String(json.income.tip?.text || "").trim(),
-          moreUrl: String(json.income.tip?.moreUrl || "").trim()
-        },
-        superTip: {
-          heading: String(json.income.superTip?.heading || "Super+ Tip").trim() || "Super+ Tip",
-          text: String(json.income.superTip?.text || "").trim(),
-          moreUrl: String(json.income.superTip?.moreUrl || "").trim()
-        }
-      }
-    : null;
+    const income =
+      json?.income && typeof json.income === "object"
+        ? {
+            heading: String(json.income.heading || "").trim(),
+            description: String(json.income.description || "").trim(),
+            tip: {
+              text: String(json.income.tip?.text || "").trim(),
+              moreUrl: String(json.income.tip?.moreUrl || "").trim()
+            },
+            superTip: {
+              heading: String(json.income.superTip?.heading || "Super+ Tip").trim() || "Super+ Tip",
+              text: String(json.income.superTip?.text || "").trim(),
+              moreUrl: String(json.income.superTip?.moreUrl || "").trim()
+            }
+          }
+        : null;
 
-    // NEW: profile (optional)
-    const profile = json?.profile && typeof json.profile === "object"
-    ? {
-        heading: String(json.profile.heading || "").trim(),
-        description: String(json.profile.description || "").trim(),
-        tip: {
-          text: String(json.profile.tip?.text || "").trim(),
-          moreUrl: String(json.profile.tip?.moreUrl || "").trim()
-        },
-        superTip: {
-          heading: String(json.profile.superTip?.heading || "Super+ Tip").trim() || "Super+ Tip",
-          text: String(json.profile.superTip?.text || "").trim(),
-          moreUrl: String(json.profile.superTip?.moreUrl || "").trim()
-        }
-      }
-    : null;
-
+    const profile =
+      json?.profile && typeof json.profile === "object"
+        ? {
+            heading: String(json.profile.heading || "").trim(),
+            description: String(json.profile.description || "").trim(),
+            tip: {
+              text: String(json.profile.tip?.text || "").trim(),
+              moreUrl: String(json.profile.tip?.moreUrl || "").trim()
+            },
+            superTip: {
+              heading: String(json.profile.superTip?.heading || "Super+ Tip").trim() || "Super+ Tip",
+              text: String(json.profile.superTip?.text || "").trim(),
+              moreUrl: String(json.profile.superTip?.moreUrl || "").trim()
+            }
+          }
+        : null;
 
     return { byKey, income, profile };
-
   }
 
-  // FIX: renderDetails must receive scope (root) since it's outside init()
   function renderDetails(categoryDetailsEl, content, scopeEl, expandedButton) {
     if (!categoryDetailsEl) return;
 
-    categoryDetailsEl.innerHTML = ""; // clear
+    categoryDetailsEl.innerHTML = "";
 
-    // Collapse all info buttons (categories + income)
     const allInfoBtns = scopeEl.querySelectorAll(".info-btn");
     allInfoBtns.forEach((b) => b.setAttribute("aria-expanded", "false"));
     if (expandedButton) expandedButton.setAttribute("aria-expanded", "true");
@@ -240,7 +257,6 @@
     desc.textContent = content.description || "";
     categoryDetailsEl.appendChild(desc);
 
-    // Tip
     categoryDetailsEl.appendChild(document.createElement("br"));
     categoryDetailsEl.appendChild(document.createElement("br"));
 
@@ -267,7 +283,6 @@
       categoryDetailsEl.appendChild(a);
     }
 
-    // Super tip
     categoryDetailsEl.appendChild(document.createElement("br"));
     categoryDetailsEl.appendChild(document.createElement("br"));
 
@@ -307,12 +322,10 @@
     let help = scope.querySelector("#profile-help");
     let status = scope.querySelector("#profile-status");
 
-    // If markup exists already, keep it as-is (no tooltip enhancement).
     if (select && label) {
       return { select, statusEl: status, helpEl: help };
     }
 
-    // Otherwise inject it (home embed or older markup)
     const toggleRow = scope.querySelector(".mode-toggle-row");
     const table = scope.querySelector("#budget-table");
     const insertBefore = toggleRow || (table ? table.parentElement : null);
@@ -354,6 +367,152 @@
     return { select, statusEl: status, helpEl: help };
   }
 
+  // -------------------------------
+  // Related stories (NEW)
+  // -------------------------------
+
+  const CALCULATOR_ID = "smart-budget";
+
+  function viewerHref(storyId) {
+    return "../../stories/?story=" + encodeURIComponent(storyId || "");
+  }
+
+
+  function normalizePath(p) {
+    if (!p || typeof p !== "string") return "";
+    return p.charAt(0) === "/" ? p.slice(1) : p;
+  }
+
+  function urlFromHere(rel) {
+    return new URL(rel, global.location.href).href;
+  }
+
+  async function loadJson(url) {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Failed to load " + url);
+    return await res.json();
+  }
+
+  function buildStoriesById(storiesData) {
+    const map = {};
+    if (!Array.isArray(storiesData)) return map;
+    storiesData.forEach((s) => {
+      if (s && s.id) map[s.id] = s;
+    });
+    return map;
+  }
+
+  function findRelatedStoriesHost(scope) {
+    // Try a few reasonable container options; if none exist, do nothing.
+    return (
+      scope.querySelector("#related-stories") ||
+      scope.querySelector("[data-related-stories]") ||
+      scope.querySelector(".related-stories")
+    );
+  }
+
+  function renderRelatedStories(scope, relatedRefs, storiesById) {
+    const host = findRelatedStoriesHost(scope);
+    if (!host) return;
+
+    host.innerHTML = "";
+    host.classList.add("related-stories");
+
+    const title = document.createElement("h3");
+    title.className = "related-stories-title";
+    title.textContent = "Related Stories";
+    host.appendChild(title);
+
+    if (!Array.isArray(relatedRefs) || relatedRefs.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "related-stories-empty";
+      empty.textContent = "No related stories yet.";
+      host.appendChild(empty);
+      return;
+    }
+
+    const ul = document.createElement("ul");
+    ul.className = "related-stories-ul";
+
+    relatedRefs.forEach((ref) => {
+      const storyId = ref && ref.storyId ? String(ref.storyId) : "";
+      if (!storyId) return;
+
+      const story = storiesById[storyId];
+      if (!story) return;
+
+      const li = document.createElement("li");
+
+      const item = document.createElement("div");
+      item.className = "related-story-item";
+
+      const icon = document.createElement("span");
+      icon.className = "story-icon";
+      icon.setAttribute("aria-hidden", "true");
+
+      const textWrap = document.createElement("div");
+      textWrap.className = "story-text";
+
+      const a = document.createElement("a");
+      a.className = "related-stories-link";
+      a.href = viewerHref(storyId);
+      a.textContent = story.title || storyId;
+
+      const meta = document.createElement("div");
+      meta.className = "related-stories-meta";
+      meta.textContent = story.subtitle || "";
+
+      textWrap.appendChild(a);
+      if (meta.textContent) textWrap.appendChild(meta);
+
+      item.appendChild(icon);
+      item.appendChild(textWrap);
+
+      li.appendChild(item);
+      ul.appendChild(li);
+    });
+
+    if (!ul.hasChildNodes()) {
+      const empty = document.createElement("p");
+      empty.className = "related-stories-empty";
+      empty.textContent = "No related stories yet.";
+      host.appendChild(empty);
+      return;
+    }
+
+    host.appendChild(ul);
+  }
+
+  async function initRelatedStories(scope) {
+    // Data lives at site root: /assets/data/...
+    // smart-budget.js is served from /calculators/smart-budget/..., so "../../" gets to root.
+    const calcStoriesUrl = urlFromHere("../../assets/data/calculator-stories.json");
+    const storiesUrl = urlFromHere("../../assets/data/stories.json");
+
+    let calcStories;
+    let storiesData;
+
+    try {
+      [calcStories, storiesData] = await Promise.all([
+        loadJson(calcStoriesUrl),
+        loadJson(storiesUrl)
+      ]);
+    } catch (e) {
+      // Fail silently; calculator should still function.
+      console.warn("Related stories failed to load:", e);
+      return;
+    }
+
+    const relatedRefs = calcStories && calcStories[CALCULATOR_ID] ? calcStories[CALCULATOR_ID] : [];
+    const storiesById = buildStoriesById(storiesData);
+
+    renderRelatedStories(scope, relatedRefs, storiesById);
+  }
+
+  // -------------------------------
+  // init()
+  // -------------------------------
+
   function init(root, options = {}) {
     const scope = root || document;
 
@@ -367,31 +526,18 @@
     const errorMessage = scope.querySelector("#error-message");
 
     const knownKeys = new Set(CATEGORY_DEFS.map((c) => c.key));
-    const categoryInfoSource = options.categoryInfoJson || global.__SmartBudgetCategoryInfoJson || null;
-    const categoryInfo = validateCategoryInfoJson(categoryInfoSource, knownKeys) || null;
+    const categoryInfoSource =
+      options.categoryInfoJson || global.__SmartBudgetCategoryInfoJson || null;
+    const categoryInfo =
+      validateCategoryInfoJson(categoryInfoSource, knownKeys) || null;
     const categoryInfoByKey = categoryInfo?.byKey || null;
     const incomeInfo = categoryInfo?.income || null;
     const profileInfo = categoryInfo?.profile || null;
 
-
-    function setDetailsHtml(html, expandedButton) {
-      if (!categoryDetails) return;
-
-      categoryDetails.innerHTML = html;
-
-      // Collapse all info buttons (categories + income)
-      const allInfoBtns = scope.querySelectorAll(".info-btn");
-      allInfoBtns.forEach((b) => b.setAttribute("aria-expanded", "false"));
-
-      if (expandedButton) expandedButton.setAttribute("aria-expanded", "true");
-
-      categoryDetails.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-
     const incomeInfoBtn = scope.querySelector("#income-info-btn");
     if (incomeInfoBtn && categoryDetails) {
       incomeInfoBtn.addEventListener("click", () => {
-        const info = incomeInfo; // may be null if not provided
+        const info = incomeInfo;
 
         if (info) {
           renderDetails(
@@ -411,12 +557,12 @@
           return;
         }
 
-        // If you want: keep a tiny fallback message or just do nothing.
         renderDetails(
           categoryDetails,
           {
             heading: "Monthly take-home income",
-            description: "Use your after-tax income (net pay) for the month—what actually lands in your checking account.",
+            description:
+              "Use your after-tax income (net pay) for the month—what actually lands in your checking account.",
             tipText: "",
             tipMoreUrl: "",
             superHeading: "Super+ Tip",
@@ -432,7 +578,7 @@
     const profileInfoBtn = scope.querySelector("#profile-info-btn");
     if (profileInfoBtn && categoryDetails) {
       profileInfoBtn.addEventListener("click", () => {
-        const info = profileInfo; // may be null if not provided
+        const info = profileInfo;
 
         if (info) {
           renderDetails(
@@ -452,7 +598,6 @@
           return;
         }
 
-        // Minimal fallback (optional)
         renderDetails(
           categoryDetails,
           {
@@ -471,8 +616,6 @@
       });
     }
 
-
-
     const modeToggle = scope.querySelector("#mode-toggle");
     const modeStatus = scope.querySelector("#mode-status");
     const budgetTable = scope.querySelector("#budget-table");
@@ -489,7 +632,6 @@
     const profileSelect = ui.select;
     const profileStatus = ui.statusEl;
 
-    // pick default profile
     let currentProfileId = profiles[0].id;
     if (profiles.some((p) => p.id === "typical")) currentProfileId = "typical";
 
@@ -583,8 +725,7 @@
       });
 
       if (totalAvgAmtCell) totalAvgAmtCell.textContent = income > 0 ? formatMoney(totalAvg) : "—";
-      if (totalTargetAmtCell)
-        totalTargetAmtCell.textContent = income > 0 ? formatMoney(totalTarget) : "—";
+      if (totalTargetAmtCell) totalTargetAmtCell.textContent = income > 0 ? formatMoney(totalTarget) : "—";
     }
 
     function resetInfoButtons() {
@@ -592,7 +733,6 @@
       infoBtns.forEach((btn) => btn.setAttribute("aria-expanded", "false"));
     }
 
-    // Populate selector options (textContent only)
     profileSelect.innerHTML = "";
     for (const p of profiles) {
       const opt = document.createElement("option");
@@ -654,7 +794,6 @@
       });
     }
 
-    // Info panel + auto-scroll (uses JSON when present; falls back to CATEGORY_DEFS if JSON missing)
     resultsBody.addEventListener("click", (event) => {
       const btn = event.target.closest(".info-btn");
       if (!btn) return;
@@ -675,11 +814,9 @@
         superMoreUrl: fromJson?.superTip?.moreUrl || ""
       };
 
-      // FIX: pass scope into renderDetails
       renderDetails(categoryDetails, detailsContent, scope, btn);
     });
 
-    // Initial render
     initTable();
     setMode(false);
     updateTable(0);
@@ -689,6 +826,9 @@
         "Tip: If your actual spending in a category is higher than the target, make small adjustments over 1–3 months rather than trying to fix everything at once.";
     }
     resetInfoButtons();
+
+    // ✅ NEW: related stories (non-blocking)
+    initRelatedStories(scope);
   }
 
   global.SmartBudget = { init };

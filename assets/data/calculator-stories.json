@@ -1,9 +1,9 @@
 {
   "smart-budget": [
-    { "category": "money-mindset", "storyId": "why-budgets-fail" },
-    { "category": "learning-budget", "storyId": "getting-started-with-your-budget" }
+    { "storyId": "why-budgets-fail" },
+    { "storyId": "getting-started-with-your-budget" }
   ],
   "envelope-budget": [
-    { "category": "learning-budget", "storyId": "getting-started-with-your-budget" }
+    { "storyId": "getting-started-with-your-budget" }
   ]
 }

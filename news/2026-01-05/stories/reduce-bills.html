@@ -7,6 +7,31 @@
   <title>How to Reduce Your Monthly Bills</title>
   <meta name="description" content="Small changes can add up quickly—cut recurring costs and reclaim margin in your budget." />
   <link rel="stylesheet" href="../../css/base.css" />
+  <script>
+    (function () {
+      // Detect basic bot / crawler user agents
+      var ua = navigator.userAgent.toLowerCase();
+      var isBot =
+        ua.includes("googlebot") ||
+        ua.includes("bingbot") ||
+        ua.includes("duckduckbot") ||
+        ua.includes("slurp") ||
+        ua.includes("baiduspider") ||
+        ua.includes("yandex");
+
+      // If human, redirect to viewer
+      if (!isBot) {
+        var path = window.location.pathname;
+        var match = path.match(/\/stories\/([^\/]+)\.html$/);
+        if (match && match[1]) {
+          var storyId = match[1];
+          window.location.replace("/stories/?story=" + encodeURIComponent(storyId));
+        }
+      }
+    })();
+    </script>
+
+
   <style>
     /* Local story-only layout (viewer supplies title/subtitle/category) */
 
