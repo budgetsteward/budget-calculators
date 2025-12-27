@@ -12,7 +12,6 @@
 
     <style>
       /* Local styling just for this viewer */
-
       .story-hero {
         background: linear-gradient(to right, #1f2937, #111827);
         color: #e5e7eb;
@@ -34,8 +33,39 @@
       .story-hero .item-card-meta {
         opacity: 0.9;
       }
+
+      /* Injected HTML story container */
+      #story-content {
+        margin-top: 0.25rem;
+      }
+
+      /* When we inject story HTML, it often includes an article.card.
+         We’re unwrapping it in JS, but this also protects against “card inside card”. */
+      #story-content .card {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        background: transparent;
+      }
+
+      /* Wrapper restores "polished" look for injected HTML stories */
+      .story-injected-wrap {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1rem 1rem 1.25rem;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+      }
+
+      /* Make sure injected content behaves nicely */
+      .story-injected-wrap img {
+        max-width: 100%;
+        height: auto;
+      }
+
     </style>
   </head>
+
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
 
@@ -71,14 +101,15 @@
       <section aria-labelledby="story-title">
         <article class="card">
           <div class="story-hero">
-            <p class="item-card-meta" id="story-category">
-              <!-- Category name will be inserted here -->
-            </p>
-            <h2 id="story-title">Loading story…</h2>
-            <p class="item-card-meta" id="story-subtitle"></p>
+            <p class="item-card-meta" id="story-category"></p>
+            <h2 id="story-title"></h2>
             <p class="item-card-body" id="story-description"></p>
           </div>
 
+          <!-- HTML story content (injected). This is the iOS scroll fix. -->
+          <div id="story-content" style="display: none;"></div>
+
+          <!-- PDF fallback (iframe only used if no HTML). -->
           <div
             id="story-frame-wrapper"
             style="
@@ -88,6 +119,7 @@
               border: 1px solid var(--border);
               background: #ffffff;
               height: 70vh;
+              display: none;
             "
           >
             <iframe
@@ -97,11 +129,7 @@
             ></iframe>
           </div>
 
-          <p
-            class="item-card-meta"
-            id="story-download"
-            style="margin-top: 0.75rem;"
-          >
+          <p class="item-card-meta" id="story-download" style="margin-top: 0.75rem;">
             <a id="story-download-link" href="#" download>
               Download this story as a PDF
             </a>
@@ -123,7 +151,6 @@
     </footer>
 
     <script src="../js/utils.js"></script>
-    <!-- New: externalized story viewer logic -->
     <script src="../js/story-viewer.js"></script>
   </body>
 </html>
