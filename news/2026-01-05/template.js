@@ -5,7 +5,8 @@
   // ✅ Robust site root: from /news/<issue>/ -> ../../../
   // - GitHub Pages repo site: /budget-calculators/news/2026-01-05/ -> /budget-calculators/
   // - Local dev: /news/2026-01-05/ -> /
-  var SITE_ROOT = new URL("../../../", global.location.href);
+  var SITE_ROOT = new URL("../../", global.location.href);
+
 
   // ✅ Build ABSOLUTE URLs so <base href="..."> cannot break fetch() resolution
   var NEWS_JSON_URL = new URL("assets/data/news.json", SITE_ROOT).href;
