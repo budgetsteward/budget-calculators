@@ -297,9 +297,12 @@
         const hasPdf = !!story.pdf;
         if (downloadWrapEl) downloadWrapEl.style.display = hasPdf ? "block" : "none";
         if (hasPdf && downloadLinkEl) {
-          downloadLinkEl.href = viewerToSitePath(story.pdf);
+          // Build an absolute URL so it works regardless of /stories, /stories/, or /stories/index.html
+          const pdfPath = normalizePath(story.pdf); // "news/2026-01-05/stories/x.pdf"
+          downloadLinkEl.href = new URL("../" + pdfPath, window.location.href).href;
           downloadLinkEl.setAttribute("download", slugifyForDownload(story.title) + ".pdf");
         }
+
 
         // Render story content
         if (story.html) {

@@ -41,6 +41,9 @@
 │       ├── debt-payoff-goal.css
 │       └── debt-payoff-goal-init.js
 │
+├── stories/
+│   └── index.html               ← story viewer page (displays individual stories)
+│
 ├── news/                        ← newsletter/edition structure
 │   ├── 2025-12-22/
 │   │   └── index.html
