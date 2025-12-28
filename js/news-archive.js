@@ -25,8 +25,19 @@
     el.textContent = msg || "";
   }
 
+  // ✅ FIX: Parse YYYY-MM-DD as a *local calendar date* (not UTC midnight),
+  // so it never shifts a day earlier in US timezones.
   function parseDateSafe(iso) {
-    var d = new Date(iso);
+    if (!iso || typeof iso !== "string") return null;
+
+    var m = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!m) return null;
+
+    var year = Number(m[1]);
+    var month = Number(m[2]) - 1; // JS months are 0-based
+    var day = Number(m[3]);
+
+    var d = new Date(year, month, day); // local date, no timezone drift
     return isNaN(d.getTime()) ? null : d;
   }
 

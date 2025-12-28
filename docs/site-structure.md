@@ -73,14 +73,11 @@
 │   │   ├── template.js
 │   │   └── template.css
 │   │
-│   ├── news/
-│   │   ├── template.html
-│   │   ├── template.js
-│   │   ├── template.css
-│   │   └── images/
-│   │
-│   └── story/
-│       └── (story templates)
+│   └── news/
+│       ├── template.html
+│       ├── template.js
+│       ├── template.css
+│       └── images/
 │
 ├── css/
 │   ├── base.css          ← global typography, layout, colors, accessibility

@@ -6,8 +6,8 @@
     "description": "A beginner-friendly walkthrough showing how to take your first steps toward building a working personal budget.",
     "issueId": "2026-01-05",
     "categories": ["learning-budget"],
-    "pdf": "news/2026-01-05/stories/getting-started-with-your-budget.pdf",
-    "html": "news/2026-01-05/stories/getting-started-with-your-budget.html"
+    "pdf": "/news/2026-01-05/stories/getting-started-with-your-budget.pdf",
+    "html": "/news/2026-01-05/stories/getting-started-with-your-budget.html"
   },
   {
     "id": "zero-based-budgeting",
@@ -16,8 +16,8 @@
     "description": "Learn how zero-based budgeting helps you stay intentional and avoid overspending by assigning every dollar a purpose.",
     "issueId": "2026-01-05",
     "categories": ["learning-budget"],
-    "pdf": "news/2026-01-05/stories/zero-based-budgeting.pdf",
-    "html": "news/2026-01-05/stories/zero-based-budgeting.html"
+    "pdf": "/news/2026-01-05/stories/zero-based-budgeting.pdf",
+    "html": "/news/2026-01-05/stories/zero-based-budgeting.html"
   },
   {
     "id": "reduce-bills",
@@ -26,8 +26,8 @@
     "description": "A collection of proven strategies to negotiate bills, reduce subscriptions, and lower regular expenses.",
     "issueId": "2026-01-05",
     "categories": ["cutting-costs"],
-    "pdf": "news/2026-01-05/stories/reduce-bills.pdf",
-    "html": "news/2026-01-05/stories/reduce-bills.html"
+    "pdf": "/news/2026-01-05/stories/reduce-bills.pdf",
+    "html": "/news/2026-01-05/stories/reduce-bills.html"
   },
   {
     "id": "why-budgets-fail",
@@ -36,8 +36,8 @@
     "description": "Uncover the common reasons budgets fall apart and learn what mindset shifts can keep you on track.",
     "issueId": "2026-01-05",
     "categories": ["money-mindset"],
-    "pdf": "news/2026-01-05/stories/why-budgets-fail.pdf",
-    "html": "news/2026-01-05/stories/why-budgets-fail.html"
+    "pdf": "/news/2026-01-05/stories/why-budgets-fail.pdf",
+    "html": "/news/2026-01-05/stories/why-budgets-fail.html"
   },
   {
     "id": "budgeting-for-your-first-apartment",
@@ -46,7 +46,7 @@
     "description": "A practical guide to budgeting for rent, utilities, deposits, and furnishing your first home.",
     "issueId": "2026-01-05",
     "categories": ["life-events"],
-    "pdf": "news/2026-01-05/stories/budgeting-for-your-first-apartment.pdf",
-    "html": "news/2026-01-05/stories/budgeting-for-your-first-apartment.html"
+    "pdf": "/news/2026-01-05/stories/budgeting-for-your-first-apartment.pdf",
+    "html": "/news/2026-01-05/stories/budgeting-for-your-first-apartment.html"
   }
 ]

@@ -1,1 +1,0 @@
-// Story Template JS
