@@ -2,8 +2,8 @@
 (function (global) {
   "use strict";
 
-  var NEWS_JSON_URL = "/assets/data/news.json";
-  var STORIES_JSON_URL = "/assets/data/stories.json";
+  var NEWS_JSON_URL = "../../../assets/data/news.json";
+  var STORIES_JSON_URL = "../../../assets/data/stories.json";
 
   // Site-level archive page (optional)
   var NEWS_ARCHIVE_PATH = "news-archive.html";
