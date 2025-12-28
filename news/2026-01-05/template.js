@@ -2,16 +2,17 @@
 (function (global) {
   "use strict";
 
-  var NEWS_JSON_URL = "../../../assets/data/news.json";
-  var STORIES_JSON_URL = "../../../assets/data/stories.json";
-  
+  // ✅ Robust site root: from /news/<issue>/ -> ../../../
+  // - GitHub Pages repo site: /budget-calculators/news/2026-01-05/ -> /budget-calculators/
+  // - Local dev: /news/2026-01-05/ -> /
+  var SITE_ROOT = new URL("../../../", global.location.href);
+
+  // ✅ Build ABSOLUTE URLs so <base href="..."> cannot break fetch() resolution
+  var NEWS_JSON_URL = new URL("assets/data/news.json", SITE_ROOT).href;
+  var STORIES_JSON_URL = new URL("assets/data/stories.json", SITE_ROOT).href;
 
   // Site-level archive page (optional)
   var NEWS_ARCHIVE_PATH = "news-archive.html";
-
-  // Site root (two levels up from /news/<issue>/)
-  var SITE_ROOT = new URL("../../../", global.location.href);
-
 
   var setAriaMessage =
     (global.BudgetUtils && global.BudgetUtils.setAriaMessage) ||
@@ -267,7 +268,6 @@
     });
 
     function metaFor(it) {
-      // ✅ Simplified: story lookup by storyId only
       return (it && it.storyId && storyIndex[it.storyId]) ? storyIndex[it.storyId] : null;
     }
 
@@ -322,7 +322,6 @@
       );
     }
 
-    // Right rail
     var rail = el("aside", "news-rail");
     rail.appendChild(el("h3", null, "This Issue"));
     rail.appendChild(
