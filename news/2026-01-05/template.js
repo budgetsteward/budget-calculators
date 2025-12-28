@@ -4,12 +4,13 @@
 
   var NEWS_JSON_URL = "../../../assets/data/news.json";
   var STORIES_JSON_URL = "../../../assets/data/stories.json";
+  
 
   // Site-level archive page (optional)
   var NEWS_ARCHIVE_PATH = "news-archive.html";
 
   // Site root (two levels up from /news/<issue>/)
-  var SITE_ROOT = new URL("/", global.location.href);
+  var SITE_ROOT = new URL("../../../", global.location.href);
 
 
   var setAriaMessage =
