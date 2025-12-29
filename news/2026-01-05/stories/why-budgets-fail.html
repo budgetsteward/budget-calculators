@@ -7,34 +7,7 @@
   <meta name="description" content="Common reasons budgets fall apart—and how to build a plan that works in real life." />
   <link rel="stylesheet" href="../../../css/base.css" />
   <link rel="canonical" href="/stories/?story=why-budgets-fail">
-  <script>
-    (function () {
-      // Detect basic bot / crawler user agents
-      var ua = navigator.userAgent.toLowerCase();
-      var isBot =
-        ua.includes("googlebot") ||
-        ua.includes("bingbot") ||
-        ua.includes("duckduckbot") ||
-        ua.includes("slurp") ||
-        ua.includes("baiduspider") ||
-        ua.includes("yandex");
-
-      // If human, redirect to viewer
-      if (!isBot) {
-        var path = window.location.pathname;
-        var match = path.match(/\/stories\/([^\/]+)\.html$/);
-        if (match && match[1]) {
-          var storyId = match[1];
-          var parts = (window.location.pathname || "/").split("/").filter(Boolean);
-          var base = (parts.length && parts[0] !== "news" && parts[0] !== "stories" && parts[0] !== "calculators")
-            ? "/" + parts[0] + "/"
-            : "/";
-
-          window.location.replace(base + "stories/?story=" + encodeURIComponent(storyId));
-        }
-      }
-    })();
-    </script>
+  <script src="../../../js/story-redirect.js" defer></script>
 
   <style>
     /* Local story-only layout (content-only; viewer supplies title/subtitle/category) */
