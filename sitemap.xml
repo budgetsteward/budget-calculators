@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core pages -->
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/calculators.html</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/stories/</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/news.html</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/news-archive.html</loc>
+  </url>
+
+  <!-- Calculator pages -->
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/calculators/smart-budget/</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/calculators/envelope-budget/</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/calculators/missing-loan-term/</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/calculators/simple-loan/</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/calculators/accelerated-debt-payoff/</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/calculators/debt-payoff-goal/</loc>
+  </url>
+
+  <!-- Canonical story viewer URLs -->
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/stories/?story=why-budgets-fail</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/stories/?story=getting-started-with-your-budget</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/stories/?story=zero-based-budgeting</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/stories/?story=reduce-bills</loc>
+  </url>
+  <url>
+    <loc>https://budgetsteward.github.io/budget-calculators/stories/?story=budgeting-for-your-first-apartment</loc>
+  </url>
+
+</urlset>

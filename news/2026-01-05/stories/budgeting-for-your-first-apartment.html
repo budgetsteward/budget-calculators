@@ -25,7 +25,12 @@
         var match = path.match(/\/stories\/([^\/]+)\.html$/);
         if (match && match[1]) {
           var storyId = match[1];
-          window.location.replace("/stories/?story=" + encodeURIComponent(storyId));
+          var parts = (window.location.pathname || "/").split("/").filter(Boolean);
+          var base = (parts.length && parts[0] !== "news" && parts[0] !== "stories" && parts[0] !== "calculators")
+            ? "/" + parts[0] + "/"
+            : "/";
+
+          window.location.replace(base + "stories/?story=" + encodeURIComponent(storyId));
         }
       }
     })();

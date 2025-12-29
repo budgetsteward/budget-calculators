@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /templates/
+Disallow: /legacy/
+
+# Allow everything else
+Allow: /
+
+Sitemap: https://budgetsteward.github.io/budget-calculators/sitemap.xml
