@@ -144,7 +144,6 @@
     img.loading = "lazy";
 
     img.onerror = function () {
-      console.warn("Newsletter image failed to load:", resolved);
       fig.style.display = "none";
     };
 
@@ -181,8 +180,8 @@
     var top = el("div", "news-masthead-top");
 
     var left = el("div");
-    var name = el("h1", "news-name", issue.title || "Newsletter");
-    var tagline = el("p", "news-tagline", issue.tagline || issue.subtitle || "");
+    var name = el("h1", "news-name", issue.title || "");
+    var tagline = el("p", "news-tagline", issue.tagline || "");
     left.appendChild(name);
     if (tagline.textContent) left.appendChild(tagline);
 

@@ -4,12 +4,10 @@
       "id": "2026-01-05",
       "issueNumber": "1",
       "title": "Budget Daily",
-      "subtitle": "A front-page digest of the most useful budgeting reads this week.",
       "tagline": "Curated by the Super.com employees and the people who use it.",
       "publishedDate": "2026-01-05",
       "edition": "Digital Edition",
       "website": "www.super.com",
-      "price": "Free",
       "sidebarNote": "Happy 2026 and welcome to the inaugural issue of Budget Daily, our new front-page digest of budgeting stories designed to help you start the year with clarity and confidence.",
       "callout": {
         "title": "Try This Next",
@@ -19,7 +17,6 @@
         {
           "label": "Lead",
           "hint": "Featured",
-          "layout": "lead",
           "items": [
             {
               "storyId": "why-budgets-fail",

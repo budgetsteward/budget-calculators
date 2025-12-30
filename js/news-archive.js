@@ -94,8 +94,8 @@
       card.appendChild(el("p", "item-card-meta", metaParts.join(" • ")));
     }
 
-    // Description (prefer tagline/subtitle)
-    var desc = issue.tagline || issue.subtitle || issue.description || "";
+    // Description (prefer tagline)
+    var desc = issue.tagline || issue.description || "";
     if (desc) {
       card.appendChild(el("p", "item-card-body", desc));
     }
