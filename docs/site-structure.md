@@ -1,5 +1,7 @@
 # Site Structure
 
+Updated: 2025-12-30
+
 /
 ├── index.html
 ├── calculators.html
