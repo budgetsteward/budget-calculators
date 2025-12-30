@@ -12,21 +12,22 @@
 
     <link rel="canonical" href="/news.html">
     <link rel="stylesheet" href="../../css/base.css" />
-    <link rel="stylesheet" href="template.css" />
+    <link rel="stylesheet" href="./template.css" />
   </head>
 
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <!-- Optional: keep your normal site nav minimal for newsletters -->
-    <header class="site-minibar" aria-label="Site">
-      <div class="site-minibar-inner">
-        <a href="../../index.html" class="site-minibar-brand">My Super Calculators</a>
-        <nav class="site-minibar-links" aria-label="Primary">
+    <header>
+      <nav class="nav" aria-label="Primary">
+        <a href="../../index.html" class="nav-brand">My Super Calculators</a>
+        <div class="nav-links">
+          <a href="../../index.html">Home</a>
           <a href="../../calculators.html">Calculators</a>
-          <a href="../../news.html">News</a>
-        </nav>
-      </div>
+          <a href="../../news.html" aria-current="page">News</a>
+        </div>
+      </nav>
     </header>
 
     <main id="main" class="news-page">
@@ -41,8 +42,7 @@
           <div class="news-noscript">
             <h1>News</h1>
             <p>
-              This newsletter uses JavaScript to load content. Please enable JavaScript
-              or open the Stories page.
+              This issue requires JavaScript to load.
             </p>
           </div>
         </noscript>
@@ -58,7 +58,7 @@
     </footer>
 
     <script src="../../js/utils.js"></script>
-    <script src="template.js"></script>
+    <script src="./template.js"></script>
     <script>
       if (window.NewsletterTemplate) {
         NewsletterTemplate.init(document);
