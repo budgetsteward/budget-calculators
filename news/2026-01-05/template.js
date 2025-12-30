@@ -2,13 +2,28 @@
 (function (global) {
   "use strict";
 
-  // ✅ Robust site root: from /news/<issue>/ -> ../../../
-  // - GitHub Pages repo site: /budget-calculators/news/2026-01-05/ -> /budget-calculators/
-  // - Local dev: /news/2026-01-05/ -> /
-  var SITE_ROOT = new URL("../../", global.location.href);
+  // ---------------------------------------------------------------------------
+  // ✅ FIX: Compute SITE_ROOT in a way that works BOTH locally and on GitHub Pages
+  // Local:   http://localhost:8000/news/2026-01-05/index.html         -> /
+  // GitHub:  https://budgetsteward.github.io/budget-calculators/news/... -> /budget-calculators/
+  // ---------------------------------------------------------------------------
+  function computeSiteRootHref() {
+    var parts = global.location.pathname.split("/").filter(Boolean);
+    var newsIdx = parts.lastIndexOf("news");
 
+    // If we can't find /news/, fall back to origin root
+    if (newsIdx < 0) return global.location.origin + "/";
 
-  // ✅ Build ABSOLUTE URLs so <base href="..."> cannot break fetch() resolution
+    // Everything BEFORE "news" is the repo base (possibly empty)
+    var baseParts = parts.slice(0, newsIdx);
+    var basePath = baseParts.length ? "/" + baseParts.join("/") + "/" : "/";
+
+    return global.location.origin + basePath;
+  }
+
+  var SITE_ROOT = new URL(computeSiteRootHref());
+
+  // ✅ Absolute URLs so fetch() is not impacted by <base href="..."> or relative resolution
   var NEWS_JSON_URL = new URL("assets/data/news.json", SITE_ROOT).href;
   var STORIES_JSON_URL = new URL("assets/data/stories.json", SITE_ROOT).href;
 
@@ -62,7 +77,7 @@
     return p.charAt(0) === "/" ? p.slice(1) : p;
   }
 
-  // Viewer link format
+  // Viewer link format (relative to /news/<issue>/)
   function viewerHref(storyId) {
     return "../../stories/?story=" + encodeURIComponent(storyId || "");
   }
@@ -73,7 +88,7 @@
 
   function fetchJson(url) {
     return fetch(url).then(function (r) {
-      if (!r.ok) throw new Error("Failed to load " + url);
+      if (!r.ok) throw new Error("Failed to load " + url + " (" + r.status + ")");
       return r.json();
     });
   }
@@ -427,4 +442,24 @@
   }
 
   global.NewsletterTemplate = { init: init };
+
+  // ---------------------------------------------------------------------------
+  // ✅ Move inline bootstrap from index.html into template.js (least-change)
+  // ---------------------------------------------------------------------------
+  function bootstrapFromFolderAndInit() {
+    var parts = global.location.pathname.split("/").filter(Boolean);
+    var issueId = parts.length >= 2 ? parts[parts.length - 2] : "";
+
+    var url = new URL(global.location.href);
+    if (!url.searchParams.get("issue") && issueId) {
+      url.searchParams.set("issue", issueId);
+      global.history.replaceState({}, "", url.toString());
+    }
+
+    if (global.NewsletterTemplate) {
+      global.NewsletterTemplate.init(document);
+    }
+  }
+
+  bootstrapFromFolderAndInit();
 })(window);

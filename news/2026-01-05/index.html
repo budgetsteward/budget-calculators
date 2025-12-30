@@ -47,23 +47,5 @@
 
     <script src="../../js/utils.js"></script>
     <script src="./template.js"></script>
-    <script>
-      (function () {
-        // Infer issue id from folder name: /news/<issueId>/index.html
-        var parts = window.location.pathname.split("/").filter(Boolean);
-        var issueId = parts.length >= 2 ? parts[parts.length - 2] : "";
-
-        // template.js reads ?issue=..., so add it if missing
-        var url = new URL(window.location.href);
-        if (!url.searchParams.get("issue") && issueId) {
-          url.searchParams.set("issue", issueId);
-          window.history.replaceState({}, "", url.toString());
-        }
-
-        if (window.NewsletterTemplate) {
-          window.NewsletterTemplate.init(document);
-        }
-      })();
-    </script>
   </body>
 </html>
