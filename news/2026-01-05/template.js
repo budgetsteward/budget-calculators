@@ -5,7 +5,8 @@
   // ✅ Robust site root: from /news/<issue>/ -> ../../../
   // - GitHub Pages repo site: /budget-calculators/news/2026-01-05/ -> /budget-calculators/
   // - Local dev: /news/2026-01-05/ -> /
-  var SITE_ROOT = new URL("../../../", global.location.href);
+  var SITE_ROOT = new URL("../../", global.location.href);
+
 
   // ✅ Build ABSOLUTE URLs so <base href="..."> cannot break fetch() resolution
   var NEWS_JSON_URL = new URL("assets/data/news.json", SITE_ROOT).href;
@@ -426,28 +427,4 @@
   }
 
   global.NewsletterTemplate = { init: init };
-
-  // ---------------------------------------------------------------------------
-  // ✅ Least-change move of the inline bootstrap from index.html into template.js
-  // ---------------------------------------------------------------------------
-  function bootstrapFromFolderAndInit() {
-    // Infer issue id from folder name: /news/<issueId>/index.html
-    var parts = global.location.pathname.split("/").filter(Boolean);
-    var issueId = parts.length >= 2 ? parts[parts.length - 2] : "";
-
-    // template.js reads ?issue=..., so add it if missing
-    var url = new URL(global.location.href);
-    if (!url.searchParams.get("issue") && issueId) {
-      url.searchParams.set("issue", issueId);
-      global.history.replaceState({}, "", url.toString());
-    }
-
-    // Call init once scripts are loaded
-    if (global.NewsletterTemplate) {
-      global.NewsletterTemplate.init(document);
-    }
-  }
-
-  // Auto-run (0 inline scripts needed)
-  bootstrapFromFolderAndInit();
 })(window);
