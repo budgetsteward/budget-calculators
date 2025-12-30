@@ -26,13 +26,15 @@
     return parts[idx + 1] || null;
   }
 
-  function findStory(storiesData, categoryKey, storyId) {
-    var cat = storiesData && storiesData[categoryKey];
-    if (!cat || !Array.isArray(cat.stories)) return null;
-    for (var i = 0; i < cat.stories.length; i++) {
-      if (cat.stories[i] && cat.stories[i].id === storyId) return cat.stories[i];
-    }
-    return null;
+  function buildStoryIndex(storiesArray) {
+    var index = {};
+    if (!Array.isArray(storiesArray)) return index;
+    storiesArray.forEach(function (story) {
+      if (story && story.id) {
+        index[story.id] = story;
+      }
+    });
+    return index;
   }
 
   function renderRelatedStories(container, slug, mapData, storiesData) {
@@ -50,13 +52,15 @@
       return;
     }
 
+    var storyIndex = buildStoryIndex(storiesData);
+
     var ul = createEl("ul", "related-stories-ul");
     listWrap.appendChild(ul);
 
     refs.forEach(function (ref) {
-      if (!ref || !ref.category || !ref.storyId) return;
+      if (!ref || !ref.storyId) return;
 
-      var story = findStory(storiesData, ref.category, ref.storyId);
+      var story = storyIndex[ref.storyId];
 
       // If mapping points to something missing, just skip (keeps non-dev edits forgiving)
       if (!story) return;
@@ -72,11 +76,7 @@
 
       var a = document.createElement("a");
       a.className = "related-stories-link";
-      a.href =
-        "../../stories/?category=" +
-        encodeURIComponent(ref.category) +
-        "&story=" +
-        encodeURIComponent(ref.storyId);
+      a.href = "../../stories/?story=" + encodeURIComponent(ref.storyId);
       a.textContent = story.title || "Untitled story";
 
       textWrap.appendChild(a);
