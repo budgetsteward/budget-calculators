@@ -8,7 +8,9 @@
 ├── news-archive.html
 ├── robots.txt
 ├── sitemap.xml
-├── README.md
+├── package.json             ← project metadata and npm scripts
+├── README.md                ← visitor-friendly overview
+├── CONTRIBUTING.md          ← detailed contribution guidelines
 │
 ├── calculators/
 │   ├── smart-budget/
@@ -114,8 +116,8 @@
 │   └── data/
 │       ├── categories.json        ← story category definitions
 │       ├── stories.json           ← story metadata and links
-│       ├── calculator-stories.json ← maps calculators to related stories
-│       ├── news.json              ← news/newsletter metadata
+│       ├── calculator-stories.json ← maps calculators to related stories (storyId only)
+│       ├── news.json              ← newsletter metadata (no subtitle, price, or layout properties)
 │       └── site-alert.json        ← site-wide alert configuration
 │
 ├── legacy/
@@ -125,6 +127,11 @@
     └── site-structure.md ← this document
 
 ## Key Structural Changes
+
+### Documentation
+- **package.json** - Provides project metadata and npm scripts (`npm start` for local server)
+- **README.md** - Condensed visitor-friendly overview with quick start guide
+- **CONTRIBUTING.md** - Comprehensive maintenance and contribution guidelines
 
 ### Stories Architecture
 Stories are now integrated into the newsletter structure:
@@ -138,8 +145,9 @@ Stories are now integrated into the newsletter structure:
 ### Newsletter Structure
 - Each newsletter edition (e.g., `2026-01-05/`) is self-contained
 - Editions include their own stories, images, and edition-specific CSS/JS
-- Newsletter template.js auto-initializes (no inline scripts needed)
-- Newsletter metadata is managed via `news.json`
+- Newsletter template.js auto-initializes (no inline scripts, no console.warn calls)
+- Newsletter metadata in news.json includes: id, issueNumber, title, tagline, publishedDate, edition, website, sidebarNote, callout, sections, footerNote
+- Removed unused properties: subtitle, price, layout
 
 ### Calculator Structure
 - All calculators follow a consistent pattern: index.html, {name}.js, {name}-init.js, {name}.css
