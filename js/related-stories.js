@@ -131,4 +131,14 @@
   }
 
   window.RelatedStories = { init: init };
+
+    // Auto-init (removes need for inline script in each calculator HTML)
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () {
+      init(document);
+    });
+  } else {
+    init(document);
+  }
+
 })();

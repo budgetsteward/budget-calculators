@@ -3,13 +3,8 @@
   <head>
     <meta name="robots" content="noindex, nofollow">
     <meta charset="utf-8" />
-    <meta
-      name="description"
-      content="Newsletter – newspaper-style front page featuring curated stories."
-    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>News – My Super Calculators</title>
-
     <link rel="canonical" href="/news.html">
     <link rel="stylesheet" href="../../css/base.css" />
     <link rel="stylesheet" href="./template.css" />
@@ -18,7 +13,6 @@
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
 
-    <!-- Optional: keep your normal site nav minimal for newsletters -->
     <header>
       <nav class="nav" aria-label="Primary">
         <a href="../../index.html" class="nav-brand">My Super Calculators</a>
@@ -31,25 +25,19 @@
     </header>
 
     <main id="main" class="news-page">
-      <!-- Screen reader status -->
       <div id="global-status" class="sr-only" aria-live="polite"></div>
 
-      <!-- NEWSPAPER FRAME -->
       <article id="news-root" class="news-paper" aria-label="Newsletter front page">
-        <!-- Filled by template.js.
-             If JS fails, the publisher can still paste content into the fallback area. -->
         <noscript>
           <div class="news-noscript">
             <h1>News</h1>
-            <p>
-              This issue requires JavaScript to load.
-            </p>
+            <p>This issue requires JavaScript to load.</p>
           </div>
         </noscript>
       </article>
     </main>
 
-    <footer class="news-footer">
+    <footer>
       <p>
         These tools and stories are provided for general information and entertainment
         purposes only and do not constitute financial, legal, or tax advice. Please
@@ -59,10 +47,5 @@
 
     <script src="../../js/utils.js"></script>
     <script src="./template.js"></script>
-    <script>
-      if (window.NewsletterTemplate) {
-        NewsletterTemplate.init(document);
-      }
-    </script>
   </body>
 </html>
